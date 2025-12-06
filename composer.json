@@ -1,8 +1,17 @@
 {
-    "name": "ftrotter/zermelo",
+    "name": "ftrotter/zzermelo",
     "description": "Zermelo, a PHP reporting engine for Laravel",
     "type": "library",
-    "license": "Apache-2.0",
+    "license": "AGPL-3.0-or-later",
+    "homepage": "https://github.com/ftrotter/ZZermelo",
+    "authors": [
+        {
+            "name": "Fred Trotter",
+            "email": "fred.trotter@gmail.com",
+            "homepage": "https://www.fredtrotter.com",
+            "role": "Developer"
+        }
+    ],
      "keywords": [
                 "laravel",
                 "reporting",
@@ -24,13 +33,13 @@
     },
     "autoload": {
         "psr-4" : {
-            "ftrotter\\Zermelo\\" : "src/"
+            "CareSet\\Zermelo\\" : "src/"
         }
     },
     "extra": {
 	    "laravel": {
 	        "providers": [
-	            "ftrotter\\Zermelo\\ZermeloServiceProvider"
+	            "CareSet\\Zermelo\\ZermeloServiceProvider"
 	        ]
 	    }
 	},

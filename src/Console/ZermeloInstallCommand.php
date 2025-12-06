@@ -1,9 +1,9 @@
 <?php
 
-namespace ftrotter\Zermelo\Console;
+namespace CareSet\Zermelo\Console;
 
-use ftrotter\Zermelo\Models\DatabaseCache;
-use ftrotter\Zermelo\Models\ZermeloDatabase;
+use CareSet\Zermelo\Models\DatabaseCache;
+use CareSet\Zermelo\Models\ZermeloDatabase;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
@@ -63,16 +63,16 @@ class ZermeloInstallCommand extends AbstractZermeloInstallCommand
         '/vendor/fortawesome/font-awesome/js/all.min.js' => '/core/font-awesome/js/all.min.js',
 
         // Core assets that live in the zermelo repo
-        '/vendor/ftrotter/zermelo/assets/core/css' => '/core/css',
-        '/vendor/ftrotter/zermelo/assets/core/js' => '/core/js',
+        '/vendor/ftrotter/zzermelo/assets/core/css' => '/core/css',
+        '/vendor/ftrotter/zzermelo/assets/core/js' => '/core/js',
 
         // Graph Assets
-        '/vendor/ftrotter/zermelo/assets/zermelobladegraph/css' => '/zermelobladegraph/css',
-        '/vendor/ftrotter/zermelo/assets/zermelobladegraph/js' => '/zermelobladegraph/js',
+        '/vendor/ftrotter/zzermelo/assets/zermelobladegraph/css' => '/zermelobladegraph/css',
+        '/vendor/ftrotter/zzermelo/assets/zermelobladegraph/js' => '/zermelobladegraph/js',
 
         // Tabular Assets
-        '/vendor/ftrotter/zermelo/assets/zermelobladetabular/datatables' => '/zermelobladetabular/datatables',
-        '/vendor/ftrotter/zermelo/assets/zermelobladetabular/js' => '/zermelobladetabular/js',
+        '/vendor/ftrotter/zzermelo/assets/zermelobladetabular/datatables' => '/zermelobladetabular/datatables',
+        '/vendor/ftrotter/zzermelo/assets/zermelobladetabular/js' => '/zermelobladetabular/js',
     ];
 
     protected static $config_file = __DIR__.'/../../config/zermelo.php';
@@ -93,7 +93,7 @@ class ZermeloInstallCommand extends AbstractZermeloInstallCommand
      */
     protected $description = 'Install all available Zermelo packages';
 
-    const CONFIG_MIGRATIONS_PATH = 'vendor/ftrotter/zermelo/database/migrations';
+    const CONFIG_MIGRATIONS_PATH = 'vendor/ftrotter/zzermelo/database/migrations';
 
     public function handle()
     {
