@@ -6,14 +6,14 @@
  * Time: 6:21 PM
  */
 
-namespace ftrotter\Zermelo\Console;
+namespace CareSet\Zermelo\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use ftrotter\Zermelo\Reports\Graph\AbstractGraphReport;
-use ftrotter\Zermelo\Reports\Tabular\AbstractTabularReport;
-use ftrotter\Zermelo\Reports\Tree\AbstractTreeReport;
-use ftrotter\Zermelo\Reports\Cards\AbstractCardsReport;
+use CareSet\Zermelo\Reports\Graph\AbstractGraphReport;
+use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
+use CareSet\Zermelo\Reports\Tree\AbstractTreeReport;
+use CareSet\Zermelo\Reports\Cards\AbstractCardsReport;
 
 class ZermeloReportCheckCommand extends Command
 {

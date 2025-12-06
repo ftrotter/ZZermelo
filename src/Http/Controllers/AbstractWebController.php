@@ -6,11 +6,11 @@
  * Time: 12:33 PM
  */
 
-namespace ftrotter\Zermelo\Http\Controllers;
+namespace CareSet\Zermelo\Http\Controllers;
 
-use ftrotter\Zermelo\Http\Requests\ZermeloRequest;
-use ftrotter\Zermelo\Interfaces\ZermeloReportInterface;
-use ftrotter\Zermelo\Models\ZermeloReport;
+use CareSet\Zermelo\Http\Requests\ZermeloRequest;
+use CareSet\Zermelo\Interfaces\ZermeloReportInterface;
+use CareSet\Zermelo\Models\ZermeloReport;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;

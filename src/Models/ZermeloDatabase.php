@@ -10,7 +10,7 @@
  * database exists, getting meta data, etc.
  */
 
-namespace ftrotter\Zermelo\Models;
+namespace CareSet\Zermelo\Models;
 
 
 use Illuminate\Database\QueryException;

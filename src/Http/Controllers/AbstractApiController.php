@@ -6,7 +6,7 @@
  * Time: 12:33 PM
  */
 
-namespace ftrotter\Zermelo\Http\Controllers;
+namespace CareSet\Zermelo\Http\Controllers;
 
 
 use Illuminate\Foundation\Bus\DispatchesJobs;

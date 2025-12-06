@@ -5,10 +5,10 @@
  * Date: 7/5/18
  * Time: 1:03 PM
  */
-namespace ftrotter\Zermelo\Reports\Tree;
+namespace CareSet\Zermelo\Reports\Tree;
 
-use ftrotter\Zermelo\Models\AbstractPresenter;
-use ftrotter\Zermelo\Models\ZermeloReport;
+use CareSet\Zermelo\Models\AbstractPresenter;
+use CareSet\Zermelo\Models\ZermeloReport;
 
 class TreePresenter extends AbstractPresenter
 {

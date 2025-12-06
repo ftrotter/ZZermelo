@@ -6,7 +6,7 @@
  * Time: 2:26 PM
  */
 
-namespace ftrotter\Zermelo\Models;
+namespace CareSet\Zermelo\Models;
 
 class Socket extends AbstractZermeloModel
 {
