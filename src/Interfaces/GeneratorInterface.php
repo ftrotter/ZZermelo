@@ -6,10 +6,10 @@
  * Time: 12:08 PM
  */
 
-namespace CareSet\Zermelo\Interfaces;
+namespace ftrotter\ZZermelo\Interfaces;
 
 
-use CareSet\Zermelo\Models\ZermeloReport;
+use ftrotter\ZZermelo\Models\ZermeloReport;
 
 interface GeneratorInterface
 {

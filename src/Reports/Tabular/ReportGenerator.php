@@ -1,18 +1,18 @@
 <?php
 
-namespace CareSet\Zermelo\Reports\Tabular;
+namespace ftrotter\ZZermelo\Reports\Tabular;
 
-use CareSet\Zermelo\Interfaces\CacheInterface;
-use CareSet\Zermelo\Interfaces\GeneratorInterface;
-use CareSet\Zermelo\Models\AbstractGenerator;
-use CareSet\Zermelo\Models\DatabaseCache;
-use CareSet\Zermelo\Models\ZermeloDatabase;
-use CareSet\Zermelo\Models\ZermeloReport;
-use CareSet\Zermelo\Exceptions\InvalidDatabaseTableException;
-use CareSet\Zermelo\Exceptions\InvalidHeaderFormatException;
-use CareSet\Zermelo\Exceptions\InvalidHeaderTagException;
-use CareSet\Zermelo\Exceptions\UnexpectedHeaderException;
-use CareSet\Zermelo\Exceptions\UnexpectedMapRowException;
+use ftrotter\ZZermelo\Interfaces\CacheInterface;
+use ftrotter\ZZermelo\Interfaces\GeneratorInterface;
+use ftrotter\ZZermelo\Models\AbstractGenerator;
+use ftrotter\ZZermelo\Models\DatabaseCache;
+use ftrotter\ZZermelo\Models\ZermeloDatabase;
+use ftrotter\ZZermelo\Models\ZermeloReport;
+use ftrotter\ZZermelo\Exceptions\InvalidDatabaseTableException;
+use ftrotter\ZZermelo\Exceptions\InvalidHeaderFormatException;
+use ftrotter\ZZermelo\Exceptions\InvalidHeaderTagException;
+use ftrotter\ZZermelo\Exceptions\UnexpectedHeaderException;
+use ftrotter\ZZermelo\Exceptions\UnexpectedMapRowException;
 
 class ReportGenerator extends AbstractGenerator implements GeneratorInterface
 {

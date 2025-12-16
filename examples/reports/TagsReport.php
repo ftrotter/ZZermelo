@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Reports;
-use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
+use ftrotter\ZZermelo\Reports\Tabular\AbstractTabularReport;
 
 //note that we are specifically testing layout features with this report
 //so we will not extend ParentTabularReport... 

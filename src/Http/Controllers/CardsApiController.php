@@ -1,12 +1,12 @@
 <?php
 
-namespace CareSet\Zermelo\Http\Controllers;
+namespace ftrotter\ZZermelo\Http\Controllers;
 
-use CareSet\Zermelo\Http\Requests\CardsReportRequest;
-use CareSet\Zermelo\Http\Requests\ZermeloRequest;
-use CareSet\Zermelo\Models\DatabaseCache;
-use CareSet\Zermelo\Reports\Tabular\ReportGenerator;
-use CareSet\Zermelo\Reports\Tabular\ReportSummaryGenerator;
+use ftrotter\ZZermelo\Http\Requests\CardsReportRequest;
+use ftrotter\ZZermelo\Http\Requests\ZermeloRequest;
+use ftrotter\ZZermelo\Models\DatabaseCache;
+use ftrotter\ZZermelo\Reports\Tabular\ReportGenerator;
+use ftrotter\ZZermelo\Reports\Tabular\ReportSummaryGenerator;
 
 class CardsApiController
 {

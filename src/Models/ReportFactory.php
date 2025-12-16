@@ -1,9 +1,9 @@
 <?php
-namespace CareSet\Zermelo\Models;
+namespace ftrotter\ZZermelo\Models;
 
-use CareSet\Zermelo\Http\Requests\ZermeloRequest;
-use CareSet\Zermelo\Interfaces\CacheInterface;
-use CareSet\Zermelo\Services\SocketService;
+use ftrotter\ZZermelo\Http\Requests\ZermeloRequest;
+use ftrotter\ZZermelo\Interfaces\CacheInterface;
+use ftrotter\ZZermelo\Services\SocketService;
 use Illuminate\Http\Request;
 
 class ReportFactory

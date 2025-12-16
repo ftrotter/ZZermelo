@@ -1,6 +1,6 @@
 <?php
 
-namespace CareSet\Zermelo\Http\Requests;
+namespace ftrotter\ZZermelo\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

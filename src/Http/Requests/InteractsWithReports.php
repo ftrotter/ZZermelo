@@ -1,9 +1,9 @@
 <?php
 
-namespace CareSet\Zermelo\Http\Requests;
+namespace ftrotter\ZZermelo\Http\Requests;
 
-use CareSet\Zermelo\Models\ReportFactory;
-use CareSet\Zermelo\Zermelo;
+use ftrotter\ZZermelo\Models\ReportFactory;
+use ftrotter\ZZermelo\Zermelo;
 
 trait InteractsWithReports
 {

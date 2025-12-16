@@ -33,13 +33,13 @@
     },
     "autoload": {
         "psr-4" : {
-            "CareSet\\Zermelo\\" : "src/"
+            "ftrotter\\ZZermelo\\" : "src/"
         }
     },
     "extra": {
 	    "laravel": {
 	        "providers": [
-	            "CareSet\\Zermelo\\ZermeloServiceProvider"
+	            "ftrotter\\ZZermelo\\ZermeloServiceProvider"
 	        ]
 	    }
 	},

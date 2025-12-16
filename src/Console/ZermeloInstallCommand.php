@@ -1,9 +1,9 @@
 <?php
 
-namespace CareSet\Zermelo\Console;
+namespace ftrotter\ZZermelo\Console;
 
-use CareSet\Zermelo\Models\DatabaseCache;
-use CareSet\Zermelo\Models\ZermeloDatabase;
+use ftrotter\ZZermelo\Models\DatabaseCache;
+use ftrotter\ZZermelo\Models\ZermeloDatabase;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;

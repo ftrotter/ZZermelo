@@ -1,10 +1,10 @@
 <?php
 
-namespace CareSet\Zermelo\Http\Controllers;
+namespace ftrotter\ZZermelo\Http\Controllers;
 
-use CareSet\Zermelo\Http\Controllers\AbstractWebController;
-use CareSet\Zermelo\Http\Requests\GraphReportRequest;
-use CareSet\Zermelo\Interfaces\ZermeloReportInterface;
+use ftrotter\ZZermelo\Http\Controllers\AbstractWebController;
+use ftrotter\ZZermelo\Http\Requests\GraphReportRequest;
+use ftrotter\ZZermelo\Interfaces\ZermeloReportInterface;
 
 class GraphController extends AbstractWebController
 {

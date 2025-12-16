@@ -8,9 +8,9 @@
  * functionality specific to their usage.
  *
  */
-namespace CareSet\Zermelo\Models;
-use CareSet\Zermelo\Interfaces\ZermeloReportInterface;
-use CareSet\Zermelo\Services\SocketService;
+namespace ftrotter\ZZermelo\Models;
+use ftrotter\ZZermelo\Interfaces\ZermeloReportInterface;
+use ftrotter\ZZermelo\Services\SocketService;
 use Mockery\Exception;
 use \Request;
 

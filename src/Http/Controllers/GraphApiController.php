@@ -6,11 +6,11 @@
  * Time: 11:42 AM
  */
 
-namespace CareSet\Zermelo\Http\Controllers;
+namespace ftrotter\ZZermelo\Http\Controllers;
 
-use CareSet\Zermelo\Http\Requests\ZermeloRequest;
-use CareSet\Zermelo\Reports\Graph\CachedGraphReport;
-use CareSet\Zermelo\Reports\Graph\GraphGenerator;
+use ftrotter\ZZermelo\Http\Requests\ZermeloRequest;
+use ftrotter\ZZermelo\Reports\Graph\CachedGraphReport;
+use ftrotter\ZZermelo\Reports\Graph\GraphGenerator;
 
 class GraphApiController
 {

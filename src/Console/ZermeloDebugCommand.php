@@ -6,7 +6,7 @@
  * Time: 6:21 PM
  */
 
-namespace CareSet\Zermelo\Console;
+namespace ftrotter\ZZermelo\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;

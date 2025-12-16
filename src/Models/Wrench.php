@@ -6,7 +6,7 @@
  * Time: 2:26 PM
  */
 
-namespace CareSet\Zermelo\Models;
+namespace ftrotter\ZZermelo\Models;
 
 class Wrench extends AbstractZermeloModel
 {

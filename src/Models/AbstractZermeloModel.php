@@ -6,7 +6,7 @@
  * Time: 2:26 PM
  */
 
-namespace CareSet\Zermelo\Models;
+namespace ftrotter\ZZermelo\Models;
 
 
 use Illuminate\Database\Eloquent\Model;

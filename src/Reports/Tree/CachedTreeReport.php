@@ -6,12 +6,12 @@
  * Time: 2:47 PM
  */
 
-namespace CareSet\Zermelo\Reports\Tree;
+namespace ftrotter\ZZermelo\Reports\Tree;
 
 
-use CareSet\Zermelo\Models\DatabaseCache;
-use CareSet\Zermelo\Models\ZermeloReport;
-use CareSet\Zermelo\Models\ZermeloDatabase;
+use ftrotter\ZZermelo\Models\DatabaseCache;
+use ftrotter\ZZermelo\Models\ZermeloReport;
+use ftrotter\ZZermelo\Models\ZermeloDatabase;
 use \DB;
 
 class CachedTreeReport extends DatabaseCache

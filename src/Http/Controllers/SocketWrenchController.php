@@ -6,12 +6,12 @@
  * Time: 12:05 PM
  */
 
-namespace CareSet\Zermelo\Http\Controllers;
+namespace ftrotter\ZZermelo\Http\Controllers;
 
 
-use CareSet\Zermelo\Http\Requests\SocketWrenchRequest;
-use CareSet\Zermelo\Models\SocketUser;
-use CareSet\Zermelo\Models\Wrench;
+use ftrotter\ZZermelo\Http\Requests\SocketWrenchRequest;
+use ftrotter\ZZermelo\Models\SocketUser;
+use ftrotter\ZZermelo\Models\Wrench;
 
 class SocketWrenchController
 {

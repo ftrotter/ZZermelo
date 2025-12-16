@@ -1,15 +1,15 @@
 <?php
 
-namespace CareSet\Zermelo;
+namespace ftrotter\ZZermelo;
 
-use CareSet\Zermelo\Console\MakeGraphReportCommand;
-use CareSet\Zermelo\Console\MakeTabularReportCommand;
-use CareSet\Zermelo\Console\ZermeloDebugCommand;
-use CareSet\Zermelo\Console\ZermeloInstallCommand;
-use CareSet\Zermelo\Console\MakeCardsReportCommand;
-use CareSet\Zermelo\Console\ZermeloReportCheckCommand;
-use CareSet\Zermelo\Models\ZermeloDatabase;
-use CareSet\Zermelo\Services\SocketService;
+use ftrotter\ZZermelo\Console\MakeGraphReportCommand;
+use ftrotter\ZZermelo\Console\MakeTabularReportCommand;
+use ftrotter\ZZermelo\Console\ZermeloDebugCommand;
+use ftrotter\ZZermelo\Console\ZermeloInstallCommand;
+use ftrotter\ZZermelo\Console\MakeCardsReportCommand;
+use ftrotter\ZZermelo\Console\ZermeloReportCheckCommand;
+use ftrotter\ZZermelo\Models\ZermeloDatabase;
+use ftrotter\ZZermelo\Services\SocketService;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
@@ -198,7 +198,7 @@ Class ZermeloServiceProvider extends \Illuminate\Support\ServiceProvider
         $middleware = config('zermelo.MIDDLEWARE',[ 'api' ]);
 
         return [
-            'namespace' => 'CareSet\Zermelo\Http\Controllers',
+            'namespace' => 'ftrotter\ZZermelo\Http\Controllers',
             'domain' => config('zermelo.domain', null),
             'as' => 'zermelo.api.',
             'prefix' => config( 'zermelo.API_PREFIX', 'zapi' ),
@@ -216,7 +216,7 @@ Class ZermeloServiceProvider extends \Illuminate\Support\ServiceProvider
         $middleware = config('zermelo.WEB_MIDDLEWARE',[ 'web' ]);
 
         return [
-            'namespace' => 'CareSet\Zermelo\Http\Controllers',
+            'namespace' => 'ftrotter\ZZermelo\Http\Controllers',
             //  'domain' => config('zermelo.domain', null),
             'as' => 'zermelo.web.',
             'prefix' => '',
