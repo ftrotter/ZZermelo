@@ -16,7 +16,7 @@ class CardController extends AbstractWebController
      */
     public  function getViewTemplate()
     {
-        return config("zermelo.CARD_VIEW_TEMPLATE");
+        return config("zzermelo.CARD_VIEW_TEMPLATE");
     }
 
     /**
@@ -37,7 +37,7 @@ class CardController extends AbstractWebController
      */
     public function onBeforeShown(ZZermeloReportInterface $report)
     {
-        $bootstrap_css_location = asset(config('zermelo.BOOTSTRAP_CSS_LOCATION','/css/bootstrap.min.css'));
+        $bootstrap_css_location = asset(config('zzermelo.BOOTSTRAP_CSS_LOCATION','/css/bootstrap.min.css'));
         $report->pushViewVariable('bootstrap_css_location', $bootstrap_css_location);
         $report->pushViewVariable('report_uri', $this->getReportUri($report));
         $report->pushViewVariable('summary_uri', $this->getSummaryUri($report));

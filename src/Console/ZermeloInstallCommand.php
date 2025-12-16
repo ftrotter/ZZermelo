@@ -20,22 +20,22 @@ class ZZermeloInstallCommand extends AbstractZZermeloInstallCommand
      */
     public static $views = [
 	// Multiple views use the shared menu
-	'zermelo/menu.blade.php',
+	'zzermelo/menu.blade.php',
         // SQL Pretty-Printing views
-        'zermelo/sql.blade.php',
-        'zermelo/layouts/sql_layout.blade.php',
+        'zzermelo/sql.blade.php',
+        'zzermelo/layouts/sql_layout.blade.php',
         // Card views
-        'zermelo/card.blade.php',
-        'zermelo/layouts/card_layout.blade.php',
+        'zzermelo/card.blade.php',
+        'zzermelo/layouts/card_layout.blade.php',
         // Graph views
-        'zermelo/d3graph.blade.php',
-        'zermelo/layouts/d3graph_layout.blade.php',
+        'zzermelo/d3graph.blade.php',
+        'zzermelo/layouts/d3graph_layout.blade.php',
         // Tabular views
-        'zermelo/tabular.blade.php',
-        'zermelo/layouts/tabular_layout.blade.php',
+        'zzermelo/tabular.blade.php',
+        'zzermelo/layouts/tabular_layout.blade.php',
         // Tree-card views
-        'zermelo/tree_card.blade.php',
-        'zermelo/layouts/tree_card_layout.blade.php',
+        'zzermelo/tree_card.blade.php',
+        'zzermelo/layouts/tree_card_layout.blade.php',
     ];
 
     /**
@@ -62,27 +62,27 @@ class ZZermeloInstallCommand extends AbstractZZermeloInstallCommand
         '/vendor/fortawesome/font-awesome/css/all.min.css' => '/core/font-awesome/css/all.min.css',
         '/vendor/fortawesome/font-awesome/js/all.min.js' => '/core/font-awesome/js/all.min.js',
 
-        // Core assets that live in the zermelo repo
+        // Core assets that live in the zzermelo repo
         '/vendor/ftrotter/zzermelo/assets/core/css' => '/core/css',
         '/vendor/ftrotter/zzermelo/assets/core/js' => '/core/js',
 
         // Graph Assets
-        '/vendor/ftrotter/zzermelo/assets/zermelobladegraph/css' => '/zermelobladegraph/css',
-        '/vendor/ftrotter/zzermelo/assets/zermelobladegraph/js' => '/zermelobladegraph/js',
+        '/vendor/ftrotter/zzermelo/assets/zzermelobladegraph/css' => '/zzermelobladegraph/css',
+        '/vendor/ftrotter/zzermelo/assets/zzermelobladegraph/js' => '/zzermelobladegraph/js',
 
         // Tabular Assets
-        '/vendor/ftrotter/zzermelo/assets/zermelobladetabular/datatables' => '/zermelobladetabular/datatables',
-        '/vendor/ftrotter/zzermelo/assets/zermelobladetabular/js' => '/zermelobladetabular/js',
+        '/vendor/ftrotter/zzermelo/assets/zzermelobladetabular/datatables' => '/zzermelobladetabular/datatables',
+        '/vendor/ftrotter/zzermelo/assets/zzermelobladetabular/js' => '/zzermelobladetabular/js',
     ];
 
-    protected static $config_file = __DIR__.'/../../config/zermelo.php';
+    protected static $config_file = __DIR__.'/../../config/zzermelo.php';
 
     /**
      * @var string
      *
      * Console command signature
      */
-    protected $signature = 'zermelo:install
+    protected $signature = 'zzermelo:install
                     {--database= : Pass in the database name}
                     {--force : Overwrite existing views and database by default}';
 
@@ -98,7 +98,7 @@ class ZZermeloInstallCommand extends AbstractZZermeloInstallCommand
     public function handle()
     {
         // Tell the system that the installer is running
-        Config::set('zermelo:install_api.running', true);
+        Config::set('zzermelo:install_api.running', true);
 
         $this->info("Creating directories....");
         $this->createDirectories();
@@ -146,23 +146,23 @@ class ZZermeloInstallCommand extends AbstractZZermeloInstallCommand
         // we need to write an updated config file.
         $config_changes = false;
 
-        $zermelo_cache_db_name = config( 'zermelo.ZERMELO_CACHE_DB' );
-        $zermelo_config_db_name = config( 'zermelo.ZERMELO_CONFIG_DB' );
+        $zzermelo_cache_db_name = config( 'zzermelo.ZERMELO_CACHE_DB' );
+        $zzermelo_config_db_name = config( 'zzermelo.ZERMELO_CONFIG_DB' );
 
         // Check if our cache database exists, so we know whether to create it or not.
         try {
-            $cache_db_exists = ZZermeloDatabase::doesDatabaseExist($zermelo_cache_db_name);
+            $cache_db_exists = ZZermeloDatabase::doesDatabaseExist($zzermelo_cache_db_name);
         } catch (\Exception $e) {
             $this->error($e->getMessage());
             exit();
         }
 
-        $create_zermelo_cache_db = true;
+        $create_zzermelo_cache_db = true;
         if ($cache_db_exists === true &&
             ! $this->option('force') ) {
 
-            if ( !$this->confirm("The ZZermelo database '".$zermelo_cache_db_name."' already exists. Do you want to DROP it and recreate it?")) {
-                $create_zermelo_cache_db = false;
+            if ( !$this->confirm("The ZZermelo database '".$zzermelo_cache_db_name."' already exists. Do you want to DROP it and recreate it?")) {
+                $create_zzermelo_cache_db = false;
             }
         }
 
@@ -170,7 +170,7 @@ class ZZermeloInstallCommand extends AbstractZZermeloInstallCommand
         // See if the config database exists already. If we can't run the query (exception is thrown)
         // display the error message and exit.
         try {
-            $config_db_exists = ZZermeloDatabase::doesDatabaseExist($zermelo_config_db_name);
+            $config_db_exists = ZZermeloDatabase::doesDatabaseExist($zzermelo_config_db_name);
         } catch (\Exception $e) {
             $this->error($e->getMessage());
             exit();
@@ -179,17 +179,17 @@ class ZZermeloInstallCommand extends AbstractZZermeloInstallCommand
         //deleting the centralized configuration of wrenches and sockets that already exist in a database
         //would be a disaster. We should never overwrite a configuration database.
         //if someone wants a new one, they can create it themselves and then we will create it if it is missing..
-        $create_zermelo_config_db = true;
+        $create_zzermelo_config_db = true;
         if ($config_db_exists === true) {
-            $create_zermelo_config_db = false;
-            $this->info("The database $zermelo_config_db_name already exists... using it");
+            $create_zzermelo_config_db = false;
+            $this->info("The database $zzermelo_config_db_name already exists... using it");
         }
 
         $create_cache_failed = false;
-        if ( $create_zermelo_cache_db ) {
+        if ( $create_zzermelo_cache_db ) {
             try {
                 $this->info("Running intial cache migration...");
-                $this->runZZermeloInitialCacheMigration($zermelo_cache_db_name);
+                $this->runZZermeloInitialCacheMigration($zzermelo_cache_db_name);
             } catch (\Exception $e) {
                 $create_cache_failed = true;
             }
@@ -198,13 +198,13 @@ class ZZermeloInstallCommand extends AbstractZZermeloInstallCommand
         // The following block spits out an error message that indicates why ZZermelo probably couldn't create
         // the cache database if the DB still doesn't exist after attempting to create it
         if ($create_cache_failed === true ||
-            !ZZermeloDatabase::doesDatabaseExist($zermelo_cache_db_name)) {
+            !ZZermeloDatabase::doesDatabaseExist($zzermelo_cache_db_name)) {
             $message = "ZZermelo is unable to create the cache database,\n";
             $message .= "Please check the username and password in your .env file's database credentials and try again.\n";
             $default = config( 'database.default' );
             $username = config( "database.connections.$default.username" );
             $message .= "You are trying to connect with mysql user `$username`, you may have to run the following commands:\n";
-            $message .= "GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, LOCK TABLES ON `_zermelo_cache`.* TO '$username'@'localhost';\n";
+            $message .= "GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, LOCK TABLES ON `_zzermelo_cache`.* TO '$username'@'localhost';\n";
 
             $this->error($message);
             exit();
@@ -212,69 +212,69 @@ class ZZermeloInstallCommand extends AbstractZZermeloInstallCommand
 
         $create_config_failed = false;
         // Do we need to create the config database, or do we migrate only?
-        if ( $create_zermelo_config_db ) {
+        if ( $create_zzermelo_config_db ) {
             $this->info("Running intial config migration...");
             try {
-                $this->runZZermeloInitialConfigMigration($zermelo_config_db_name);
+                $this->runZZermeloInitialConfigMigration($zzermelo_config_db_name);
             } catch (\Exception $e) {
                 $create_config_failed = true;
             }
         } else {
             $this->info("Running update config migration...");
-            $this->migrateDatabase( $zermelo_config_db_name, self::CONFIG_MIGRATIONS_PATH );
+            $this->migrateDatabase( $zzermelo_config_db_name, self::CONFIG_MIGRATIONS_PATH );
         }
 
         // The following block spits out an error message that indicates why ZZermelo probably couldn't create
         // the config database if the DB still doesn't exist after attempting to create it
         if ($create_config_failed === true ||
-            !ZZermeloDatabase::doesDatabaseExist($zermelo_config_db_name)) {
+            !ZZermeloDatabase::doesDatabaseExist($zzermelo_config_db_name)) {
             $message = "ZZermelo is unable to create the config database,\n";
             $message .= "Please check the username and password in your .env file's database credentials and try again.\n";
             $default = config( 'database.default' );
             $username = config( "database.connections.$default.username" );
             $message .= "You are trying to connect with mysql user `$username`, you may have to run the following commands:\n";
-            $message .= "GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, LOCK TABLES ON `_zermelo_config`.* TO '$username'@'localhost';";
+            $message .= "GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, LOCK TABLES ON `_zzermelo_config`.* TO '$username'@'localhost';";
 
             $this->error($message);
             exit();
         }
 
-        Artisan::call('zermelo:debug', [], $this->getOutput());
+        Artisan::call('zzermelo:debug', [], $this->getOutput());
 
         $this->info("Done.");
 
         return true;
     }
 
-    public function runZZermeloInitialCacheMigration( $zermelo_cache_db_name )
+    public function runZZermeloInitialCacheMigration( $zzermelo_cache_db_name )
     {
         // Create the database
-        if ( ZZermeloDatabase::doesDatabaseExist( $zermelo_cache_db_name ) ) {
-            DB::connection('mysql')->statement( DB::connection()->raw( "DROP DATABASE IF EXISTS " . $zermelo_cache_db_name . ";" ) );
+        if ( ZZermeloDatabase::doesDatabaseExist( $zzermelo_cache_db_name ) ) {
+            DB::connection('mysql')->statement( DB::connection()->raw( "DROP DATABASE IF EXISTS " . $zzermelo_cache_db_name . ";" ) );
         }
 
-        DB::connection('mysql')->statement("CREATE DATABASE IF NOT EXISTS `".$zermelo_cache_db_name."`;");
+        DB::connection('mysql')->statement("CREATE DATABASE IF NOT EXISTS `".$zzermelo_cache_db_name."`;");
 
         // Write the database name to the master config
-        config( ['zermelo.ZERMELO_CACHE_DB' => $zermelo_cache_db_name ] );
+        config( ['zzermelo.ZERMELO_CACHE_DB' => $zzermelo_cache_db_name ] );
 
         // Configure the database for usage
-        ZZermeloDatabase::configure( $zermelo_cache_db_name );
+        ZZermeloDatabase::configure( $zzermelo_cache_db_name );
     }
 
-    public function runZZermeloInitialConfigMigration( $zermelo_config_db_name )
+    public function runZZermeloInitialConfigMigration( $zzermelo_config_db_name )
     {
         // Create the database
-        if ( ZZermeloDatabase::doesDatabaseExist( $zermelo_config_db_name ) ) {
-            DB::connection('mysql')->statement( DB::connection()->raw( "DROP DATABASE IF EXISTS " . $zermelo_config_db_name . ";" ) );
+        if ( ZZermeloDatabase::doesDatabaseExist( $zzermelo_config_db_name ) ) {
+            DB::connection('mysql')->statement( DB::connection()->raw( "DROP DATABASE IF EXISTS " . $zzermelo_config_db_name . ";" ) );
         }
 
-        DB::connection('mysql')->statement("CREATE DATABASE IF NOT EXISTS `".$zermelo_config_db_name."`;");
+        DB::connection('mysql')->statement("CREATE DATABASE IF NOT EXISTS `".$zzermelo_config_db_name."`;");
 
         // Write the database name to the master config
-        config( ['zermelo.ZERMELO_CONFIG_DB' => $zermelo_config_db_name ] );
+        config( ['zzermelo.ZERMELO_CONFIG_DB' => $zzermelo_config_db_name ] );
 
-        $this->migrateDatabase( $zermelo_config_db_name, self::CONFIG_MIGRATIONS_PATH );
+        $this->migrateDatabase( $zzermelo_config_db_name, self::CONFIG_MIGRATIONS_PATH );
     }
 
     public function migrateDatabase( $dbname, $path )

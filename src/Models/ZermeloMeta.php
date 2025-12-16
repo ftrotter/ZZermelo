@@ -10,7 +10,7 @@ namespace ftrotter\ZZermelo\Models;
 
 class ZZermeloMeta extends AbstractZZermeloModel
 {
-    protected $table = 'zermelo_meta';
+    protected $table = 'zzermelo_meta';
 
     protected $fillable = ['key', 'meta_key', 'meta_value'];
 }

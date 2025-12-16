@@ -13,7 +13,7 @@ class CreateMeta extends Migration
      */
     public function up()
     {
-        Schema::create('zermelo_meta', function (Blueprint $table) {
+        Schema::create('zzermelo_meta', function (Blueprint $table) {
             $table->increments('id');
             $table->string( 'key' );
             $table->string( 'meta_key' );
@@ -29,6 +29,6 @@ class CreateMeta extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('zermelo_meta');
+        Schema::dropIfExists('zzermelo_meta');
     }
 }

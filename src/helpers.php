@@ -2,49 +2,49 @@
 
 function api_prefix()
 {
-    $api_prefix = trim( config("zermelo.API_PREFIX"), "/ " );
+    $api_prefix = trim( config("zzermelo.API_PREFIX"), "/ " );
     return $api_prefix;
 }
 
 function tree_api_prefix()
 {
-    $api_prefix = trim( config("zermelo.TREE_API_PREFIX"), "/ " );
+    $api_prefix = trim( config("zzermelo.TREE_API_PREFIX"), "/ " );
     return $api_prefix;
 }
 
 function tabular_api_prefix()
 {
-    $api_prefix = trim( config("zermelo.TABULAR_API_PREFIX"), "/ " );
+    $api_prefix = trim( config("zzermelo.TABULAR_API_PREFIX"), "/ " );
     return $api_prefix;
 }
 
 function graph_api_prefix()
 {
-    $api_prefix = trim( config("zermelo.GRAPH_API_PREFIX"), "/ " );
+    $api_prefix = trim( config("zzermelo.GRAPH_API_PREFIX"), "/ " );
     return $api_prefix;
 }
 
-function zermelo_cache_db()
+function zzermelo_cache_db()
 {
-    $db = config("zermelo.ZERMELO_CACHE_DB" );
+    $db = config("zzermelo.ZERMELO_CACHE_DB" );
     if ( empty($db)) {
-        info("ZZermelo Cache DB not set in zermelo.php config file.");
+        info("ZZermelo Cache DB not set in zzermelo.php config file.");
     }
     return $db;
 }
 
-function zermelo_config_db()
+function zzermelo_config_db()
 {
-    $db = config("zermelo.ZERMELO_CONFIG_DB" );
+    $db = config("zzermelo.ZERMELO_CONFIG_DB" );
     if ( empty($db)) {
-        info("ZZermelo Config DB not set in zermelo.php config file.");
+        info("ZZermelo Config DB not set in zzermelo.php config file.");
     }
     return $db;
 }
 
 function report_path()
 {
-    $reportNS = config("zermelo.REPORT_NAMESPACE" );
+    $reportNS = config("zzermelo.REPORT_NAMESPACE" );
     $parts = explode("\\", $reportNS );
     return app_path($parts[count($parts)-1]);
 }

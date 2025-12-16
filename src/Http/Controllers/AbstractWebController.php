@@ -48,7 +48,7 @@ abstract class AbstractWebController extends BaseController
     /**
      * @return string
      *
-     * Read the API prefix like `zapi` from the zermelo config fil
+     * Read the API prefix like `zapi` from the zzermelo config fil
      */
     public function getApiPrefix()
     {
@@ -95,7 +95,7 @@ abstract class AbstractWebController extends BaseController
         $view_template = $this->getViewTemplate();
 
         if(strlen($view_template) == 0){
-            echo "Error: Your zermelo configuration is likely outdated. sought a view template and got a blank screen";
+            echo "Error: Your zzermelo configuration is likely outdated. sought a view template and got a blank screen";
             exit(1);
         }
 

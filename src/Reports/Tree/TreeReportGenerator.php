@@ -12,14 +12,14 @@ class TreeReportGenerator extends AbstractGenerator
 {
     protected $cache = null;
     protected $report = null;
-    protected $cache_db = '_zermelo_cache'; //TODO this should be set in config
+    protected $cache_db = '_zzermelo_cache'; //TODO this should be set in config
     protected $cache_table = 'will be changed';
 
     public function __construct(CachedTreeReport $cache)
     {
         $this->cache = $cache;
         $this->report = $cache->getReport();
-	$this->cache_db = '_zermelo_cache'; //more hard-coding.
+	$this->cache_db = '_zzermelo_cache'; //more hard-coding.
 	$this->cache_table = $cache->getTableName();
 	
     }
@@ -35,7 +35,7 @@ class TreeReportGenerator extends AbstractGenerator
 
         $report_description = $this->report->getReportDescription();
         $report_name = $this->report->getReportName();
-	$cache_db = '_zermelo_cache'; //should be coming from config TODO
+	$cache_db = '_zzermelo_cache'; //should be coming from config TODO
 
 	$select_sql = "
 SELECT 

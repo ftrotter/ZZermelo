@@ -39,7 +39,7 @@
     "extra": {
 	    "laravel": {
 	        "providers": [
-	            "ftrotter\\ZZermelo\\ZermeloServiceProvider"
+	            "ftrotter\\ZZermelo\\ZZermeloServiceProvider"
 	        ]
 	    }
 	},

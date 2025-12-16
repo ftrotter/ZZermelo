@@ -157,17 +157,17 @@ abstract class AbstractZZermeloInstallCommand extends Command
             mkdir($directory, 0755, true);
         }
 
-        if (! is_dir($directory = resource_path('views/zermelo'))) {
+        if (! is_dir($directory = resource_path('views/zzermelo'))) {
             mkdir($directory, 0755, true);
         }
 
-        if (! is_dir($directory = resource_path('views/zermelo/layouts'))) {
+        if (! is_dir($directory = resource_path('views/zzermelo/layouts'))) {
             mkdir($directory, 0755, true);
         }
     }
 
     /**
-     * Export the zermelo views.
+     * Export the zzermelo views.
      *
      * @return void
      */

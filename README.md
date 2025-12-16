@@ -62,11 +62,11 @@ Look in [Basic Installation](documentation/BasicInstall.md) for complete install
 For a quick start, assuming your Laravel instance already has access to the DB that it needs
 
 ```bash
-    composer require careset/zermelo
-    php artisan zermelo:install
+    composer require careset/zzermelo
+    php artisan zzermelo:install
 ```
 
-This will install and configure zermelo, and create an app/Reports for you to add reports too.
+This will install and configure zzermelo, and create an app/Reports for you to add reports too.
 
 Next, you should test your routes...
 
@@ -89,11 +89,11 @@ This is a good place to start if you are just exploring the system. Read, [Runni
 
 ### Configuration Notes
 
-1. Edit the file `config/zermelo.php` to change core zermelo setting these values are explained there and in [Configuration Documentation](documentation/ConfigFile.md)s
-2. Edit the file `config/zermelobladetabular.php` to change settings specific to zermelo blade tabular view package.
+1. Edit the file `config/zzermelo.php` to change core zzermelo setting these values are explained there and in [Configuration Documentation](documentation/ConfigFile.md)s
+2. Edit the file `config/zzermelobladetabular.php` to change settings specific to zzermelo blade tabular view package.
 3. Earlier in the Basic Installation you've already created an app/Reports directory. If desired, you can create a
 differently named report directory, but you must also change the namespace.
-Change the REPORT_NAMESPACE setting in config/zermelo.php to something else...
+Change the REPORT_NAMESPACE setting in config/zzermelo.php to something else...
 
 ```php
 /**
@@ -102,25 +102,25 @@ Change the REPORT_NAMESPACE setting in config/zermelo.php to something else...
 'REPORT_NAMESPACE' =>env("REPORT_NAMESPACE","app\Reports"),
 ```
 
-... like "ZZermelo" and then create a ~/code/zermelo-demo/app/ZZermelo directory to place your example report in.
+... like "ZZermelo" and then create a ~/code/zzermelo-demo/app/ZZermelo directory to place your example report in.
 Note: you will also need to change the namespace of Northwind\*Reports.php files to "namespace app\ZZermelo;" if you change the REPORT\_NAMESPACE.
-4. To configure middleware, you may add, or edit the MIDDLEWARE config setting in your config/zermelo.php file. This will
+4. To configure middleware, you may add, or edit the MIDDLEWARE config setting in your config/zzermelo.php file. This will
 run the configured middleware on each API request. For example, if you have enabled [Laravel's Authentication](https://laravel.com/docs/5.6/authentication#protecting-routes)
 and wish to protect the ZZermelo routes using the auth middleware, you may add the string "auth" to the
 MIDDLEWARE array in order to exeute the auth middleware on each API request to the ZZermelo API.
-Similarly, for the front-end view packages like zermelobladetabular, you may add the "auth" string to the TABULAR_MIDDLEWARE
-array in zermelobladetabular.php to enable authentication on that route.
+Similarly, for the front-end view packages like zzermelobladetabular, you may add the "auth" string to the TABULAR_MIDDLEWARE
+array in zzermelobladetabular.php to enable authentication on that route.
 
-### Update to New Version of zermelo
+### Update to New Version of zzermelo
 
 In project home dir:
 
- composer update careset/zermelo
- php artisan zermelo:install
+ composer update careset/zzermelo
+ php artisan zzermelo:install
 
-When you install the zermelobladetabular package, Just Say No to 'replace' all those files EXCEPT:
- 'The [zermelo/tabular.blade.php] view already exists'  Y  (replace it!)
- 'The [zermelo/layouts/tabular.blade.php] view already exists.' Y  (replace it!)
+When you install the zzermelobladetabular package, Just Say No to 'replace' all those files EXCEPT:
+ 'The [zzermelo/tabular.blade.php] view already exists'  Y  (replace it!)
+ 'The [zzermelo/layouts/tabular.blade.php] view already exists.' Y  (replace it!)
 
 ### Uninstall ZZermelo
 
@@ -128,7 +128,7 @@ You can uninstall the composer packages by running 'composer remove' to remove t
 to remove the packages from the vendor directory. In project home dir:
 
 ```bash
-    composer remove careset/zermelo 
+    composer remove careset/zzermelo 
     composer clear-cache
 ```    
 
@@ -138,7 +138,7 @@ Make your first Report
 1. In order to get your first report, you need to create a report file. The easiest way to create an new report file
 is to run:
 
- `php artisan zermelo:make_tabular [YourNewReportName]`
+ `php artisan zzermelo:make_tabular [YourNewReportName]`
 
 To understand what this does, take a look at the example report model below.
 
@@ -203,7 +203,7 @@ or set the property $CACHE_DATABASE_SOURCE using this structure:
 
 ```php
     protected $CACHE_DATABASE_SOURCE = [
-        'database' => '_zermelo_cache_overload',
+        'database' => '_zzermelo_cache_overload',
         'table' => 'northwind_cust_overload'
     ];
 ```
@@ -221,7 +221,7 @@ passed raw to the report.
 Will turn on the ability to visit the report using the /ZZermeloSQL/ url and instead of running the report,
 a helpful debugging screen will be presented, showing what SQL would have been returned by GetSQL() in a pretty-printed manner.
 This is very helpful for debugging inputs.
-It does require that SQL view be enabled in the /config/zermelo.php file to work, however.
+It does require that SQL view be enabled in the /config/zzermelo.php file to work, however.
 
 ### API functions available in GetSQL()
 
@@ -657,4 +657,4 @@ ZZermelo has been developed by [Care Set Systems](https://careset.com) which pro
 
 [Earnst ZZermelo](https://en.wikipedia.org/wiki/Ernst_ZZermelo) was one of the two independant mathematicians to posit the famous [Russell's Paradox](https://en.wikipedia.org/wiki/Russell%27s_paradox), the other being Russell. That paradox is the facinating question "Does a set that contains all sets that are not includes in themselves, contain itself". This paradox was a direct result of [Cantor](https://en.wikipedia.org/wiki/Georg_Cantor)'s work on Set Theory. All of which are critical chapters in the work on [Foundational Mathematics](https://en.wikipedia.org/wiki/Foundations_of_mathematics) shortly after the Turn of the 19th century.
 
-So we figured ZZermelo did not get enough credit for his independant development of the paradox (and his other work generally) and also, he has a cool name that is not really used much by software projects, with the exception of previous work [automating table tennis tournaments](https://www.davidmarcus.com/ZZermelo.htm) or [scheduling dutch students](https://www.zermelo.nl/), which are both different ZZermelo software solutions from this project.  But so far, no one has a reporting engine with this name, so we jumped at the opportunity to celebrate ZZermelo's contribution to mathematics and data analysis by naming our php reporting engine after him!
+So we figured ZZermelo did not get enough credit for his independant development of the paradox (and his other work generally) and also, he has a cool name that is not really used much by software projects, with the exception of previous work [automating table tennis tournaments](https://www.davidmarcus.com/ZZermelo.htm) or [scheduling dutch students](https://www.zzermelo.nl/), which are both different ZZermelo software solutions from this project.  But so far, no one has a reporting engine with this name, so we jumped at the opportunity to celebrate ZZermelo's contribution to mathematics and data analysis by naming our php reporting engine after him!

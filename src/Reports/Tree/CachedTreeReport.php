@@ -16,7 +16,7 @@ use \DB;
 
 class CachedTreeReport extends DatabaseCache
 {
-    protected $cache_db = '_zermelo_cache';
+    protected $cache_db = '_zzermelo_cache';
     protected $tree_table = 'to be overwritten';
 
     /**
@@ -39,7 +39,7 @@ class CachedTreeReport extends DatabaseCache
         $this->tree_table = "nodes_$cache_table_name_key";
 
 	//TODO this should come from configuration if the configuration is set...
-	$this->cache_db = '_zermelo_cache'; 
+	$this->cache_db = '_zzermelo_cache'; 
 
         // Only generate the aux tables (drop and re-create) if dictated by cache rules
         if ($this->getGeneratedThisRequest() === true) {

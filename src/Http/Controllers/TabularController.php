@@ -14,7 +14,7 @@ class TabularController extends AbstractWebController
      */
     public  function getViewTemplate()
     {
-        return config("zermelo.TABULAR_VIEW_TEMPLATE");
+        return config("zzermelo.TABULAR_VIEW_TEMPLATE");
     }
 
     /**
@@ -38,7 +38,7 @@ class TabularController extends AbstractWebController
     public function onBeforeShown(ZZermeloReportInterface $report)
     {
 	    //default to a sensible location for bootstrap in case the configuration value has not been set
-        $bootstrap_css_location = asset(config('zermelo.BOOTSTRAP_CSS_LOCATION','/css/bootstrap.min.css'));
+        $bootstrap_css_location = asset(config('zzermelo.BOOTSTRAP_CSS_LOCATION','/css/bootstrap.min.css'));
         $report->pushViewVariable('bootstrap_css_location', $bootstrap_css_location);
         $report->pushViewVariable('download_uri', $this->getDownloadUri($report));
         $report->pushViewVariable('report_uri', $this->getReportUri($report));

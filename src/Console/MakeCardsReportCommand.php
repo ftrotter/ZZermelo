@@ -14,7 +14,7 @@ class MakeCardsReportCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'zermelo:make_card {report_name} {{--squash}}';
+    protected $signature = 'zzermelo:make_card {report_name} {{--squash}}';
 
     /**
      * The console command description.
@@ -34,7 +34,7 @@ class MakeCardsReportCommand extends Command
     {
         $content = file_get_contents( __DIR__.'/stubs/CardsReport.stub' );
 
-        $namespace = config( 'zermelo.REPORT_NAMESPACE', 'ZZermelo' );
+        $namespace = config( 'zzermelo.REPORT_NAMESPACE', 'ZZermelo' );
         $content = str_replace( "{{ report_namespace }}",$namespace , $content );
 
         $report_name = $this->argument( 'report_name' );

@@ -287,7 +287,7 @@
 												}
 												//we have a label, with or without a link..
 																real_card_group_label = `
-</div> <!-- end the row -->	<div class="zermelo-card-group-label">
+</div> <!-- end the row -->	<div class="zzermelo-card-group-label">
 																<h3> ${group_label_open_a} ${this_card.card_layout_block_label} ${group_label_close_a} ${block_test_message}</h3>
 																</div> <!-- end the big column -->
 																<div class='row ${extra_block_row_class}' style=' ${current_row_style} '>
@@ -324,7 +324,7 @@
 																}
 																//we have a label, with or without a link..
 																real_card_group_label = `
-</div><!-- end the row -->	<div class="zermelo-card-group-label">
+</div><!-- end the row -->	<div class="zzermelo-card-group-label">
 															<h3> ${group_label_open_a} ${this_card.card_layout_block_label} ${group_label_close_a} </h3>
 															</div> <!-- end the big column -->
 															<div class='row'>

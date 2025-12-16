@@ -22,9 +22,9 @@ class DatabaseCache
     {
         $this->report = $report;
 
-        // by default use the zermelo cache DB
+        // by default use the zzermelo cache DB
         if ($connectionName === null) {
-            $this->connectionName = zermelo_cache_db();
+            $this->connectionName = zzermelo_cache_db();
         } else {
             $this->connectionName = $connectionName;
         }

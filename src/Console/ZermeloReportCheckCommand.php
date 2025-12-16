@@ -22,7 +22,7 @@ class ZZermeloReportCheckCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'zermelo:report_check {--include_durc}';
+    protected $signature = 'zzermelo:report_check {--include_durc}';
 
     /**
      * The console command description.
@@ -45,16 +45,16 @@ class ZZermeloReportCheckCommand extends Command
 
 	$pdo = DB::connection()->getPdo();
 
-	$zermelo_cache_db_name = config( 'zermelo.ZERMELO_CACHE_DB' );
+	$zzermelo_cache_db_name = config( 'zzermelo.ZERMELO_CACHE_DB' );
 
 	$delete_log_sql = "
-DROP TABLE IF EXISTS $zermelo_cache_db_name._ReportTestLog
+DROP TABLE IF EXISTS $zzermelo_cache_db_name._ReportTestLog
 ";
 
 	DB::statement($delete_log_sql);
 
 	$create_log_sql = "
-CREATE TABLE IF NOT EXISTS $zermelo_cache_db_name._ReportTestLog (
+CREATE TABLE IF NOT EXISTS $zzermelo_cache_db_name._ReportTestLog (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `error_type` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
   `error_message` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS $zermelo_cache_db_name._ReportTestLog (
 				//then every file gets added to the list!!
 				$file_list[] = $this_file;
 			}else{
-				//then only custom (non DURC generated) results are being tested
+				//then only custom (non DURCC generated) results are being tested
 				if(strpos($this_file,'DURC_') !== false){
 					$is_match_durc = true;
 				}else{
@@ -184,11 +184,11 @@ CREATE TABLE IF NOT EXISTS $zermelo_cache_db_name._ReportTestLog (
 							echo "Processing $this_file $class by running \n $this_sql";
 						}
 						
-						$drop_table_sql = "DROP TABLE IF EXISTS $zermelo_cache_db_name._TC_$simple_class";
+						$drop_table_sql = "DROP TABLE IF EXISTS $zzermelo_cache_db_name._TC_$simple_class";
 
 						DB::statement($drop_table_sql);
 
-						$this_sql = "CREATE TABLE $zermelo_cache_db_name._TC_$simple_class AS " . $this_sql;
+						$this_sql = "CREATE TABLE $zzermelo_cache_db_name._TC_$simple_class AS " . $this_sql;
 
 						$stmt = $pdo->query($this_sql); //we just need to know if it runs... 
 
@@ -239,7 +239,7 @@ CREATE TABLE IF NOT EXISTS $zermelo_cache_db_name._ReportTestLog (
 			$class_with_problem = $this_error['class_with_problem'];
 
 			$insert_log_sql = "
-INSERT INTO $zermelo_cache_db_name._ReportTestLog 
+INSERT INTO $zzermelo_cache_db_name._ReportTestLog 
 	(`id`, `error_type`, 
 	`error_message`, `file_with_problem`, 
 	`class_with_problem`, `sql_with_problem`, 

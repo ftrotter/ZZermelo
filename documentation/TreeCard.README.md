@@ -23,19 +23,19 @@ How to get started using it
 
 ### Installation
 
-This package requires the ZZermelo package. You will nedd to follow the [zermelo installation instructions](https://github.com/Care Set/ZZermelo) 
-on how to configure your app to use zermelo.
+This package requires the ZZermelo package. You will nedd to follow the [zzermelo installation instructions](https://github.com/Care Set/ZZermelo) 
+on how to configure your app to use zzermelo.
 
 After that is complete, use composer to install, and artisan to configure the Tree Card Report
 
 ```
-composer require careset/zermelobladetreecard
+composer require careset/zzermelobladetreecard
 ```
 
 Then use artisan to configure it
 
 ```
-php artisan zermelo:install_zermelobladetreecard
+php artisan zzermelo:install_zzermelobladetreecard
 ```
 
 This may ask you to confirm the replacement of some assets... you can safely choose to replace or not replace, it makes little difference. 
@@ -57,15 +57,15 @@ You should see 3 different routes in the result... if you see nothing.. somethin
 
 Then copy over the example data and reports to your installation
 ```
-mysqladmin -u YOURDBUSER -p create zermelo_tree_cards
-mysql -u YOURDBUSER -p zermelo_tree_cards < vendor/careset/zermelobladetreecard/examples/data/zermelo_tree_cards.sql
-cp vendor/careset/zermelobladetreecard/examples/reports/TreeCardTest.php app/Reports/
+mysqladmin -u YOURDBUSER -p create zzermelo_tree_cards
+mysql -u YOURDBUSER -p zzermelo_tree_cards < vendor/careset/zzermelobladetreecard/examples/data/zzermelo_tree_cards.sql
+cp vendor/careset/zzermelobladetreecard/examples/reports/TreeCardTest.php app/Reports/
 ```
 
-That will create the zermelo_tree_cards test database, populate it with example data... 
+That will create the zzermelo_tree_cards test database, populate it with example data... 
 And copy the Card test report to your installation...
 
-Remember that you will need to ensure that your laravel DB user has SELECT access to the zermelo_cards database..
+Remember that you will need to ensure that your laravel DB user has SELECT access to the zzermelo_cards database..
 
 Then point your browser to
 

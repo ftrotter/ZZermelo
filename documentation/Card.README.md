@@ -6,19 +6,19 @@ How to get started using it
 
 ### Installation
 
-This package requires the ZZermelo package. You will nedd to follow the [zermelo installation instructions](https://github.com/Care Set/ZZermelo)
-on how to configure your app to use zermelo.
+This package requires the ZZermelo package. You will nedd to follow the [zzermelo installation instructions](https://github.com/Care Set/ZZermelo)
+on how to configure your app to use zzermelo.
 
 After that is complete, use composer to install, and artisan to configure the Card Report
 
 ```
-composer require careset/zermelobladecard
+composer require careset/zzermelobladecard
 ```
 
 Then use artisan to configure it
 
 ```
-php artisan install:zermelobladecard
+php artisan install:zzermelobladecard
 ```
 
 This may ask you to confirm the replacement of some assets... you can safely choose to replace or not replace, it makes little difference.
@@ -43,15 +43,15 @@ You should see 3 different routes in the result... if you see nothing.. somethin
 
 Then copy over the example data and reports to your installation
 ```
-mysqladmin -u YOURDBUSER -p create zermelo_cards
-mysql -u YOURDBUSER -p zermelo_cards < vendor/careset/zermelobladecard/examples/data/zermelo_cards.sql
-cp vendor/careset/zermelobladecard/examples/reports/CardTest.php app/Reports/
+mysqladmin -u YOURDBUSER -p create zzermelo_cards
+mysql -u YOURDBUSER -p zzermelo_cards < vendor/careset/zzermelobladecard/examples/data/zzermelo_cards.sql
+cp vendor/careset/zzermelobladecard/examples/reports/CardTest.php app/Reports/
 ```
 
-That will create the zermelo_cards test database, populate it with example data...
+That will create the zzermelo_cards test database, populate it with example data...
 And copy the Card test report to your installation...
 
-Remember that you will need to ensure that your laravel DB user has SELECT access to the zermelo_cards database..
+Remember that you will need to ensure that your laravel DB user has SELECT access to the zzermelo_cards database..
 
 Then point your browser to
 
@@ -92,7 +92,7 @@ SELECT
         image_url AS card_img_top,
         alt_text As card_img_top_altext,
         id AS card_footer
-FROM zermelo_cards.cards
+FROM zzermelo_cards.cards
 ";
 
 

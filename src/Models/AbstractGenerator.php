@@ -31,7 +31,7 @@ class AbstractGenerator
             $urldecodedvalue =urldecode($value);
             if($field == '_')
             {
-                $fields = ZZermeloDatabase::getTableColumnDefinition( $this->cache->getTableName(), zermelo_cache_db() );
+                $fields = ZZermeloDatabase::getTableColumnDefinition( $this->cache->getTableName(), zzermelo_cache_db() );
                 $this->cache->getTable()->where(function($q) use($fields,$urldecodedvalue)
                 {
                     foreach ($fields as $field) {

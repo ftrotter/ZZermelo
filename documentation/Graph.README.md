@@ -15,11 +15,11 @@ to the "repositories" section of your composer.json file so composer can find th
     }
 ```        
 2. Then run this command prompt at your project root, type (this requires installation of ssh keys to access private repo):
-    `composer require careset/zermelobladegraph`
+    `composer require careset/zzermelobladegraph`
     
 3. Then run:   
-    `php artisan zermelo:install_zermelobladegraph`
-This will create a zermelo directory in your resources directory containing blade view templates. 
+    `php artisan zzermelo:install_zzermelobladegraph`
+This will create a zzermelo directory in your resources directory containing blade view templates. 
 This will also publish the configuration file to your app's config directory, move assets (js, css) to public/vendor. 
  
 4. Make sure your database is configured in .env or your app's database.php config. 
@@ -100,5 +100,5 @@ Example Report d3 graph view
 ``` [base_url]/ZZermeloGraph/GraphTest```
 
 ### NOTES
-This package automatically requires the ZZermelo package as a dependency. You will nedd to follow the zermelo
-installation instructions on how to subclass ZZermeloReport and configure your app to use zermelo.
+This package automatically requires the ZZermelo package as a dependency. You will nedd to follow the zzermelo
+installation instructions on how to subclass ZZermeloReport and configure your app to use zzermelo.

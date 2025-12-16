@@ -16,7 +16,7 @@ class TabularApiController extends AbstractApiController
     public function index( ZZermeloRequest $request )
     {
         $report = $request->buildReport();
-        $cache = new DatabaseCache( $report, zermelo_cache_db() );
+        $cache = new DatabaseCache( $report, zzermelo_cache_db() );
         $generator = new ReportGenerator( $cache );
         return $generator->toJson();
     }
@@ -25,7 +25,7 @@ class TabularApiController extends AbstractApiController
     {
         $report = $request->buildReport();
         // Wrap the report in cache
-        $cache = new DatabaseCache( $report, zermelo_cache_db() );
+        $cache = new DatabaseCache( $report, zzermelo_cache_db() );
         $generator = new ReportSummaryGenerator( $cache );
         return $generator->toJson();
     }
@@ -41,7 +41,7 @@ class TabularApiController extends AbstractApiController
         // Type can be either 'csv' or 'excel' and we default to excel (shouldn't have to)
         $fileType = $request->get('download_file_type', 'excel');
         $report = $request->buildReport();
-        $connectionName = zermelo_cache_db();
+        $connectionName = zzermelo_cache_db();
         $cache = new DatabaseCache( $report, $connectionName );
         $summaryGenerator = new ReportSummaryGenerator( $cache );
         $header = $summaryGenerator->runSummary();

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of careset/zermelo.
+ * This file is part of careset/zzermelo.
  */
 
 return [
@@ -41,10 +41,10 @@ return [
      */
     'RESTRICT_TAGS'=>env("REPORT_STRICT_TAGS",true),
 
-    // Any middleware you want to run on zermelo routes (ie: 'auth')
+    // Any middleware you want to run on zzermelo routes (ie: 'auth')
     'MIDDLEWARE' => ['api'],
 
-    // Get the middleware for web routes that are in zermelo core, like the SQL pretty-printer
+    // Get the middleware for web routes that are in zzermelo core, like the SQL pretty-printer
     'WEB_MIDDLEWARE' => ['web'],
 
     /**
@@ -88,7 +88,7 @@ return [
      * Path where the Report display.
      * This is used in implementations of ControllerInterface@show method
      * Note: the API routes are auto generated with this same URI path with the api-prefixed to the url
-     * /ZZermelo/(ReportName) (see config/zermelo.php for api prefix setting)
+     * /ZZermelo/(ReportName) (see config/zzermelo.php for api prefix setting)
      */
     'CARD_URI_PREFIX'=>env("CARD_URI_PREFIX","ZZermeloCard"),
 
@@ -96,7 +96,7 @@ return [
      * Path where the Report display.
      * This is used in implementations of ControllerInterface@show method
      * Note: the API routes are auto generated with this same URI path with the api-prefixed to the url
-     * /ZZermeloGraph/(ReportName) (see config/zermelo.php for api prefix setting)
+     * /ZZermeloGraph/(ReportName) (see config/zzermelo.php for api prefix setting)
      */
     'GRAPH_URI_PREFIX'=>env("GRAPH_URI_PREFIX","ZZermeloGraph"),
 
@@ -146,7 +146,7 @@ return [
      * Path where the Report display.
      * This is used in implementations of ControllerInterface@show method
      * Note: the API routes are auto generated with this same URI path with the api-prefixed to the url
-     * /ZZermelo/(ReportName) (see config/zermelo.php for api prefix setting)
+     * /ZZermelo/(ReportName) (see config/zzermelo.php for api prefix setting)
      */
     'TREECARD_URI_PREFIX'=>env("TREECARD_URI_PREFIX","ZZermeloTreeCard"),
 
@@ -154,10 +154,10 @@ return [
      * Database path where all the cache table will be stored.
      * This is set at installation and is not recommended to change.
      */
-    'ZERMELO_CACHE_DB'=>env("ZERMELO_CACHE_DB","_zermelo_cache"),
+    'ZERMELO_CACHE_DB'=>env("ZERMELO_CACHE_DB","_zzermelo_cache"),
 
     /**
      * Database path where configuration data will be stored, for sockets, etc
      */
-    'ZERMELO_CONFIG_DB'=>env("ZERMELO_CONFIG_DB","_zermelo_config"),
+    'ZERMELO_CONFIG_DB'=>env("ZERMELO_CONFIG_DB","_zzermelo_config"),
 ];

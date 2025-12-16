@@ -33,7 +33,7 @@ There is a cache icon in the report toolbar. A tooltip displays the time the cac
 
 The basic sequence for serving a report on the back end is: 
 
-* SQL in the report is run, and a table in the \_zermelo cache directory holds the results.
+* SQL in the report is run, and a table in the \_zzermelo cache directory holds the results.
 * A request comes in and either the request is served from the cache, or the SQL is re-run. 
 * The request will be re-run, if the cache is "expired" or if caching is turned off. 
 

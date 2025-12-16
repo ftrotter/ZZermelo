@@ -13,7 +13,7 @@ To load the test databases the repo must be cloned into the directory next to th
 There is a sample DB table and sample reports based on the Northwind customer database in the example directory of 
 the ZZermelo project.
 
-These test databases work for both major Care Set projects: [DURC](https://github.com/Care Set/DURC) and ZZermelo (this one).  
+These test databases work for both major Care Set projects: [DURCC](https://github.com/Care Set/DURCC) and ZZermelo (this one).  
 
 1. Load these databases and verify that they exist using your favorite database administration tool.  
 
@@ -27,19 +27,19 @@ These test databases work for both major Care Set projects: [DURC](https://githu
     ```
     cd [project-root]
     mysql 
-    use _zermelo_config;
-    source vendor/careset/zermelo/examples/data/_zermelo_config.northwind_socket_example.sql;
+    use _zzermelo_config;
+    source vendor/careset/zzermelo/examples/data/_zzermelo_config.northwind_socket_example.sql;
     ```
 
-2. Then copy the example reports from [project-root]/vendor/careset/zermelo/examples/reports into your app/Reports directory. 
+2. Then copy the example reports from [project-root]/vendor/careset/zzermelo/examples/reports into your app/Reports directory. 
 You will need to create the app/Reports directory if it does not exist. From your project root:
 
     ```
-    $ cp vendor/careset/zermelo/examples/reports/* app/Reports
+    $ cp vendor/careset/zzermelo/examples/reports/* app/Reports
     ```
 
 Each example report can be accessed using the ZZermelo report url. 
-Assuming you have not changed the default urls in the zermelo configuration, you can load the reports in the following way
+Assuming you have not changed the default urls in the zzermelo configuration, you can load the reports in the following way
 
 Example Report tabular views
 ``` 

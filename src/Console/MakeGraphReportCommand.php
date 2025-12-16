@@ -14,7 +14,7 @@ class MakeGraphReportCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'zermelo:make_graph {report_name} {{--squash}}';
+    protected $signature = 'zzermelo:make_graph {report_name} {{--squash}}';
 
     /**
      * The console command description.
@@ -34,7 +34,7 @@ class MakeGraphReportCommand extends Command
     {
         $content = file_get_contents( __DIR__.'/stubs/GraphReport.stub' );
 
-        $namespace = config( 'zermelo.REPORT_NAMESPACE', 'ZZermelo' );
+        $namespace = config( 'zzermelo.REPORT_NAMESPACE', 'ZZermelo' );
         $content = str_replace( "{{ report_namespace }}",$namespace , $content );
 
         $report_name = $this->argument( 'report_name' );

@@ -5,7 +5,7 @@
 
 	So this report is identical to NorthwindOrderIndexReport except that it does not have any indexes
 
-	Note that you really need to use the inflate function in the DURC test daataset to really see any usefulness here. 
+	Note that you really need to use the inflate function in the DURCC test daataset to really see any usefulness here. 
 
 */
 namespace App\Reports;

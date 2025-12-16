@@ -29,7 +29,7 @@ What to test here:
 	<li> Choose an option that is impossible to do with just search and/or sort in datatabels and confirm that this works </li>
 	<li> Make sure that the data comes back when you turn off the data options </li>
 	<li> Make sure that two data options correctly work together </li>
-	<li> Confirm that there are seperate caches created for each data option in _zermelo_cache </li>
+	<li> Confirm that there are seperate caches created for each data option in _zzermelo_cache </li>
 	<li> Confirm that when you download the csv file, you are downloading with the data options applied </li>
 </ul>
 ";

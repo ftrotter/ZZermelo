@@ -13,7 +13,7 @@ class CardsApiController
     public function index( ZZermeloRequest $request )
     {
         $report = $request->buildReport();
-        $cache = new DatabaseCache( $report, zermelo_cache_db() );
+        $cache = new DatabaseCache( $report, zzermelo_cache_db() );
         $generator = new ReportGenerator( $cache );
         return $generator->toJson();
     }
@@ -22,7 +22,7 @@ class CardsApiController
     {
         $report = $request->buildReport();
         // Wrap the report in cache
-        $cache = new DatabaseCache( $report, zermelo_cache_db() );
+        $cache = new DatabaseCache( $report, zzermelo_cache_db() );
         $generator = new ReportSummaryGenerator( $cache );
         return $generator->toJson();
     }

@@ -16,7 +16,7 @@ use \DB;
 
 class CachedGraphReport extends DatabaseCache
 {
-    protected $cache_db = '_zermelo_cache';
+    protected $cache_db = '_zzermelo_cache';
 
     protected $nodes_table = null;
     protected $node_types_table = null;
@@ -56,7 +56,7 @@ class CachedGraphReport extends DatabaseCache
         $this->summary_table = "summary_$cache_table_name_key";
 
 	//TODO this should come from configuration...
-	$this->cache_db = '_zermelo_cache'; 
+	$this->cache_db = '_zzermelo_cache'; 
 
         // Only generate the aux tables (drop and re-create) if dictated by cache rules
         if ($this->getGeneratedThisRequest() === true) {

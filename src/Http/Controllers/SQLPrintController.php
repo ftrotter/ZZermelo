@@ -17,7 +17,7 @@ class SQLPrintController extends AbstractWebController
      */
     public  function getViewTemplate()
     {
-        return config("zermelo.SQL_PRINT_VIEW_TEMPLATE");
+        return config("zzermelo.SQL_PRINT_VIEW_TEMPLATE");
     }
 
     /**
@@ -40,7 +40,7 @@ class SQLPrintController extends AbstractWebController
     {
         // before we show the report SQL, make sure SQL printing is enabled GLOBALLY,
         // If not, throw an error
-        $sqlPrintEnabledGlobally = config('zermelo.SQL_PRINT_ENABLED', false);
+        $sqlPrintEnabledGlobally = config('zzermelo.SQL_PRINT_ENABLED', false);
         if ($sqlPrintEnabledGlobally === true) {
             // before we show the report SQL, make sure SQL printing is enabled on the report,
             // If not, throw an error
@@ -53,7 +53,7 @@ class SQLPrintController extends AbstractWebController
             abort(403, 'SQL Printing Is Not Enabled.');
         }
 
-        $bootstrap_css_location = asset(config('zermelo.BOOTSTRAP_CSS_LOCATION','/css/bootstrap.min.css'));
+        $bootstrap_css_location = asset(config('zzermelo.BOOTSTRAP_CSS_LOCATION','/css/bootstrap.min.css'));
         $report->pushViewVariable('bootstrap_css_location', $bootstrap_css_location);
         $report->pushViewVariable('report_uri', $this->getReportUri($report));
         $report->pushViewVariable('summary_uri', $this->getSummaryUri($report));

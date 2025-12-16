@@ -6,13 +6,13 @@ A PHP reporting engine that works especially well with Laravel, built with love 
 
 ## Installation
 
-I am seeing an error during `php artisan zermelo:install` like this:
+I am seeing an error during `php artisan zzermelo:install` like this:
 ```
-SQLSTATE[HY000] [2002] Connection refused (SQL: CREATE DATABASE IF NOT EXISTS `_zermelo_cache`;)
+SQLSTATE[HY000] [2002] Connection refused (SQL: CREATE DATABASE IF NOT EXISTS `_zzermelo_cache`;)
 
-You may not have permission to the database `_zermelo_cache` to query its existence.
+You may not have permission to the database `_zzermelo_cache` to query its existence.
 * `root` may have insufficient permissions and you may have to run the following command:
-	GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, LOCK TABLES ON `_zermelo_cache`.* TO 'root'@'localhost';
+	GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, LOCK TABLES ON `_zzermelo_cache`.* TO 'root'@'localhost';
 ```
 * Check your laravel .env file in the project root. Verify that the host, port, username and password parameters are correct for
 the mysql DB connection.

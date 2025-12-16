@@ -12,7 +12,7 @@ class TreeApiController
     public function index( ZZermeloRequest $request )
     {
         $report = $request->buildReport();
-        $cache = new CachedTreeReport( $report, zermelo_cache_db() );
+        $cache = new CachedTreeReport( $report, zzermelo_cache_db() );
         $generator = new TreeReportGenerator( $cache );
         return $generator->toJson();
     }
@@ -21,7 +21,7 @@ class TreeApiController
     {
         $report = $request->buildReport();
         // Wrap the report in cache
-        $cache = new CachedTreeReport( $report, zermelo_cache_db() );
+        $cache = new CachedTreeReport( $report, zzermelo_cache_db() );
         $generator = new TreeReportSummaryGenerator( $cache );
         return $generator->toJson();
     }

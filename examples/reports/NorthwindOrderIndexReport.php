@@ -75,7 +75,7 @@ which is the same report but without indexes<br>
 Test this report for </p>
 <ul>
 	<li>To make sure that the caching is functioning correctly. It has a very short cache time to facilitate this </li>
-	<li>To make sure that cache indexing is working correctly. Confirm that the back-end cache in _zermelo_cache (presumably) is properly indexed </li>
+	<li>To make sure that cache indexing is working correctly. Confirm that the back-end cache in _zzermelo_cache (presumably) is properly indexed </li>
 	<li>The index SQL stage can run any SQL, including SQL that changes the field types of the cache, make sure those work </li>
 	<li>Do some searches and filters that are designed to test the backend system and make sure that indexing is effective </li>
 </ul>

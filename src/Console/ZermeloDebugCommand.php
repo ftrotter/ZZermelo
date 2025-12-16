@@ -18,14 +18,14 @@ class ZZermeloDebugCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'zermelo:debug';
+    protected $signature = 'zzermelo:debug';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Print information that may be helpful for debugging zermelo data issues';
+    protected $description = 'Print information that may be helpful for debugging zzermelo data issues';
 
     /**
      * Execute the console command.

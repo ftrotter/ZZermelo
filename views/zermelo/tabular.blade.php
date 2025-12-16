@@ -138,19 +138,19 @@
 	</div>
 </div>
 <script type="text/javascript" src="/vendor/ftrotter/zzermelo/core/js/jquery.min.js"></script>
-<script type="text/javascript" src="/vendor/ftrotter/zzermelo/zermelobladetabular/datatables/datatables.js"></script>
+<script type="text/javascript" src="/vendor/ftrotter/zzermelo/zzermelobladetabular/datatables/datatables.js"></script>
 <script type="text/javascript" src="/vendor/ftrotter/zzermelo/core/bootstrap/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="/vendor/ftrotter/zzermelo/core/js/moment.min.js"></script>
 <script type="text/javascript" src="/vendor/ftrotter/zzermelo/core/js/daterangepicker.js"></script>
 <script type="text/javascript" src="/vendor/ftrotter/zzermelo/core/js/jquery.doubleScroll.js"></script>
-<script type="text/javascript" src="/vendor/ftrotter/zzermelo/zermelobladetabular/js/jquery.dataTables.yadcf.js"></script>
-<script type="text/javascript" src="/vendor/ftrotter/zzermelo/core/js/zermelo.js"></script>
+<script type="text/javascript" src="/vendor/ftrotter/zzermelo/zzermelobladetabular/js/jquery.dataTables.yadcf.js"></script>
+<script type="text/javascript" src="/vendor/ftrotter/zzermelo/core/js/zzermelo.js"></script>
 
 <script type="text/javascript">
 
     $(document).ready(function() {
 
-        var zermelo = new ZZermelo(
+        var zzermelo = new ZZermelo(
             '{{ $report_uri }}', // Pass the required Report Base URI
             '{{ $download_uri }}', // Pass the required Download URI
             {
@@ -231,7 +231,7 @@
             });
 
             // Tell the api (for download)
-            zermelo.setSockets(sockets);
+            zzermelo.setSockets(sockets);
 		}
 
 		function setup_download_modal_for_display() {
@@ -254,8 +254,8 @@
 
 			// Dynamically populate the search filter options table with our active search filters
 			$("#download-search-filter-options-table").html("");
-			if ( zermelo.getSearchFilters().length > 0 ) {
-				$.each(zermelo.getSearchFilters(), function (key, option) {
+			if ( zzermelo.getSearchFilters().length > 0 ) {
+				$.each(zzermelo.getSearchFilters(), function (key, option) {
 					for (var i in option) {
 						$("#download-search-filter-options-table").append("<tr><td>" + i + "</td><td>" + option[i] + "</td></tr>");
 					}
@@ -266,8 +266,8 @@
 
 			// Dynamically populate the URL Parameter options table with our active parameters from the address bar
 			$("#download-url-params-options-table").html("");
-			if ( Object.keys(zermelo.getUrlSearchParams()).length > 0 ) {
-				$.each(zermelo.getUrlSearchParams(), function (key, option) {
+			if ( Object.keys(zzermelo.getUrlSearchParams()).length > 0 ) {
+				$.each(zzermelo.getUrlSearchParams(), function (key, option) {
 					for (var i in option) {
 						$("#download-url-params-options-table").append("<tr><td>" + i + "</td><td>" + option[i] + "</td></tr>");
 					}
@@ -293,7 +293,7 @@
 			$("#data-view-options-form-download").empty();
 
 			// Execute the download based on current options
-			zermelo.serverDownloadRequest().done( function() {
+			zzermelo.serverDownloadRequest().done( function() {
                 $('#report_download_modal').modal('toggle');
             });
         });
@@ -325,7 +325,7 @@
 		}
 
         set_cache_timer();
-        var api_params = zermelo.getAllApiParams();
+        var api_params = zzermelo.getAllApiParams();
 
         // This is the summary API call that will get the column headers
 		// If this call succeeds, we call the server to get the data
@@ -495,8 +495,8 @@
 							setup_download_modal_for_display();
 
 							// Add the fully built download URI to the modal (this can be used to link to the download)
-							zermelo.setDownloadFileType('csv');
-							var downloadURI = zermelo.getDownloadURI();
+							zzermelo.setDownloadFileType('csv');
+							var downloadURI = zzermelo.getDownloadURI();
 							$("#current-download-link").val(downloadURI);
 
 							$('#report_download_modal').modal('toggle');
@@ -512,8 +512,8 @@
 								setup_download_modal_for_display();
 
                         // Add the fully built download URI to the modal (this can be used to link to the download)
-								zermelo.setDownloadFileType('excel')
-                        var downloadURI = zermelo.getDownloadURI();
+								zzermelo.setDownloadFileType('excel')
+                        var downloadURI = zzermelo.getDownloadURI();
                         $("#current-download-link").val(downloadURI);
 
                         $('#report_download_modal').modal('toggle');
@@ -703,7 +703,7 @@
             }); /* end forEach data.columns */
 
 			// We have to convert the column-name : direction format into column-index : direction format
-			var defaultSortOrderParam = zermelo.getPassthroughParam('order');
+			var defaultSortOrderParam = zzermelo.getPassthroughParam('order');
 			for (var sortOrderColumn in defaultSortOrderParam) {
 				var obj = defaultSortOrderParam[sortOrderColumn];
 				let column = '';
@@ -787,18 +787,18 @@
                     var order = data.order;
 
                     // Clear the search filters before we apply the currently set filters
-                    zermelo.clearSearchFilters();
+                    zzermelo.clearSearchFilters();
 
-                    // Tell our zermelo state about each column filter
+                    // Tell our zzermelo state about each column filter
                     columns.forEach(function(item) {
                         if ( item.search.value != "" ) {
-                            zermelo.pushColumnSearchFilter( item.data, item.search.value );
+                            zzermelo.pushColumnSearchFilter( item.data, item.search.value );
                         }
                     });
 
-                    // Tell our zermelo state about the global filter
+                    // Tell our zzermelo state about the global filter
                     if( data.search.value != "" ) {
-                        zermelo.pushGlobalSearchFilter( data.search.value );
+                        zzermelo.pushGlobalSearchFilter( data.search.value );
                     }
 
                     /*
@@ -822,7 +822,7 @@
                     }
 
                     // Get the parameters passed in via URI
-                    var passthrough_params = zermelo.getPassthroughParams();
+                    var passthrough_params = zzermelo.getPassthroughParams();
 
                     // Set up the ajax API parameters
                     var merge_get_params = {
@@ -830,7 +830,7 @@
                         'page': parseInt(page),
                         "order": callbackOrder,
                         "length": parseInt(length),
-                        "filter": zermelo.getSearchFilters(),
+                        "filter": zzermelo.getSearchFilters(),
                         "clear_cache": $("#clear_cache").val() ,
                         "sockets": sockets // Pass sockets for "Data Options"
                     };
@@ -846,7 +846,7 @@
 
                     var param = decodeURIComponent( $.param(merge) );
 
-                    // This is the AJAX call to the zermelo API to get the data for datatables
+                    // This is the AJAX call to the zzermelo API to get the data for datatables
                     $.getJSON('{{ $report_uri }}', param
                     ).always(function(data) {
                         settings.json = data; // Make sure to set setting so callbacks have data
@@ -880,10 +880,10 @@
 
                         // If we have zero results, and we have search filters applied, let the user know
                         // This text will replace the default "No data available in table"
-                        var search_filters = zermelo.getSearchFilters();
+                        var search_filters = zzermelo.getSearchFilters();
                         if (search_filters.length > 0) {
                             var emptyTableString = "<p>No data available in table, possibly because you have the following search filters applied:</p>";
-                            $.each(zermelo.getSearchFilters(), function (key, option) {
+                            $.each(zzermelo.getSearchFilters(), function (key, option) {
                                 var name =  '';
                                 var value = '';
                                 for (var i in option) {

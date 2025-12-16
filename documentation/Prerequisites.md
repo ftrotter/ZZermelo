@@ -24,6 +24,6 @@ A PHP reporting engine that works especially well with Laravel, built with love 
   A good way to start is to use composer to insure you download correct version, do this inside the Homestead Box (vagrant ssh) if you are using Homestead.
   
   ```
-  composer create-project laravel/laravel zermelo-demo  "5.6.*" --prefer-dist
+  composer create-project laravel/laravel zzermelo-demo  "5.6.*" --prefer-dist
   ```
 

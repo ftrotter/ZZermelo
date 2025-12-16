@@ -125,8 +125,8 @@ class ReportGenerator extends AbstractGenerator implements GeneratorInterface
                 $tags = [$tags];
             }
 
-            if (config("zermelo.RESTRICT_TAGS")) {
-                $valid_tags = config("zermelo.TAGS");
+            if (config("zzermelo.RESTRICT_TAGS")) {
+                $valid_tags = config("zzermelo.TAGS");
 
                 foreach ($tags as $tag) {
                     if (!in_array($tag, $valid_tags)) {

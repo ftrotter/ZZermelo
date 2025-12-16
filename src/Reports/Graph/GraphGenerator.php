@@ -12,7 +12,7 @@ class GraphGenerator extends AbstractGenerator
 {
     protected $cache = null;
     protected $report = null;
-    protected $cache_db = '_zermelo_cache'; //TODO this should be set in config
+    protected $cache_db = '_zzermelo_cache'; //TODO this should be set in config
 
     public function __construct(CachedGraphReport $cache)
     {
@@ -33,7 +33,7 @@ class GraphGenerator extends AbstractGenerator
 
         $report_description = $this->report->getReportDescription();
         $report_name = $this->report->getReportName();
-	$cache_db = '_zermelo_cache'; //should be coming from config TODO
+	$cache_db = '_zzermelo_cache'; //should be coming from config TODO
 
         //lets read in the node types
 

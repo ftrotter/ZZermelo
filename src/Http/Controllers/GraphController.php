@@ -11,12 +11,12 @@ class GraphController extends AbstractWebController
 
     public  function getViewTemplate()
     {
-        return config("zermelo.GRAPH_VIEW_TEMPLATE", "" );
+        return config("zzermelo.GRAPH_VIEW_TEMPLATE", "" );
     }
 
     public  function getReportApiPrefix()
     {
-        return config('zermelo.GRAPH_API_PREFIX');
+        return config('zzermelo.GRAPH_API_PREFIX');
     }
 
     /**
@@ -27,7 +27,7 @@ class GraphController extends AbstractWebController
      */
     public function onBeforeShown(ZZermeloReportInterface $report)
     {
-        $bootstrap_css_location = asset(config('zermelo.BOOTSTRAP_CSS_LOCATION','/css/bootstrap.min.css'));
+        $bootstrap_css_location = asset(config('zzermelo.BOOTSTRAP_CSS_LOCATION','/css/bootstrap.min.css'));
         $report->pushViewVariable('bootstrap_css_location', $bootstrap_css_location);
         $report->pushViewVariable('graph_uri', $this->getGraphUri($report));
     }
