@@ -9,7 +9,7 @@ class NorthwindOrderReport extends ParentTabularReport
     * Get the Report Name
     */
     public function GetReportName(): string {
-	return('Zermelo Demo: Northwind Order Report');
+	return('ZZermelo Demo: Northwind Order Report');
     }
 
     /*
@@ -156,7 +156,7 @@ GROUP BY `order`.id
 		//this logic would ensure that every cell in the TABLE_NAME column, was converted to a link to
 		//a table drilldown report
 		$table_name = $row['TABLE_NAME'];
-		$row[''] = "<a href='/Zermelo/TableDrillDownReport/$table_name/'>$table_name</a>";
+		$row[''] = "<a href='/ZZermelo/TableDrillDownReport/$table_name/'>$table_name</a>";
 
 	*/
 

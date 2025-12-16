@@ -1,13 +1,13 @@
 <?php
 
-namespace ftrotter\ZZermelo;
+namespace ftrotter\ZZZermelo;
 
-use ftrotter\ZZermelo\Models\ZermeloReport;
+use ftrotter\ZZZermelo\Models\ZZermeloReport;
 use ReflectionClass;
 use Illuminate\Support\Str;
 use Symfony\Component\Finder\Finder;
 
-class Zermelo
+class ZZermelo
 {
 
     /**
@@ -51,12 +51,12 @@ class Zermelo
                 );
 
             try {
-                if ( is_subclass_of( $report, ZermeloReport::class ) &&
+                if ( is_subclass_of( $report, ZZermeloReport::class ) &&
                     !(new ReflectionClass( $report ))->isAbstract() ) {
                     $reports[] = $report;
                 }
             } catch ( \Exception $e ) {
-                throw new \Exception($e->getMessage().". If you recently made changes to the contents of your Zermelo reports directory, you may have do run `composer dump-autoload`");
+                throw new \Exception($e->getMessage().". If you recently made changes to the contents of your ZZermelo reports directory, you may have do run `composer dump-autoload`");
             }
         }
 

@@ -1,26 +1,26 @@
 <?php
 /**
  * This is the base report class for all report types.
- * Each report sub-class has it's own file in Zermelo/Reports
- * such as Zermelo/Reports/Tabular/AbstractTabularReport.php
+ * Each report sub-class has it's own file in ZZermelo/Reports
+ * such as ZZermelo/Reports/Tabular/AbstractTabularReport.php
  * This file contains functionality that pertains to all report
  * types, where the more specific report sub-classes contain
  * functionality specific to their usage.
  *
  */
-namespace ftrotter\ZZermelo\Models;
-use ftrotter\ZZermelo\Interfaces\ZermeloReportInterface;
-use ftrotter\ZZermelo\Services\SocketService;
+namespace ftrotter\ZZZermelo\Models;
+use ftrotter\ZZZermelo\Interfaces\ZZermeloReportInterface;
+use ftrotter\ZZZermelo\Services\SocketService;
 use Mockery\Exception;
 use \Request;
 
-abstract class ZermeloReport implements ZermeloReportInterface
+abstract class ZZermeloReport implements ZZermeloReportInterface
 {
 	/**
 	 * $_code
 	 * Holds first optional parameter after the URI
 	 * This is to help with selecting different groups or options
-	 * Example: /Zermelo/ExampleReport/MyGroupCode
+	 * Example: /ZZermelo/ExampleReport/MyGroupCode
 	 *
 	 * @var string
 	 */
@@ -29,7 +29,7 @@ abstract class ZermeloReport implements ZermeloReportInterface
 	/**
 	 * $_parameters
 	 * Holds additional optional paramters after the URI, after the $_code
-	 * Example: /Zermelo/ExampleReport/MyGroupCode/MyOption1/MyOption2/MyOption3
+	 * Example: /ZZermelo/ExampleReport/MyGroupCode/MyOption1/MyOption2/MyOption3
 	 *
 	 * @var array
 	 */
@@ -207,11 +207,11 @@ abstract class ZermeloReport implements ZermeloReportInterface
             		$sockets = $this->_socketService->fetchAllSocketsForWrenchKey( $wrenchName );
 
             		if ( $sockets === null ) {
-                		throw new Exception("Zermelo SocketWrench Error: getAllSockets: No sockets for wrench name $wrenchName");
+                		throw new Exception("ZZermelo SocketWrench Error: getAllSockets: No sockets for wrench name $wrenchName");
             		}
 
         	} else {
-			throw new Exception("Zermelo SocketWrench Error: getAllSockets:  No wrench name provided");
+			throw new Exception("ZZermelo SocketWrench Error: getAllSockets:  No wrench name provided");
 		}
 
         	return $sockets;
@@ -233,7 +233,7 @@ abstract class ZermeloReport implements ZermeloReportInterface
             		$socket = $this->_socketService->fetchSocketForWrenchKey( $wrenchName );
 
             		if ( $socket === null ) {
-                		throw new Exception("Zermelo SocketWrench Error: No socket for wrench name $wrenchName");
+                		throw new Exception("ZZermelo SocketWrench Error: No socket for wrench name $wrenchName");
             		}
 
             		$this->_activeSockets[$socket->id]= $socket;
@@ -244,7 +244,7 @@ abstract class ZermeloReport implements ZermeloReportInterface
             		}
 
         	} else {
-			throw new Exception("Zermelo SocketWrench Error: getSocket function called, but No wrench name provided");
+			throw new Exception("ZZermelo SocketWrench Error: getSocket function called, but No wrench name provided");
 		}
 
         	return $socket->socket_value;
@@ -551,7 +551,7 @@ abstract class ZermeloReport implements ZermeloReportInterface
                 //this function should have been overridden by a child class (i.e. a specific report) if this is being called
                 //then the child report is missing the GetSQL() function, which is one of the few required functions.
 		$this_class = get_class($this);
-                $error = "The requested Zermelo Report class ($this_class)  exists, but does not have the GetSQL() function defined, this is a required function";
+                $error = "The requested ZZermelo Report class ($this_class)  exists, but does not have the GetSQL() function defined, this is a required function";
                 throw new Exception($error);
 	}
 	/**
@@ -593,7 +593,7 @@ abstract class ZermeloReport implements ZermeloReportInterface
 	{
                 //this function should have been overridden by a child class (i.e. a specific report) if this is being called
                 //then the child report is missing the GetReportName() function, which is one of the few required functions.
-                $error = "The requested Zermelo Report class exists, but does not have the GetReportName() function defined, this is a required function";
+                $error = "The requested ZZermelo Report class exists, but does not have the GetReportName() function defined, this is a required function";
                 throw new Exception($error);
 	}
 	/**
@@ -609,7 +609,7 @@ abstract class ZermeloReport implements ZermeloReportInterface
 	{
                 //this function should have been overridden by a child class (i.e. a specific report) if this is being called
                 //then the child report is missing the GetReportDescription() function, which is one of the few required functions.
-                $error = "The requested Zermelo Report class exists, but does not have the GetReportDescription() function defined, this is a required function";
+                $error = "The requested ZZermelo Report class exists, but does not have the GetReportDescription() function defined, this is a required function";
                 throw new Exception($error);
 	}
 
@@ -621,7 +621,7 @@ abstract class ZermeloReport implements ZermeloReportInterface
      	 */
 	public function GetReportFooter(): ?string
 	{
-		$footer = "<!-- placeholder for Zermelo Report Footer HTML -->";
+		$footer = "<!-- placeholder for ZZermelo Report Footer HTML -->";
 
 		return $footer;
 	}

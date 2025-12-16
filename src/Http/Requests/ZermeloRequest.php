@@ -1,10 +1,10 @@
 <?php
 
-namespace ftrotter\ZZermelo\Http\Requests;
+namespace ftrotter\ZZZermelo\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ZermeloRequest extends FormRequest
+class ZZermeloRequest extends FormRequest
 {
     use InteractsWithReports;
 }

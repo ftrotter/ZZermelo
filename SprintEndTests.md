@@ -1,11 +1,11 @@
 # Sprint End Tests
 
-This document details the basic instructions determining if a new branch of Zermelo is ready for merging back into the
+This document details the basic instructions determining if a new branch of ZZermelo is ready for merging back into the
 master branch. 
 
 ## Install Tests
 * Checkout a fresh copy of the latest long-term support version of Laravel, Laravel 5.5, as per [instructions](https://laravel.com/docs/5.5/installation)
-* Using only the steps outlined in the Readme. Install the Zermelo reporting engine. 
+* Using only the steps outlined in the Readme. Install the ZZermelo reporting engine. 
 * Using only the steps outlined in the Readme. Configure a new example report. 
 
 ## Use Tests

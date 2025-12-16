@@ -6,7 +6,7 @@
  * Time: 2:38 PM
  */
 
-namespace ftrotter\ZZermelo\Models;
+namespace ftrotter\ZZZermelo\Models;
 
 use Illuminate\Support\Facades\DB;
 
@@ -31,7 +31,7 @@ class AbstractGenerator
             $urldecodedvalue =urldecode($value);
             if($field == '_')
             {
-                $fields = ZermeloDatabase::getTableColumnDefinition( $this->cache->getTableName(), zermelo_cache_db() );
+                $fields = ZZermeloDatabase::getTableColumnDefinition( $this->cache->getTableName(), zermelo_cache_db() );
                 $this->cache->getTable()->where(function($q) use($fields,$urldecodedvalue)
                 {
                     foreach ($fields as $field) {

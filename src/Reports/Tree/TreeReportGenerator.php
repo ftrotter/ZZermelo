@@ -1,11 +1,11 @@
 <?php
 
-namespace ftrotter\ZZermelo\Reports\Tree;
+namespace ftrotter\ZZZermelo\Reports\Tree;
 
-use ftrotter\ZZermelo\Interfaces\CacheInterface;
-use ftrotter\ZZermelo\Models\AbstractGenerator;
-use ftrotter\ZZermelo\Models\DatabaseCache;
-use ftrotter\ZZermelo\Models\ZermeloDatabase;
+use ftrotter\ZZZermelo\Interfaces\CacheInterface;
+use ftrotter\ZZZermelo\Models\AbstractGenerator;
+use ftrotter\ZZZermelo\Models\DatabaseCache;
+use ftrotter\ZZZermelo\Models\ZZermeloDatabase;
 use DB;
 
 class TreeReportGenerator extends AbstractGenerator
@@ -48,7 +48,7 @@ SELECT
 FROM $this->cache_db.$this->cache_table
 ";
 
-	$results = ZermeloDatabase::connection($this->cache->getConnectionName())->select(DB::raw($select_sql));
+	$results = ZZermeloDatabase::connection($this->cache->getConnectionName())->select(DB::raw($select_sql));
 
 	$url_lookup = [];
 	$tree = [];

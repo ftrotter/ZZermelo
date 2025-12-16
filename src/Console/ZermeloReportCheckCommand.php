@@ -6,16 +6,16 @@
  * Time: 6:21 PM
  */
 
-namespace ftrotter\ZZermelo\Console;
+namespace ftrotter\ZZZermelo\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use ftrotter\ZZermelo\Reports\Graph\AbstractGraphReport;
-use ftrotter\ZZermelo\Reports\Tabular\AbstractTabularReport;
-use ftrotter\ZZermelo\Reports\Tree\AbstractTreeReport;
-use ftrotter\ZZermelo\Reports\Cards\AbstractCardsReport;
+use ftrotter\ZZZermelo\Reports\Graph\AbstractGraphReport;
+use ftrotter\ZZZermelo\Reports\Tabular\AbstractTabularReport;
+use ftrotter\ZZZermelo\Reports\Tree\AbstractTreeReport;
+use ftrotter\ZZZermelo\Reports\Cards\AbstractCardsReport;
 
-class ZermeloReportCheckCommand extends Command
+class ZZermeloReportCheckCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -29,7 +29,7 @@ class ZermeloReportCheckCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Loop Through Each Zermelo Report with their default arguments and see if they correctly run. Log to the Zermelo Config Database';
+    protected $description = 'Loop Through Each ZZermelo Report with their default arguments and see if they correctly run. Log to the ZZermelo Config Database';
 
     /**
      * Execute the console command.

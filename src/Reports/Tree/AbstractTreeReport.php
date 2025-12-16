@@ -5,11 +5,11 @@
  * Date: 1/14/19
  * Time: 9:51 AM
  */
-namespace ftrotter\ZZermelo\Reports\Tree;
+namespace ftrotter\ZZZermelo\Reports\Tree;
 
-use ftrotter\ZZermelo\Models\ZermeloReport;
+use ftrotter\ZZZermelo\Models\ZZermeloReport;
 
-abstract class AbstractTreeReport extends ZermeloReport
+abstract class AbstractTreeReport extends ZZermeloReport
 {
 
 }

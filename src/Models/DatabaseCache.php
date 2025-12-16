@@ -1,10 +1,10 @@
 <?php
 
-namespace ftrotter\ZZermelo\Models;
+namespace ftrotter\ZZZermelo\Models;
 
 use Carbon\Carbon;
-use ftrotter\ZZermelo\Exceptions\InvalidDatabaseTableException;
-use ftrotter\ZZermelo\Interfaces\ZermeloReportInterface;
+use ftrotter\ZZZermelo\Exceptions\InvalidDatabaseTableException;
+use ftrotter\ZZZermelo\Interfaces\ZZermeloReportInterface;
 use Illuminate\Support\Facades\DB;
 
 class DatabaseCache
@@ -18,7 +18,7 @@ class DatabaseCache
     protected $key = null;
     protected $connectionName = null;
 
-    public function __construct(ZermeloReport $report, $connectionName = null)
+    public function __construct(ZZermeloReport $report, $connectionName = null)
     {
         $this->report = $report;
 
@@ -41,13 +41,13 @@ class DatabaseCache
                 // The default cache table from the config file is configured by default, but
                 // if we're overriding we have to explicitly configure the new cache DB for access
                 try {
-                    ZermeloDatabase::configure($this->connectionName);
+                    ZZermeloDatabase::configure($this->connectionName);
                 } catch (\Exception $e) {
                     throw new InvalidDatabaseTableException("You attempted to override the cache database with `{$this->connectionName}` but the database does not exist or you do not have permission to access it");
                 }
 
                 $this->key = $cacheDatabaseSource['table'];
-                $this->cache_table = ZermeloDatabase::connection($this->connectionName)->table("{$this->key}");
+                $this->cache_table = ZZermeloDatabase::connection($this->connectionName)->table("{$this->key}");
             }
         } else {
             // Under normal operation, where no overriding of cache is taking place,
@@ -57,7 +57,7 @@ class DatabaseCache
 
             // Generate the prefix, but make sure it's not longer than 32 chars
             $this->key = $this->keygen($this->report->getClassName());
-            $this->cache_table = ZermeloDatabase::connection($this->connectionName)->table("{$this->key}");
+            $this->cache_table = ZZermeloDatabase::connection($this->connectionName)->table("{$this->key}");
 
             if ($this->exists() === false ||
                 $report->isCacheEnabled() === false ||
@@ -71,7 +71,7 @@ class DatabaseCache
 
         // Get the column names from the cache/result table
         try {
-            $this->columns = ZermeloDatabase::getTableColumnDefinition($this->getTableName(), $this->connectionName);
+            $this->columns = ZZermeloDatabase::getTableColumnDefinition($this->getTableName(), $this->connectionName);
         } catch (\Exception $e) {
             throw new InvalidDatabaseTableException("You attempted access a table `{$this->getTableName()}` on database `{$this->connectionName}` but the table does not exist or you do not have permission to access it");
         }
@@ -116,7 +116,7 @@ class DatabaseCache
 
     public function exists(): bool
     {
-        $hasTable = ZermeloDatabase::hasTable($this->cache_table->from, $this->connectionName);
+        $hasTable = ZZermeloDatabase::hasTable($this->cache_table->from, $this->connectionName);
         return $hasTable;
     }
 
@@ -211,10 +211,10 @@ class DatabaseCache
 
         //we are starting over, so if the table exists.. lets drop it.
         if ($this->exists()) {
-            ZermeloDatabase::drop($temp_cache_table->from, $this->connectionName);
+            ZZermeloDatabase::drop($temp_cache_table->from, $this->connectionName);
 	}
 
-	$pdo = ZermeloDatabase::connection($this->connectionName)->getPdo();
+	$pdo = ZZermeloDatabase::connection($this->connectionName)->getPdo();
 
         //now we will loop over all of the SQL queries that make up the report.
 
@@ -234,29 +234,29 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AS
 {$query}
 ";
 			$pdo->exec($create_table_sql);
-                        //ZermeloDatabase::connection($this->connectionName)->getPdo()->exec("CREATE TABLE {$temp_cache_table->from} AS {$query}");
+                        //ZZermeloDatabase::connection($this->connectionName)->getPdo()->exec("CREATE TABLE {$temp_cache_table->from} AS {$query}");
                     } else {
                         //for all subsequent queries we use INSERT INTO to merely add data to the table in question..
 			try {
 				$insert_sql = "INSERT INTO {$temp_cache_table->from} {$query}";
 				$pdo->exec($insert_sql);
-                        	#ZermeloDatabase::connection($this->connectionName)->getPdo"INSERT INTO {$temp_cache_table->from} {$query}");
+                        	#ZZermeloDatabase::connection($this->connectionName)->getPdo"INSERT INTO {$temp_cache_table->from} {$query}");
 
 			} catch(\Illuminate\Database\QueryException $ex){
 
 
 				//these database errors deserve better human readable responses...
-				//they are common problems with Zermelo reports..
+				//they are common problems with ZZermelo reports..
 				//so lets catch them and make sure that they are clear to end users..
 				$messages_to_filter = [
 
 				'Insert value list does not match column list:' =>
-"Zermelo Error: SQL Column Number Mismatch. 
+"ZZermelo Error: SQL Column Number Mismatch. 
 It looks like there was more than one SQL statement in this report, but the two reports did not have exactly the same number of columns... which they must for the reporting engine to work. 
 The specific error message from the database was:
 ",
 				"Data too long for column 'link_type'" =>
-"Zermelo Error: The first link_type column needs to have the longest name. 
+"ZZermelo Error: The first link_type column needs to have the longest name. 
 It should not be that way, but it is... 
 The specific error message from the database was: 
 ",
@@ -287,7 +287,7 @@ The specific error message from the database was:
                     //this allows us to database maintainance tasks using UPDATES etc.
                     //note that non-select statements are executed in the same order as they are provided in the contents of the returned SQL
 		    $pod->exec($query);
-                    //ZermeloDatabase::connection($this->connectionName)->statement(DB::raw($query));
+                    //ZZermeloDatabase::connection($this->connectionName)->statement(DB::raw($query));
                 }
             }
         } else {
@@ -313,7 +313,7 @@ The specific error message from the database was:
                     //now lets run those index commands...
                     $pdo->exec($index_sql_command);
                 } else {
-                    throw new Exception("Zermelo Report Error: $this_index_sql_template was retrieved from GetIndexSql() but it did not contain $table_string_to_replace");
+                    throw new Exception("ZZermelo Report Error: $this_index_sql_template was retrieved from GetIndexSql() but it did not contain $table_string_to_replace");
                 }
 
             }

@@ -1,7 +1,7 @@
-Zermelo Reporting Engine Troubleshoting
+ZZermelo Reporting Engine Troubleshoting
 ========
 
-A PHP reporting engine that works especially well with Laravel, built with love at [CareSet Systems](http://careset.com)
+A PHP reporting engine that works especially well with Laravel, built with love at [Care Set Systems](http://careset.com)
 
 
 ## Installation
@@ -30,5 +30,5 @@ My reports don't run, or I just see a white screen, or a blank screen.
 I'm seeing a 404 error when I browse to my report url.
 * Check URL, use `php artisan route:list` to make sure your route is there
 * Make sure your report file is in the proper directory in App and is properly namespaced.
-* Make sure your report class is a subclass of ZermeloReport, or else it will not be picked up by the engine
+* Make sure your report class is a subclass of ZZermeloReport, or else it will not be picked up by the engine
 

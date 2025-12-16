@@ -6,11 +6,11 @@
  * Time: 10:35 AM
  */
 
-namespace ftrotter\ZZermelo\Services;
+namespace ftrotter\ZZZermelo\Services;
 
-use ftrotter\ZZermelo\Models\Socket;
-use ftrotter\ZZermelo\Models\SocketUser;
-use ftrotter\ZZermelo\Models\Wrench;
+use ftrotter\ZZZermelo\Models\Socket;
+use ftrotter\ZZZermelo\Models\SocketUser;
+use ftrotter\ZZZermelo\Models\Wrench;
 use Illuminate\Support\Facades\Auth;
 
 class SocketService
@@ -80,7 +80,7 @@ class SocketService
 		return($socket_list_to_return);
 
         } else {
-            throw new \Exception("Zermelo SocketWrench Error: No Wrench found for lookup string=`$key`");
+            throw new \Exception("ZZermelo SocketWrench Error: No Wrench found for lookup string=`$key`");
         }
 
         return $foundSocket;
@@ -128,7 +128,7 @@ class SocketService
             }
 
         } else {
-            throw new \Exception("Zermelo SocketWrench Error: No Wrench found for lookup string=`$key`");
+            throw new \Exception("ZZermelo SocketWrench Error: No Wrench found for lookup string=`$key`");
         }
 
         return $foundSocket;
@@ -137,7 +137,7 @@ class SocketService
     /**
      * Check the default socket in sockets table to make sure that
      * each wrench as one, and only one, default socket
-     * TODO, make a whole logging and warning system : https://github.com/CareSet/Zermelo/issues/107
+     * TODO, make a whole logging and warning system : https://github.com/CareSet/ZZermelo/issues/107
      *
      */
     public static function checkIsDefaultSocket()

@@ -60,7 +60,7 @@ class NorthwindOrderIndexReport extends ParentTabularReport
     * Get the Report Name
     */
     public function GetReportName(): string {
-	return('Zermelo Demo: Northwind Order Index Report');
+	return('ZZermelo Demo: Northwind Order Index Report');
     }
 
     /*
@@ -70,7 +70,7 @@ class NorthwindOrderIndexReport extends ParentTabularReport
 
                 $html = "<p>
 The performance of this report should be pretty zippy for ordering and for searching various fields... because the cache table has been indexed. <br>
-Compare this to  <a href='/Zermelo/NorthwindOrderSlowReport'>Northwind Order Slow Report</a> 
+Compare this to  <a href='/ZZermelo/NorthwindOrderSlowReport'>Northwind Order Slow Report</a> 
 which is the same report but without indexes<br>
 Test this report for </p>
 <ul>
@@ -142,7 +142,7 @@ GROUP BY `order`.id
 		//this logic would ensure that every cell in the TABLE_NAME column, was converted to a link to
 		//a table drilldown report
 		$table_name = $row['TABLE_NAME'];
-		$row[''] = "<a href='/Zermelo/TableDrillDownReport/$table_name/'>$table_name</a>";
+		$row[''] = "<a href='/ZZermelo/TableDrillDownReport/$table_name/'>$table_name</a>";
 
 	*/
 

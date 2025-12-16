@@ -1,16 +1,16 @@
 <?php
 
-namespace ftrotter\ZZermelo\Http\Controllers;
+namespace ftrotter\ZZZermelo\Http\Controllers;
 
-use ftrotter\ZZermelo\Http\Requests\CardsReportRequest;
-use ftrotter\ZZermelo\Http\Requests\ZermeloRequest;
-use ftrotter\ZZermelo\Models\DatabaseCache;
-use ftrotter\ZZermelo\Reports\Tabular\ReportGenerator;
-use ftrotter\ZZermelo\Reports\Tabular\ReportSummaryGenerator;
+use ftrotter\ZZZermelo\Http\Requests\CardsReportRequest;
+use ftrotter\ZZZermelo\Http\Requests\ZZermeloRequest;
+use ftrotter\ZZZermelo\Models\DatabaseCache;
+use ftrotter\ZZZermelo\Reports\Tabular\ReportGenerator;
+use ftrotter\ZZZermelo\Reports\Tabular\ReportSummaryGenerator;
 
 class CardsApiController
 {
-    public function index( ZermeloRequest $request )
+    public function index( ZZermeloRequest $request )
     {
         $report = $request->buildReport();
         $cache = new DatabaseCache( $report, zermelo_cache_db() );
@@ -18,7 +18,7 @@ class CardsApiController
         return $generator->toJson();
     }
 
-    public function summary( ZermeloRequest $request )
+    public function summary( ZZermeloRequest $request )
     {
         $report = $request->buildReport();
         // Wrap the report in cache

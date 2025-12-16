@@ -1,10 +1,10 @@
 <?php
 
-namespace ftrotter\ZZermelo\Http\Controllers;
+namespace ftrotter\ZZZermelo\Http\Controllers;
 
-use ftrotter\ZZermelo\Http\Controllers\AbstractWebController;
-use ftrotter\ZZermelo\Http\Requests\GraphReportRequest;
-use ftrotter\ZZermelo\Interfaces\ZermeloReportInterface;
+use ftrotter\ZZZermelo\Http\Controllers\AbstractWebController;
+use ftrotter\ZZZermelo\Http\Requests\GraphReportRequest;
+use ftrotter\ZZZermelo\Interfaces\ZZermeloReportInterface;
 
 class GraphController extends AbstractWebController
 {
@@ -25,7 +25,7 @@ class GraphController extends AbstractWebController
      *
      * Push our graph URI variable onto the view
      */
-    public function onBeforeShown(ZermeloReportInterface $report)
+    public function onBeforeShown(ZZermeloReportInterface $report)
     {
         $bootstrap_css_location = asset(config('zermelo.BOOTSTRAP_CSS_LOCATION','/css/bootstrap.min.css'));
         $report->pushViewVariable('bootstrap_css_location', $bootstrap_css_location);

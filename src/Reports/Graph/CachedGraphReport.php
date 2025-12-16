@@ -6,12 +6,12 @@
  * Time: 2:47 PM
  */
 
-namespace ftrotter\ZZermelo\Reports\Graph;
+namespace ftrotter\ZZZermelo\Reports\Graph;
 
 
-use ftrotter\ZZermelo\Models\DatabaseCache;
-use ftrotter\ZZermelo\Models\ZermeloReport;
-use ftrotter\ZZermelo\Models\ZermeloDatabase;
+use ftrotter\ZZZermelo\Models\DatabaseCache;
+use ftrotter\ZZZermelo\Models\ZZermeloReport;
+use ftrotter\ZZZermelo\Models\ZZermeloDatabase;
 use \DB;
 
 class CachedGraphReport extends DatabaseCache
@@ -34,7 +34,7 @@ class CachedGraphReport extends DatabaseCache
     /**
      * CachedGraphReport constructor.
      *
-     * @param ZermeloReport $report The report to be cached
+     * @param ZZermeloReport $report The report to be cached
      *
      * @param $connectionName The name of the Cache Database connection, which represents the cache database name, and credentials for connecting
      */
@@ -188,7 +188,7 @@ class CachedGraphReport extends DatabaseCache
 
         // Go ahead to build the lookup arrays that represent the node types and link types of the graph based on
         // the node and link definitions in our report
-        $fields = ZermeloDatabase::getTableColumnDefinition($this->getTableName(), $this->connectionName);
+        $fields = ZZermeloDatabase::getTableColumnDefinition($this->getTableName(), $this->connectionName);
         $node_index = 0;
         $link_index = 0;
 
@@ -199,7 +199,7 @@ class CachedGraphReport extends DatabaseCache
         foreach ($fields as $field) {
             $column = $field['Name'];
             $title = ucwords(str_replace('_', ' ', $column), "\t\r\n\f\v ");
-            if (ZermeloDatabase::isColumnInKeyArray($column, $this->getReport()->getNodeTypeColumns())) {
+            if (ZZermeloDatabase::isColumnInKeyArray($column, $this->getReport()->getNodeTypeColumns())) {
                 $subjects_found[] = $column;
                 $this->node_types[$node_index] = [
                     'id' => $node_index,
@@ -210,7 +210,7 @@ class CachedGraphReport extends DatabaseCache
                 $this->visible_node_types[$node_index] = $this->node_types[$node_index]['visible'];
                 ++$node_index;
             }
-            if (ZermeloDatabase::isColumnInKeyArray($column, $this->getReport()->getLinkTypeColumns())) {
+            if (ZZermeloDatabase::isColumnInKeyArray($column, $this->getReport()->getLinkTypeColumns())) {
                 $weights_found[] = $column;
                 $this->link_types[$link_index] = [
                     'id' => $link_index,
@@ -499,17 +499,17 @@ CREATE TABLE $this->cache_db.$this->summary_table (
                 COUNT(DISTINCT(CONCAT(source_id,target_id))) AS summary_value
             FROM $this->cache_db.`{$this->getTableName()}`";
 
-	$pdo = ZermeloDatabase::connection($this->getConnectionName())->getPdo();
+	$pdo = ZZermeloDatabase::connection($this->getConnectionName())->getPdo();
 
         //loop all over the sql commands and run each one in order...
         // The connection is a DB Connection to our CACHE DATABASE using the credentials
-        // The connection is created in ftrotter\Zermelo\Models\ZermeloDatabsse
+        // The connection is created in ftrotter\ZZermelo\Models\ZZermeloDatabsse
         foreach ($sql as $this_sql) {
 	    try{
             	$pdo->exec($this_sql);
 	    }
 	    catch( \Exception $e){
-		echo "<h1>Attempting to create Zermelo graph cache. SQL Failed. Offending SQL:</h1><pre>$this_sql</pre>";
+		echo "<h1>Attempting to create ZZermelo graph cache. SQL Failed. Offending SQL:</h1><pre>$this_sql</pre>";
 		echo "<h1>Error Message: </h1>";
 		echo "<pre>" . $e->getMessage() . "</pre>";
 		//throw $e;

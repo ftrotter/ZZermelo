@@ -6,15 +6,15 @@
  * Time: 11:42 AM
  */
 
-namespace ftrotter\ZZermelo\Http\Controllers;
+namespace ftrotter\ZZZermelo\Http\Controllers;
 
-use ftrotter\ZZermelo\Http\Requests\ZermeloRequest;
-use ftrotter\ZZermelo\Reports\Graph\CachedGraphReport;
-use ftrotter\ZZermelo\Reports\Graph\GraphGenerator;
+use ftrotter\ZZZermelo\Http\Requests\ZZermeloRequest;
+use ftrotter\ZZZermelo\Reports\Graph\CachedGraphReport;
+use ftrotter\ZZZermelo\Reports\Graph\GraphGenerator;
 
 class GraphApiController
 {
-    public function index( ZermeloRequest $request )
+    public function index( ZZermeloRequest $request )
     {
         $report = $request->buildReport();
 

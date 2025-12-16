@@ -6,7 +6,7 @@
 </head>
 <body>
 
-@include('Zermelo::sql')
+@include('ZZermelo::sql')
 
 </body>
 </html>

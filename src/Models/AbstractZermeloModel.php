@@ -6,12 +6,12 @@
  * Time: 2:26 PM
  */
 
-namespace ftrotter\ZZermelo\Models;
+namespace ftrotter\ZZZermelo\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
 
-abstract class AbstractZermeloModel extends Model
+abstract class AbstractZZermeloModel extends Model
 {
     protected $connection = null;
 

@@ -1,6 +1,6 @@
 {
     "name": "ftrotter/zzermelo",
-    "description": "Zermelo, a PHP reporting engine for Laravel",
+    "description": "ZZermelo, a PHP reporting engine for Laravel",
     "type": "library",
     "license": "AGPL-3.0-or-later",
     "homepage": "https://github.com/ftrotter/ZZermelo",

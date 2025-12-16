@@ -5,11 +5,11 @@
  * Date: 1/14/19
  * Time: 9:51 AM
  */
-namespace ftrotter\ZZermelo\Reports\Graph;
+namespace ftrotter\ZZZermelo\Reports\Graph;
 
-use ftrotter\ZZermelo\Models\ZermeloReport;
+use ftrotter\ZZZermelo\Models\ZZermeloReport;
 
-class AbstractGraphReport extends ZermeloReport
+class AbstractGraphReport extends ZZermeloReport
 {
 
 }

@@ -6,9 +6,9 @@
  * Time: 2:26 PM
  */
 
-namespace ftrotter\ZZermelo\Models;
+namespace ftrotter\ZZZermelo\Models;
 
-class Socket extends AbstractZermeloModel
+class Socket extends AbstractZZermeloModel
 {
     protected $table = 'socket';
 

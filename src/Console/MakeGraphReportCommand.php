@@ -1,6 +1,6 @@
 <?php
 
-namespace ftrotter\ZZermelo\Console;
+namespace ftrotter\ZZZermelo\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
@@ -34,7 +34,7 @@ class MakeGraphReportCommand extends Command
     {
         $content = file_get_contents( __DIR__.'/stubs/GraphReport.stub' );
 
-        $namespace = config( 'zermelo.REPORT_NAMESPACE', 'Zermelo' );
+        $namespace = config( 'zermelo.REPORT_NAMESPACE', 'ZZermelo' );
         $content = str_replace( "{{ report_namespace }}",$namespace , $content );
 
         $report_name = $this->argument( 'report_name' );

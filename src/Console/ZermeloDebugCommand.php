@@ -6,12 +6,12 @@
  * Time: 6:21 PM
  */
 
-namespace ftrotter\ZZermelo\Console;
+namespace ftrotter\ZZZermelo\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
-class ZermeloDebugCommand extends Command
+class ZZermeloDebugCommand extends Command
 {
     /**
      * The name and signature of the console command.

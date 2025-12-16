@@ -1,22 +1,22 @@
 <?php
-namespace ftrotter\ZZermelo\Models;
+namespace ftrotter\ZZZermelo\Models;
 
-use ftrotter\ZZermelo\Http\Requests\ZermeloRequest;
-use ftrotter\ZZermelo\Interfaces\CacheInterface;
-use ftrotter\ZZermelo\Services\SocketService;
+use ftrotter\ZZZermelo\Http\Requests\ZZermeloRequest;
+use ftrotter\ZZZermelo\Interfaces\CacheInterface;
+use ftrotter\ZZZermelo\Services\SocketService;
 use Illuminate\Http\Request;
 
 class ReportFactory
 {
     /**
      * @param $reportClass
-     * @param ZermeloRequest $request
-     * @return ZermeloReport
+     * @param ZZermeloRequest $request
+     * @return ZZermeloReport
      *
-     * Build a ZermeloReport from a report class (string) and a request object.
+     * Build a ZZermeloReport from a report class (string) and a request object.
      *
      */
-    public static function build( $reportClass, ZermeloRequest $request ) : ZermeloReport
+    public static function build( $reportClass, ZZermeloRequest $request ) : ZZermeloReport
     {
         $parameters = ( $request->parameters == "" ) ? [] : explode("/", $request->parameters );
 

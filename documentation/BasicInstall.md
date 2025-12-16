@@ -1,7 +1,7 @@
-Zermelo Reporting Engine Basic Installation
+ZZermelo Reporting Engine Basic Installation
 ========
 
-A PHP reporting engine that works especially well with Laravel, built with love at [CareSet Systems](http://careset.com)
+A PHP reporting engine that works especially well with Laravel, built with love at [Care Set Systems](http://careset.com)
 
 
 ## Basic Installation
@@ -28,10 +28,10 @@ you can put 'northwind_data' for the DB_DATABASE. If you have an existing databa
     
 The installer pulls down the the zermelo package, which contains the API backend, and all avaialble view packages, 
 such as zermelobladetabular and zermelobladecard. The installer will also move zermelo assets such as Javascript and 
-CSS files to support the view packages into the public/vendor/CareSet directory.    
+CSS files to support the view packages into the public/vendor/Care Set directory.    
    
 After running these commands, you will have a new app/Reports directory in your laravel project
-where the Zermelo report classes will be placed. 
+where the ZZermelo report classes will be placed. 
 
 The installer will also create a _zermelo_cache databse and a _zermelo_config database. The cache
 database retains a cached view of the query resulting from each report, and it's usage is configured
@@ -41,14 +41,14 @@ varialbles that are injectable into report queries.
 
 ## Test your web routes (default):
 
-You should now see 'Zermelo' routes in your Laravel instance
+You should now see 'ZZermelo' routes in your Laravel instance
 
 List your routes:
 ```
-    $ php artisan route:list | grep Zermelo
-    |        | GET|HEAD | Zermelo/{report_name}/{parameters?}            |      | Closure |              |
-    |        | GET|HEAD | api/Zermelo/{report_name}/{parameters?}        |      | Closure |              |
-    |        | GET|HEAD | api/ZermeloSummary/{report_name}/{parameters?} |      | Closure |              |
+    $ php artisan route:list | grep ZZermelo
+    |        | GET|HEAD | ZZermelo/{report_name}/{parameters?}            |      | Closure |              |
+    |        | GET|HEAD | api/ZZermelo/{report_name}/{parameters?}        |      | Closure |              |
+    |        | GET|HEAD | api/ZZermeloSummary/{report_name}/{parameters?} |      | Closure |              |
 ```
 
 

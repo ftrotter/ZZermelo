@@ -8,10 +8,10 @@
  * Wrapper for a database connection
  */
 
-namespace ftrotter\ZZermelo\Models;
+namespace ftrotter\ZZZermelo\Models;
 
 
-class ZermeloDatabaseConnection
+class ZZermeloDatabaseConnection
 {
     protected $connectionName = '';
 

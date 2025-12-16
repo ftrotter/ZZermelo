@@ -1,5 +1,5 @@
-# ZermeloBladeTreeCard
-Blade based bootstrap 4.3+ "tree card"   based view for Zermelo reporting engine.
+# ZZermeloBladeTreeCard
+Blade based bootstrap 4.3+ "tree card"   based view for ZZermelo reporting engine.
 Basically this view allows for a table to take this specific format:
 
 | root | root_url | branch | branch_url | leaf | leaf_url
@@ -23,7 +23,7 @@ How to get started using it
 
 ### Installation
 
-This package requires the Zermelo package. You will nedd to follow the [zermelo installation instructions](https://github.com/CareSet/Zermelo) 
+This package requires the ZZermelo package. You will nedd to follow the [zermelo installation instructions](https://github.com/Care Set/ZZermelo) 
 on how to configure your app to use zermelo.
 
 After that is complete, use composer to install, and artisan to configure the Tree Card Report
@@ -48,9 +48,9 @@ The cards are based on the [bootstrap card system](https://getbootstrap.com/docs
 
 
 ### Run an example
-To test if you have installed correctly, see if you have Zermelo Card urls in your route using artisan..
+To test if you have installed correctly, see if you have ZZermelo Card urls in your route using artisan..
 ```
-./artisan route:list | grep ZermeloTreeCard
+./artisan route:list | grep ZZermeloTreeCard
 ```
 
 You should see 3 different routes in the result... if you see nothing.. something has gone wrong...
@@ -69,7 +69,7 @@ Remember that you will need to ensure that your laravel DB user has SELECT acces
 
 Then point your browser to
 
-https://example.com/ZermeloTreeCard/TreeCardTest/
+https://example.com/ZZermeloTreeCard/TreeCardTest/
 
 and you should see the content
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace ftrotter\ZZermelo\Http\Requests;
+namespace ftrotter\ZZZermelo\Http\Requests;
 
-class SocketWrenchRequest extends ZermeloRequest
+class SocketWrenchRequest extends ZZermeloRequest
 {
     /**
      * Determine if the user is authorized to make this request.

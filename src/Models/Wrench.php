@@ -6,9 +6,9 @@
  * Time: 2:26 PM
  */
 
-namespace ftrotter\ZZermelo\Models;
+namespace ftrotter\ZZZermelo\Models;
 
-class Wrench extends AbstractZermeloModel
+class Wrench extends AbstractZZermeloModel
 {
     protected $table = 'wrench';
 

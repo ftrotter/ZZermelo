@@ -44,7 +44,7 @@ class NorthwindOrderSlowReport extends ParentTabularReport
     * Get the Report Name
     */
     public function GetReportName(): string {
-	return('Zermelo Demo: Northwind Order Slow Report');
+	return('ZZermelo Demo: Northwind Order Slow Report');
     }
 
     /*
@@ -52,7 +52,7 @@ class NorthwindOrderSlowReport extends ParentTabularReport
     */
     public function GetReportDescription(): ?string {
 
-		$html = "<p>This report is just like <a href='/Zermelo/NorthwindOrderIndexReport'>Northwind Order Index Report</a> except that it does not use indexes. So for sufficiently large data.. it should be slower.
+		$html = "<p>This report is just like <a href='/ZZermelo/NorthwindOrderIndexReport'>Northwind Order Index Report</a> except that it does not use indexes. So for sufficiently large data.. it should be slower.
 <br>
 Test the following on this report </p>
 <ul>
@@ -121,7 +121,7 @@ GROUP BY `order`.id
 		//this logic would ensure that every cell in the TABLE_NAME column, was converted to a link to
 		//a table drilldown report
 		$table_name = $row['TABLE_NAME'];
-		$row[''] = "<a href='/Zermelo/TableDrillDownReport/$table_name/'>$table_name</a>";
+		$row[''] = "<a href='/ZZermelo/TableDrillDownReport/$table_name/'>$table_name</a>";
 
 	*/
 

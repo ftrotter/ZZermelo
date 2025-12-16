@@ -6,12 +6,12 @@
  * Time: 2:47 PM
  */
 
-namespace ftrotter\ZZermelo\Reports\Tree;
+namespace ftrotter\ZZZermelo\Reports\Tree;
 
 
-use ftrotter\ZZermelo\Models\DatabaseCache;
-use ftrotter\ZZermelo\Models\ZermeloReport;
-use ftrotter\ZZermelo\Models\ZermeloDatabase;
+use ftrotter\ZZZermelo\Models\DatabaseCache;
+use ftrotter\ZZZermelo\Models\ZZermeloReport;
+use ftrotter\ZZZermelo\Models\ZZermeloDatabase;
 use \DB;
 
 class CachedTreeReport extends DatabaseCache
@@ -22,7 +22,7 @@ class CachedTreeReport extends DatabaseCache
     /**
      * CachedGraphReport constructor.
      *
-     * @param ZermeloReport $report The report to be cached
+     * @param ZZermeloReport $report The report to be cached
      *
      * @param $connectionName The name of the Cache Database connection, which represents the cache database name, and credentials for connecting
      */
@@ -58,7 +58,7 @@ class CachedTreeReport extends DatabaseCache
 	//which is actually done in the parent... 
 
         foreach ($sql as $this_sql) {
-            ZermeloDatabase::connection($this->getConnectionName())->statement(DB::raw($this_sql));
+            ZZermeloDatabase::connection($this->getConnectionName())->statement(DB::raw($this_sql));
         }
 
     }

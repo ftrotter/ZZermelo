@@ -6,9 +6,9 @@
  * Time: 2:26 PM
  */
 
-namespace ftrotter\ZZermelo\Models;
+namespace ftrotter\ZZZermelo\Models;
 
-class ZermeloMeta extends AbstractZermeloModel
+class ZZermeloMeta extends AbstractZZermeloModel
 {
     protected $table = 'zermelo_meta';
 

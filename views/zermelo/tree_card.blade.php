@@ -92,7 +92,7 @@ function doh_ajax_failed(jqxhr, textStatus, error){
                         "filter": searches,
                     };
                     var merge = $.extend({}, passthrough_params, merge_get_params)
-                    localStorage.setItem("Zermelo_defaultPlageLength",header_data.length);
+                    localStorage.setItem("ZZermelo_defaultPlageLength",header_data.length);
 
                     var merge_clone = $.extend({},merge);
                     delete merge_clone['token'];

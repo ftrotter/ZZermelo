@@ -6,10 +6,10 @@
  * Time: 12:14 PM
  */
 
-namespace ftrotter\ZZermelo\Interfaces;
+namespace ftrotter\ZZZermelo\Interfaces;
 
 
-interface ZermeloReportInterface
+interface ZZermeloReportInterface
 {
     public function pushViewVariable($name, $value);
 

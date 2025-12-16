@@ -1,15 +1,15 @@
 <?php
 
-namespace ftrotter\ZZermelo\Reports\Tabular;
+namespace ftrotter\ZZZermelo\Reports\Tabular;
 
-use ftrotter\ZZermelo\Interfaces\CacheInterface;
-use ftrotter\ZZermelo\Interfaces\GeneratorInterface;
-use ftrotter\ZZermelo\Models\ZermeloReport;
-use ftrotter\ZZermelo\Exceptions\InvalidDatabaseTableException;
-use ftrotter\ZZermelo\Exceptions\InvalidHeaderFormatException;
-use ftrotter\ZZermelo\Exceptions\InvalidHeaderTagException;
-use ftrotter\ZZermelo\Exceptions\UnexpectedHeaderException;
-use ftrotter\ZZermelo\Exceptions\UnexpectedMapRowException;
+use ftrotter\ZZZermelo\Interfaces\CacheInterface;
+use ftrotter\ZZZermelo\Interfaces\GeneratorInterface;
+use ftrotter\ZZZermelo\Models\ZZermeloReport;
+use ftrotter\ZZZermelo\Exceptions\InvalidDatabaseTableException;
+use ftrotter\ZZZermelo\Exceptions\InvalidHeaderFormatException;
+use ftrotter\ZZZermelo\Exceptions\InvalidHeaderTagException;
+use ftrotter\ZZZermelo\Exceptions\UnexpectedHeaderException;
+use ftrotter\ZZZermelo\Exceptions\UnexpectedMapRowException;
 use \DB;
 
 class ReportSummaryGenerator extends ReportGenerator implements GeneratorInterface

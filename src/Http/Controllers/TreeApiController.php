@@ -1,15 +1,15 @@
 <?php
 
-namespace ftrotter\ZZermelo\Http\Controllers;
+namespace ftrotter\ZZZermelo\Http\Controllers;
 
-use ftrotter\ZZermelo\Http\Requests\ZermeloRequest;
-use ftrotter\ZZermelo\Reports\Tree\CachedTreeReport;
-use ftrotter\ZZermelo\Reports\Tree\TreeReportGenerator;
-use ftrotter\ZZermelo\Reports\Tree\TreeReportSummaryGenerator;
+use ftrotter\ZZZermelo\Http\Requests\ZZermeloRequest;
+use ftrotter\ZZZermelo\Reports\Tree\CachedTreeReport;
+use ftrotter\ZZZermelo\Reports\Tree\TreeReportGenerator;
+use ftrotter\ZZZermelo\Reports\Tree\TreeReportSummaryGenerator;
 
 class TreeApiController
 {
-    public function index( ZermeloRequest $request )
+    public function index( ZZermeloRequest $request )
     {
         $report = $request->buildReport();
         $cache = new CachedTreeReport( $report, zermelo_cache_db() );
@@ -17,7 +17,7 @@ class TreeApiController
         return $generator->toJson();
     }
 
-    public function summary( ZermeloRequest $request )
+    public function summary( ZZermeloRequest $request )
     {
         $report = $request->buildReport();
         // Wrap the report in cache

@@ -1,9 +1,9 @@
 <?php
 
-namespace ftrotter\ZZermelo\Http\Controllers;
+namespace ftrotter\ZZZermelo\Http\Controllers;
 
-use ftrotter\ZZermelo\Http\Controllers\AbstractWebController;
-use ftrotter\ZZermelo\Interfaces\ZermeloReportInterface;
+use ftrotter\ZZZermelo\Http\Controllers\AbstractWebController;
+use ftrotter\ZZZermelo\Interfaces\ZZermeloReportInterface;
 
 class TabularController extends AbstractWebController
 {
@@ -35,7 +35,7 @@ class TabularController extends AbstractWebController
      * Implement this method to do any custom configuration for this report,
      * like pushing variables onto the view that need to be there for EVERY report
      */
-    public function onBeforeShown(ZermeloReportInterface $report)
+    public function onBeforeShown(ZZermeloReportInterface $report)
     {
 	    //default to a sensible location for bootstrap in case the configuration value has not been set
         $bootstrap_css_location = asset(config('zermelo.BOOTSTRAP_CSS_LOCATION','/css/bootstrap.min.css'));

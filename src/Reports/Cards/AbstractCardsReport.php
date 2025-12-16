@@ -5,11 +5,11 @@
  * Date: 1/14/19
  * Time: 9:51 AM
  */
-namespace ftrotter\ZZermelo\Reports\Cards;
+namespace ftrotter\ZZZermelo\Reports\Cards;
 
-use ftrotter\ZZermelo\Models\ZermeloReport;
+use ftrotter\ZZZermelo\Models\ZZermeloReport;
 
-abstract class AbstractCardsReport extends ZermeloReport
+abstract class AbstractCardsReport extends ZZermeloReport
 {
 
     /**

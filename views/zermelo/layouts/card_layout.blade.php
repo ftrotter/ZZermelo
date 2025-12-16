@@ -40,9 +40,9 @@
 </head>
 <body>
 
-@include('Zermelo::menu')
+@include('ZZermelo::menu')
 
-@include('Zermelo::card')
+@include('ZZermelo::card')
 
 </body>
 </html>

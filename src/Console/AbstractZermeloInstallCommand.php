@@ -1,12 +1,12 @@
 <?php
 
-namespace ftrotter\ZZermelo\Console;
+namespace ftrotter\ZZZermelo\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 
-abstract class AbstractZermeloInstallCommand extends Command
+abstract class AbstractZZermeloInstallCommand extends Command
 {
     /**
      * The file names of the views that need to be exported.
@@ -269,7 +269,7 @@ abstract class AbstractZermeloInstallCommand extends Command
 
     protected function exportAssets()
     {
-        $this->info("Installing Zermelo Assets");
+        $this->info("Installing ZZermelo Assets");
 
         foreach (static::$assets as $source => $target) {
             $source_path = base_path() . $source;

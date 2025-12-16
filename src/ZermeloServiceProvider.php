@@ -1,21 +1,21 @@
 <?php
 
-namespace ftrotter\ZZermelo;
+namespace ftrotter\ZZZermelo;
 
-use ftrotter\ZZermelo\Console\MakeGraphReportCommand;
-use ftrotter\ZZermelo\Console\MakeTabularReportCommand;
-use ftrotter\ZZermelo\Console\ZermeloDebugCommand;
-use ftrotter\ZZermelo\Console\ZermeloInstallCommand;
-use ftrotter\ZZermelo\Console\MakeCardsReportCommand;
-use ftrotter\ZZermelo\Console\ZermeloReportCheckCommand;
-use ftrotter\ZZermelo\Models\ZermeloDatabase;
-use ftrotter\ZZermelo\Services\SocketService;
+use ftrotter\ZZZermelo\Console\MakeGraphReportCommand;
+use ftrotter\ZZZermelo\Console\MakeTabularReportCommand;
+use ftrotter\ZZZermelo\Console\ZZermeloDebugCommand;
+use ftrotter\ZZZermelo\Console\ZZermeloInstallCommand;
+use ftrotter\ZZZermelo\Console\MakeCardsReportCommand;
+use ftrotter\ZZZermelo\Console\ZZermeloReportCheckCommand;
+use ftrotter\ZZZermelo\Models\ZZermeloDatabase;
+use ftrotter\ZZZermelo\Services\SocketService;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
-Class ZermeloServiceProvider extends \Illuminate\Support\ServiceProvider
+Class ZZermeloServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /*
      * Registration happens before boot, so this is where we gather static configuration
@@ -32,9 +32,9 @@ Class ZermeloServiceProvider extends \Illuminate\Support\ServiceProvider
          *  - Exports Assets
          */
         $this->commands([
-            ZermeloInstallCommand::class,
-            ZermeloDebugCommand::class,
-	    ZermeloReportCheckCommand::class,
+            ZZermeloInstallCommand::class,
+            ZZermeloDebugCommand::class,
+	    ZZermeloReportCheckCommand::class,
             MakeTabularReportCommand::class,
             MakeCardsReportCommand::class,
             MakeGraphReportCommand::class
@@ -71,14 +71,14 @@ Class ZermeloServiceProvider extends \Illuminate\Support\ServiceProvider
             // Register the cache database connection if we have a zermelo db,
             // but only if we're running a web route, not during install commands
             $zermelo_cache_db = zermelo_cache_db();
-            if (ZermeloDatabase::doesDatabaseExist($zermelo_cache_db)) {
-                ZermeloDatabase::configure($zermelo_cache_db);
+            if (ZZermeloDatabase::doesDatabaseExist($zermelo_cache_db)) {
+                ZZermeloDatabase::configure($zermelo_cache_db);
             }
 
             // Register and configure the config DB
             $zermelo_config_db = zermelo_config_db();
-            if ( ZermeloDatabase::doesDatabaseExist( $zermelo_config_db ) ) {
-                ZermeloDatabase::configure( $zermelo_config_db );
+            if ( ZZermeloDatabase::doesDatabaseExist( $zermelo_config_db ) ) {
+                ZZermeloDatabase::configure( $zermelo_config_db );
             }
 
             // Validate that there is only one is_default_socket for a wrench, throw an exception
@@ -98,12 +98,12 @@ Class ZermeloServiceProvider extends \Illuminate\Support\ServiceProvider
             $this->registerApiRoutes();
             $this->registerWebRoutes();
             $this->registerReports();
-            $this->loadViewsFrom( resource_path( 'views/zermelo' ), 'Zermelo');
+            $this->loadViewsFrom( resource_path( 'views/zermelo' ), 'ZZermelo');
         }
     }
 
     /**
-     * Register the application's Zermelo reports.
+     * Register the application's ZZermelo reports.
      *
      * @return void
      */
@@ -111,7 +111,7 @@ Class ZermeloServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $reportDir = report_path();
         if ( File::isDirectory($reportDir) ) {
-            Zermelo::reportsIn( $reportDir );
+            ZZermelo::reportsIn( $reportDir );
         }
     }
 
@@ -140,17 +140,17 @@ Class ZermeloServiceProvider extends \Illuminate\Support\ServiceProvider
             // Load the core zermelo api routes including sockets
             $this->loadRoutesFrom(__DIR__.'/../routes/api.sockets.php');
 
-            $tabular_api_prefix = config('zermelo.TABULAR_API_PREFIX','Zermelo');
+            $tabular_api_prefix = config('zermelo.TABULAR_API_PREFIX','ZZermelo');
             Route::group( ['prefix' => $tabular_api_prefix ], function() {
                 $this->loadRoutesFrom(__DIR__.'/../routes/api.tabular.php');
             });
 
-            $graph_api_prefix = config('zermelo.GRAPH_API_PREFIX','ZermeloGraph');
+            $graph_api_prefix = config('zermelo.GRAPH_API_PREFIX','ZZermeloGraph');
             Route::group( ['prefix' => $graph_api_prefix ], function() {
                 $this->loadRoutesFrom(__DIR__.'/../routes/api.graph.php');
             });
 
-            $tree_api_prefix = config('zermelo.TREE_API_PREFIX','ZermeloTree');
+            $tree_api_prefix = config('zermelo.TREE_API_PREFIX','ZZermeloTree');
             Route::group( ['prefix' => $tree_api_prefix ], function() {
                 $this->loadRoutesFrom(__DIR__.'/../routes/api.tree.php');
             });
@@ -165,24 +165,24 @@ Class ZermeloServiceProvider extends \Illuminate\Support\ServiceProvider
         Route::group($this->webRouteConfiguration(), function() {
 
             // Load the pretty-print SQL routes from web.sql.php using the configured prefix
-            $sql_print_prefix = config( 'zermelo.SQL_PRINT_PREFIX','ZermeloSQL' );
+            $sql_print_prefix = config( 'zermelo.SQL_PRINT_PREFIX','ZZermeloSQL' );
             Route::group([ 'prefix' => $sql_print_prefix ], function () {
                 $this->loadRoutesFrom(__DIR__.'/../routes/web.sql.php');
             });
 
-            Route::group([ 'prefix' => config('zermelo.CARD_URI_PREFIX', 'ZermeloCard') ], function () {
+            Route::group([ 'prefix' => config('zermelo.CARD_URI_PREFIX', 'ZZermeloCard') ], function () {
                 $this->loadRoutesFrom(__DIR__.'/../routes/web.card.php');
             });
 
-            Route::group([ 'prefix' => config('zermelo.GRAPH_URI_PREFIX', 'ZermeloGraph') ], function () {
+            Route::group([ 'prefix' => config('zermelo.GRAPH_URI_PREFIX', 'ZZermeloGraph') ], function () {
                 $this->loadRoutesFrom(__DIR__.'/../routes/web.graph.php');
             });
 
-            Route::group([ 'prefix' => config('zermelo.TABULAR_URI_PREFIX', 'Zermelo') ], function () {
+            Route::group([ 'prefix' => config('zermelo.TABULAR_URI_PREFIX', 'ZZermelo') ], function () {
                 $this->loadRoutesFrom(__DIR__.'/../routes/web.tabular.php');
             });
 
-            Route::group([ 'prefix' => config('zermelo.TREECARD_URI_PREFIX', 'ZermeloTreeCard') ], function () {
+            Route::group([ 'prefix' => config('zermelo.TREECARD_URI_PREFIX', 'ZZermeloTreeCard') ], function () {
                 $this->loadRoutesFrom(__DIR__.'/../routes/web.tree_card.php');
             });
         });
@@ -198,7 +198,7 @@ Class ZermeloServiceProvider extends \Illuminate\Support\ServiceProvider
         $middleware = config('zermelo.MIDDLEWARE',[ 'api' ]);
 
         return [
-            'namespace' => 'ftrotter\ZZermelo\Http\Controllers',
+            'namespace' => 'ftrotter\ZZZermelo\Http\Controllers',
             'domain' => config('zermelo.domain', null),
             'as' => 'zermelo.api.',
             'prefix' => config( 'zermelo.API_PREFIX', 'zapi' ),
@@ -216,7 +216,7 @@ Class ZermeloServiceProvider extends \Illuminate\Support\ServiceProvider
         $middleware = config('zermelo.WEB_MIDDLEWARE',[ 'web' ]);
 
         return [
-            'namespace' => 'ftrotter\ZZermelo\Http\Controllers',
+            'namespace' => 'ftrotter\ZZZermelo\Http\Controllers',
             //  'domain' => config('zermelo.domain', null),
             'as' => 'zermelo.web.',
             'prefix' => '',

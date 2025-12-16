@@ -1,11 +1,11 @@
 <?php
 
-namespace ftrotter\ZZermelo\Reports\Graph;
+namespace ftrotter\ZZZermelo\Reports\Graph;
 
-use ftrotter\ZZermelo\Interfaces\CacheInterface;
-use ftrotter\ZZermelo\Models\AbstractGenerator;
-use ftrotter\ZZermelo\Models\DatabaseCache;
-use ftrotter\ZZermelo\Models\ZermeloDatabase;
+use ftrotter\ZZZermelo\Interfaces\CacheInterface;
+use ftrotter\ZZZermelo\Models\AbstractGenerator;
+use ftrotter\ZZZermelo\Models\DatabaseCache;
+use ftrotter\ZZZermelo\Models\ZZermeloDatabase;
 use DB;
 
 class GraphGenerator extends AbstractGenerator
@@ -29,7 +29,7 @@ class GraphGenerator extends AbstractGenerator
     public function toJson(): array
     {
 
-	$pdo = ZermeloDatabase::connection($this->cache->getConnectionName())->getPdo();
+	$pdo = ZZermeloDatabase::connection($this->cache->getConnectionName())->getPdo();
 
         $report_description = $this->report->getReportDescription();
         $report_name = $this->report->getReportName();

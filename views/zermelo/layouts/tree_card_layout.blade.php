@@ -8,7 +8,7 @@
 <body>
 
 
-@include('Zermelo::tree_card')
+@include('ZZermelo::tree_card')
 
 </body>
 </html>

@@ -9,7 +9,7 @@ class NorthwindProductReport extends ParentTabularReport
     * Get the Report Name
     */
     public function GetReportName(): string {
-	return('Zermelo Demo: Northwind Product Report');
+	return('ZZermelo Demo: Northwind Product Report');
     }
 
     /*
@@ -21,7 +21,7 @@ The list of all northwind products.
 <br>
 List of things to test:</p>
 <ul>
-	<li>Currently, not very much, but soon, we will use this report to test the auto-column summary features of Zermelo </li>
+	<li>Currently, not very much, but soon, we will use this report to test the auto-column summary features of ZZermelo </li>
 </ul>
 
 ";
@@ -57,7 +57,7 @@ List of things to test:</p>
 		//this logic would ensure that every cell in the TABLE_NAME column, was converted to a link to
 		//a table drilldown report
 		$table_name = $row['TABLE_NAME'];
-		$row[''] = "<a href='/Zermelo/TableDrillDownReport/$table_name/'>$table_name</a>";
+		$row[''] = "<a href='/ZZermelo/TableDrillDownReport/$table_name/'>$table_name</a>";
 
 	*/
 

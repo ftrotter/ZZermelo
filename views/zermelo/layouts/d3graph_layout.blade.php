@@ -4,7 +4,7 @@
 	<title>{{ $report->getReportName() }}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Cube is a map of the healthcare system">
-	<meta name="author" content="CareSet Team">
+	<meta name="author" content="Care Set Team">
 
     <!-- standard styles -->
 	<link rel="stylesheet" type="text/css" href='{{ $bootstrap_css_location }}' />
@@ -64,7 +64,7 @@
 </head>
 <body>
 
-@include('Zermelo::d3graph')
+@include('ZZermelo::d3graph')
 
 </body>
 </html>

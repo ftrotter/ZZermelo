@@ -1,9 +1,9 @@
 <?php
 
-namespace ftrotter\ZZermelo\Http\Requests;
+namespace ftrotter\ZZZermelo\Http\Requests;
 
-use ftrotter\ZZermelo\Models\ReportFactory;
-use ftrotter\ZZermelo\Zermelo;
+use ftrotter\ZZZermelo\Models\ReportFactory;
+use ftrotter\ZZZermelo\ZZermelo;
 
 trait InteractsWithReports
 {
@@ -37,11 +37,11 @@ trait InteractsWithReports
     public function reportClass()
     {
         // report_key is a request parameter defined by the route (we are inside a request object)
-        return tap(Zermelo::reportForKey($this->report_key), function ($report) {
+        return tap(ZZermelo::reportForKey($this->report_key), function ($report) {
             if(is_null($report)){
 			$debug = config('app.debug');
 			if($debug){ //lets show the user a specific error
-				throw new \ErrorException("Zermelo returned a null value when trying to create a report from key |$this->report_key| this usually means there is no existing report by that name");
+				throw new \ErrorException("ZZermelo returned a null value when trying to create a report from key |$this->report_key| this usually means there is no existing report by that name");
 			}else{
 				//in a production environment, we just show a 404 message
 				abort(404);
@@ -53,7 +53,7 @@ trait InteractsWithReports
     /**
      * Get a new instance of the resource being requested.
      *
-     * @return \ftrotter\Zermelo\Models\ZermeloReport
+     * @return \ftrotter\ZZermelo\Models\ZZermeloReport
      */
     public function buildReport()
     {

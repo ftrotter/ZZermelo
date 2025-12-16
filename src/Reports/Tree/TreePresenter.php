@@ -5,10 +5,10 @@
  * Date: 7/5/18
  * Time: 1:03 PM
  */
-namespace ftrotter\ZZermelo\Reports\Tree;
+namespace ftrotter\ZZZermelo\Reports\Tree;
 
-use ftrotter\ZZermelo\Models\AbstractPresenter;
-use ftrotter\ZZermelo\Models\ZermeloReport;
+use ftrotter\ZZZermelo\Models\AbstractPresenter;
+use ftrotter\ZZZermelo\Models\ZZermeloReport;
 
 class TreePresenter extends AbstractPresenter
 {
@@ -16,7 +16,7 @@ class TreePresenter extends AbstractPresenter
     private $_report_path = null;
     private $_summary_path = null;
 
-    public function __construct( ZermeloReport $report )
+    public function __construct( ZZermeloReport $report )
     {
         parent::__construct( $report );
     }

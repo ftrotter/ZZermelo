@@ -1,19 +1,19 @@
-Zermelo Reporting Engine
+ZZermelo Reporting Engine
 ========
 
-A PHP reporting engine that works especially well with Laravel, built with love at [CareSet Systems](http://careset.com)
+A PHP reporting engine that works especially well with Laravel, built with love at [Care Set Systems](http://careset.com)
 
 Reporting Approach
 ------------------
 
-The basic idea in Zermelo is to let report authors think exclusively in SQL SELECT statements, and to allow Zermelo to handle the translation of the data that results from queries into complex and rich web interfaces.
+The basic idea in ZZermelo is to let report authors think exclusively in SQL SELECT statements, and to allow ZZermelo to handle the translation of the data that results from queries into complex and rich web interfaces.
 There are plenty of good tools available to help build SELECT statements, and there are thousands of excellent resources available to learn how to use the SELECT query functions in SQL.
-And if you know how to use SQL SELECT statements, then with Zermelo, you can automatically create complex and interactive web-based reports.
+And if you know how to use SQL SELECT statements, then with ZZermelo, you can automatically create complex and interactive web-based reports.
 
-Generally, this happens using the ability of SQL to have aliases for the output of specific variables. For most of the reporting engines, you can have one or many SQL queries that output into specific aliased columns that Zermelo understands.
+Generally, this happens using the ability of SQL to have aliases for the output of specific variables. For most of the reporting engines, you can have one or many SQL queries that output into specific aliased columns that ZZermelo understands.
 And then the reporting engine will automatically populate a web-based data view with the data output. For instance, the card-based layout engine allows you to populate rows of data into BootStrap Cards. Almost every portion of the Bootstrap Card can be populated by using column names that correspond to the css classes supported inside the [bootstrap card component](https://getbootstrap.com/docs/4.0/components/card/#kitchen-sink).
 
-The exception to this approach is the tabular data viewer. Here, you can output anything you want from your SELECT statement and Zermelo will do its best to create a online auto-paging tabular view of your data using the [DataTables](https://datatables.net/) javascript project.
+The exception to this approach is the tabular data viewer. Here, you can output anything you want from your SELECT statement and ZZermelo will do its best to create a online auto-paging tabular view of your data using the [DataTables](https://datatables.net/) javascript project.
 
 Core Reporting features
 ------------------
@@ -32,16 +32,16 @@ We have a [feature roadmap](FullFeature.md) if you want to see where we are goin
 ScreenShot that explains everything
 --------------------------
 
-![Zermelo Data Flow Diagram](https://raw.githubusercontent.com/CareSet/Zermelo/master/documentation/ZermeloScreenShot.png)
+![ZZermelo Data Flow Diagram](https://raw.githubusercontent.com/Care Set/ZZermelo/master/documentation/ZZermeloScreenShot.png)
 
 Architecture
 ------------------
 
 Read the [Architecture diagram](documentation/Architecture.md)
-Zermelo is doing the hard work of translating "mere SQL" into something that can consistently and with minimal impact on performance be loaded into a single browser session.
-Zermelo understands how to push the hard work to the MariaDB/MySQL server, ensuring that the browser gets its data in dribbles. The backend is having to do a huge amount of work in order make that happen.
+ZZermelo is doing the hard work of translating "mere SQL" into something that can consistently and with minimal impact on performance be loaded into a single browser session.
+ZZermelo understands how to push the hard work to the MariaDB/MySQL server, ensuring that the browser gets its data in dribbles. The backend is having to do a huge amount of work in order make that happen.
 
-Some queries will legitimately take hours for the backend to run, even when the resulting data is only a few hundred rows of results. In order to support these heavy loads, Zermelo understands how to cache results.
+Some queries will legitimately take hours for the backend to run, even when the resulting data is only a few hundred rows of results. In order to support these heavy loads, ZZermelo understands how to cache results.
 It always caches the results, but for most queries, it always refreshes the cache on every browser call.
 
 You, the user, get to control how this works. Look at the [Controlling the Cache](documentation/ControlCaching.md) documentation to see how.
@@ -71,15 +71,15 @@ This will install and configure zermelo, and create an app/Reports for you to ad
 Next, you should test your routes...
 
 ```bash
-    $ php artisan route:list | grep Zermelo
-|        | GET|HEAD | Zermelo/{report_key}                                 |
-|        | GET|HEAD | ZermeloCard/{report_key}                             |
-|        | GET|HEAD | ZermeloGraph/{report_key}                            |
-|        | GET|HEAD | api/Zermelo/{report_key}/Download/{parameters?}      |
-|        | GET|HEAD | api/Zermelo/{report_key}/Summary/{parameters?}       |
-|        | GET|HEAD | api/Zermelo/{report_key}/{parameters?}               | 
-|        | GET|HEAD | api/ZermeloGraph/{report_key}/Download/{parameters?} |
-|        | GET|HEAD | api/ZermeloGraph/{report_key}/{parameters?}          |
+    $ php artisan route:list | grep ZZermelo
+|        | GET|HEAD | ZZermelo/{report_key}                                 |
+|        | GET|HEAD | ZZermeloCard/{report_key}                             |
+|        | GET|HEAD | ZZermeloGraph/{report_key}                            |
+|        | GET|HEAD | api/ZZermelo/{report_key}/Download/{parameters?}      |
+|        | GET|HEAD | api/ZZermelo/{report_key}/Summary/{parameters?}       |
+|        | GET|HEAD | api/ZZermelo/{report_key}/{parameters?}               | 
+|        | GET|HEAD | api/ZZermeloGraph/{report_key}/Download/{parameters?} |
+|        | GET|HEAD | api/ZZermeloGraph/{report_key}/{parameters?}          |
 ```
 
 ### Running Example
@@ -102,12 +102,12 @@ Change the REPORT_NAMESPACE setting in config/zermelo.php to something else...
 'REPORT_NAMESPACE' =>env("REPORT_NAMESPACE","app\Reports"),
 ```
 
-... like "Zermelo" and then create a ~/code/zermelo-demo/app/Zermelo directory to place your example report in.
-Note: you will also need to change the namespace of Northwind\*Reports.php files to "namespace app\Zermelo;" if you change the REPORT\_NAMESPACE.
+... like "ZZermelo" and then create a ~/code/zermelo-demo/app/ZZermelo directory to place your example report in.
+Note: you will also need to change the namespace of Northwind\*Reports.php files to "namespace app\ZZermelo;" if you change the REPORT\_NAMESPACE.
 4. To configure middleware, you may add, or edit the MIDDLEWARE config setting in your config/zermelo.php file. This will
 run the configured middleware on each API request. For example, if you have enabled [Laravel's Authentication](https://laravel.com/docs/5.6/authentication#protecting-routes)
-and wish to protect the Zermelo routes using the auth middleware, you may add the string "auth" to the
-MIDDLEWARE array in order to exeute the auth middleware on each API request to the Zermelo API.
+and wish to protect the ZZermelo routes using the auth middleware, you may add the string "auth" to the
+MIDDLEWARE array in order to exeute the auth middleware on each API request to the ZZermelo API.
 Similarly, for the front-end view packages like zermelobladetabular, you may add the "auth" string to the TABULAR_MIDDLEWARE
 array in zermelobladetabular.php to enable authentication on that route.
 
@@ -122,7 +122,7 @@ When you install the zermelobladetabular package, Just Say No to 'replace' all t
  'The [zermelo/tabular.blade.php] view already exists'  Y  (replace it!)
  'The [zermelo/layouts/tabular.blade.php] view already exists.' Y  (replace it!)
 
-### Uninstall Zermelo
+### Uninstall ZZermelo
 
 You can uninstall the composer packages by running 'composer remove' to remove the requirements in composer.json, and
 to remove the packages from the vendor directory. In project home dir:
@@ -142,9 +142,9 @@ is to run:
 
 To understand what this does, take a look at the example report model below.
 
-2. Edit the new file `/app/Zermelo/[YourNewReportName]` (or, with the defaults mentioned in the instructions, `/app/Reports/[YourNewReportName]`)
+2. Edit the new file `/app/ZZermelo/[YourNewReportName]` (or, with the defaults mentioned in the instructions, `/app/Reports/[YourNewReportName]`)
  You must fill in a reasonable GetSQL() function that returns either a single SQL text string, or an array of SQL text strings.
-3. Point your browser to <https://yourapp.example.com/Zermelo/YourNewReportName>
+3. Point your browser to <https://yourapp.example.com/ZZermelo/YourNewReportName>
 4. Enjoy seeing your data in an automatically pagable [Datatables](https://datatables.net/) display!!
 5. Various functions and constants in the report file can dramatically change how the report is displayed on the front end. Use them to change the reports (a good first hack is to use the MapRow function to link one report to another report)
 
@@ -218,7 +218,7 @@ passed raw to the report.
 #### Turn on the SQL Print view
 
 **isSQLPrintEnabled()**
-Will turn on the ability to visit the report using the /ZermeloSQL/ url and instead of running the report,
+Will turn on the ability to visit the report using the /ZZermeloSQL/ url and instead of running the report,
 a helpful debugging screen will be presented, showing what SQL would have been returned by GetSQL() in a pretty-printed manner.
 This is very helpful for debugging inputs.
 It does require that SQL view be enabled in the /config/zermelo.php file to work, however.
@@ -265,15 +265,15 @@ then your variable will be available in the view as $extra_var with a value of '
 
 ### Example Report Model
 
-To see full list of functions and variables, please see the ZermeloReport model -
-<https://github.com/CareSet/Zermelo/blob/master/src/CareSet/Zermelo/Models/ZermeloReport.php>
+To see full list of functions and variables, please see the ZZermeloReport model -
+<https://github.com/Care Set/ZZermelo/blob/master/src/Care Set/ZZermelo/Models/ZZermeloReport.php>
 
 ```php
 
 <?php
 
 namespace App\Reports;
-use CareSet\Zermelo\Reports\Tabular\AbstractTabularReport;
+use ftrotter\ZZermelo\Reports\Tabular\AbstractTabularReport;
 
 class ExampleReport extends AbstractTabularReport
 {
@@ -330,10 +330,10 @@ class ExampleReport extends AbstractTabularReport
                 $row['TABLE_NAME'] = "Gotta Love Those Row Decorations: $table_name";
 
                 //this will make table name a link to another report
-                //$row['TABLE_NAME'] = "<a href='/Zermelo/TableDrillDownReport/$table_name/'>$table_name</a>";
+                //$row['TABLE_NAME'] = "<a href='/ZZermelo/TableDrillDownReport/$table_name/'>$table_name</a>";
 
                 //this will do the same thing, but styling the link as a bootstrap button.
-                //$row['TABLE_NAME'] = "<a class='btn btn-primary btn-sm' href='/Zermelo/TableDrillDownReport/$table_name/'>$table_name</a>";
+                //$row['TABLE_NAME'] = "<a class='btn btn-primary btn-sm' href='/ZZermelo/TableDrillDownReport/$table_name/'>$table_name</a>";
         */
 
         return $row;
@@ -434,7 +434,7 @@ class ExampleReport extends AbstractTabularReport
     public function GetReportFooter(): ?string
     {
         $footer = <<<FOOTER
-            <p>Made with love by CareSet</>
+            <p>Made with love by Care Set</>
 FOOTER;
 
         return $footer;
@@ -650,11 +650,11 @@ TROUBLESHOOTING
 
 Please refer to the [Troubleshooting](documentation/Troubleshooting.md) guide.
 
-Why 'Zermelo'?
+Why 'ZZermelo'?
 ------------------
 
-Zermelo has been developed by [CareSet Systems](https://careset.com) which provides extensive reporting on CMS, Medicare and Medicaid data. We developed Zermelo to make that task easier. CareSet systems uses Set Theory, SQL and Graph technology to datamine Medicare claims data. We chose the name "CareSet" for our company to highlight our data approach (our logo contains a graph and a 'set' of nodes, which we thought was a good illustration of our analytical approach. In any case, because of our focus on Set-theory approaches to data analytics we thought we should celebrate a famous set theory mathematician with the names of our Open Source projects.
+ZZermelo has been developed by [Care Set Systems](https://careset.com) which provides extensive reporting on CMS, Medicare and Medicaid data. We developed ZZermelo to make that task easier. Care Set systems uses Set Theory, SQL and Graph technology to datamine Medicare claims data. We chose the name "Care Set" for our company to highlight our data approach (our logo contains a graph and a 'set' of nodes, which we thought was a good illustration of our analytical approach. In any case, because of our focus on Set-theory approaches to data analytics we thought we should celebrate a famous set theory mathematician with the names of our Open Source projects.
 
-[Earnst Zermelo](https://en.wikipedia.org/wiki/Ernst_Zermelo) was one of the two independant mathematicians to posit the famous [Russell's Paradox](https://en.wikipedia.org/wiki/Russell%27s_paradox), the other being Russell. That paradox is the facinating question "Does a set that contains all sets that are not includes in themselves, contain itself". This paradox was a direct result of [Cantor](https://en.wikipedia.org/wiki/Georg_Cantor)'s work on Set Theory. All of which are critical chapters in the work on [Foundational Mathematics](https://en.wikipedia.org/wiki/Foundations_of_mathematics) shortly after the Turn of the 19th century.
+[Earnst ZZermelo](https://en.wikipedia.org/wiki/Ernst_ZZermelo) was one of the two independant mathematicians to posit the famous [Russell's Paradox](https://en.wikipedia.org/wiki/Russell%27s_paradox), the other being Russell. That paradox is the facinating question "Does a set that contains all sets that are not includes in themselves, contain itself". This paradox was a direct result of [Cantor](https://en.wikipedia.org/wiki/Georg_Cantor)'s work on Set Theory. All of which are critical chapters in the work on [Foundational Mathematics](https://en.wikipedia.org/wiki/Foundations_of_mathematics) shortly after the Turn of the 19th century.
 
-So we figured Zermelo did not get enough credit for his independant development of the paradox (and his other work generally) and also, he has a cool name that is not really used much by software projects, with the exception of previous work [automating table tennis tournaments](https://www.davidmarcus.com/Zermelo.htm) or [scheduling dutch students](https://www.zermelo.nl/), which are both different Zermelo software solutions from this project.  But so far, no one has a reporting engine with this name, so we jumped at the opportunity to celebrate Zermelo's contribution to mathematics and data analysis by naming our php reporting engine after him!
+So we figured ZZermelo did not get enough credit for his independant development of the paradox (and his other work generally) and also, he has a cool name that is not really used much by software projects, with the exception of previous work [automating table tennis tournaments](https://www.davidmarcus.com/ZZermelo.htm) or [scheduling dutch students](https://www.zermelo.nl/), which are both different ZZermelo software solutions from this project.  But so far, no one has a reporting engine with this name, so we jumped at the opportunity to celebrate ZZermelo's contribution to mathematics and data analysis by naming our php reporting engine after him!

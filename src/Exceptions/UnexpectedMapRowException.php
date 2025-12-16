@@ -1,6 +1,6 @@
 <?php
 
-namespace ftrotter\ZZermelo\Exceptions;
+namespace ftrotter\ZZZermelo\Exceptions;
 
 use Exception;
 

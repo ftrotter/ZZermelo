@@ -1,11 +1,11 @@
 <?php
 
-namespace ftrotter\ZZermelo\Http\Controllers;
+namespace ftrotter\ZZZermelo\Http\Controllers;
 
-use ftrotter\ZZermelo\Http\Controllers\AbstractWebController;
-use ftrotter\ZZermelo\Http\Requests\CardsReportRequest;
-use ftrotter\ZZermelo\Interfaces\ZermeloReportInterface;
-use ftrotter\ZZermelo\Models\ZermeloReport;
+use ftrotter\ZZZermelo\Http\Controllers\AbstractWebController;
+use ftrotter\ZZZermelo\Http\Requests\CardsReportRequest;
+use ftrotter\ZZZermelo\Interfaces\ZZermeloReportInterface;
+use ftrotter\ZZZermelo\Models\ZZermeloReport;
 use Doctrine\SqlFormatter\SqlFormatter;
 
 class SQLPrintController extends AbstractWebController
@@ -36,7 +36,7 @@ class SQLPrintController extends AbstractWebController
      *
      * Build presenter and push our required varialbes for this web view
      */
-    public function onBeforeShown(ZermeloReportInterface $report)
+    public function onBeforeShown(ZZermeloReportInterface $report)
     {
         // before we show the report SQL, make sure SQL printing is enabled GLOBALLY,
         // If not, throw an error

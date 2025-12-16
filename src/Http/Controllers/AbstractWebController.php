@@ -6,11 +6,11 @@
  * Time: 12:33 PM
  */
 
-namespace ftrotter\ZZermelo\Http\Controllers;
+namespace ftrotter\ZZZermelo\Http\Controllers;
 
-use ftrotter\ZZermelo\Http\Requests\ZermeloRequest;
-use ftrotter\ZZermelo\Interfaces\ZermeloReportInterface;
-use ftrotter\ZZermelo\Models\ZermeloReport;
+use ftrotter\ZZZermelo\Http\Requests\ZZermeloRequest;
+use ftrotter\ZZZermelo\Interfaces\ZZermeloReportInterface;
+use ftrotter\ZZZermelo\Models\ZZermeloReport;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -22,13 +22,13 @@ abstract class AbstractWebController extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     /**
-     * @param ZermeloReport $report
+     * @param ZZermeloReport $report
      * @return mixed
      *
      * Implemnt this method to do any modifications to the report at the controller level.
      * Any view variables you set here will be set on every report.
      */
-    public abstract function onBeforeShown(ZermeloReportInterface $report);
+    public abstract function onBeforeShown(ZZermeloReportInterface $report);
 
     /**
      * @return mixed
@@ -40,7 +40,7 @@ abstract class AbstractWebController extends BaseController
     /**
      * @return mixed
      *
-     * Implement this method to specify the report URL path like /ZermeloCard or /ZermeloGraph
+     * Implement this method to specify the report URL path like /ZZermeloCard or /ZZermeloGraph
      */
     public abstract function getReportApiPrefix();
 
@@ -56,13 +56,13 @@ abstract class AbstractWebController extends BaseController
     }
 
     /**
-     * @param ZermeloRequest $request
+     * @param ZZermeloRequest $request
      * @return null
      *
-     * Default method for displaying a ZermeloReqest
+     * Default method for displaying a ZZermeloReqest
      * This method builds the report, builds the presenter and returns the view
      */
-    public function show(ZermeloRequest $request)
+    public function show(ZZermeloRequest $request)
     {
         $report = $request->buildReport();
         $this->onBeforeShown($report);
@@ -74,7 +74,7 @@ abstract class AbstractWebController extends BaseController
      *
      * Make a view by composing the report with necessary data from child controller
      */
-    public function buildView(ZermeloReportInterface $report)
+    public function buildView(ZZermeloReportInterface $report)
     {
         // Auth stuff
         $user = Auth::guard()->user();
@@ -85,7 +85,7 @@ abstract class AbstractWebController extends BaseController
             }
         }
 
-        // Get the overall Zermelo API prefix /zapi
+        // Get the overall ZZermelo API prefix /zapi
         $report->pushViewVariable('api_prefix', $this->getApiPrefix());
 
         // Get the API prefix for this report's controller from child controller

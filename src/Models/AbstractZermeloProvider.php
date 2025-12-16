@@ -6,12 +6,12 @@
  * Time: 12:01 PM
  */
 
-namespace ftrotter\ZZermelo\Models;
+namespace ftrotter\ZZZermelo\Models;
 
-use ftrotter\ZZermelo\Console\AbstractZermeloInstallCommand;
+use ftrotter\ZZZermelo\Console\AbstractZZermeloInstallCommand;
 use Illuminate\Support\ServiceProvider;
 
-abstract class AbstractZermeloProvider extends ServiceProvider
+abstract class AbstractZZermeloProvider extends ServiceProvider
 {
     abstract protected function onBeforeRegister();
 
@@ -34,7 +34,7 @@ abstract class AbstractZermeloProvider extends ServiceProvider
         if (php_sapi_name() !== 'cli') {
 
             // Make sure our class is a subclass of AbstractZermelloInstallCommand
-            if (in_array(AbstractZermeloInstallCommand::class, class_parents($class))) {
+            if (in_array(AbstractZZermeloInstallCommand::class, class_parents($class))) {
 
                 // Loop through required views, and if one doesn't exist in the app's resources directory, throw exception
                 foreach ($class::$views as $view) {

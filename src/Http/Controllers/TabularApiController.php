@@ -1,11 +1,11 @@
 <?php
 
-namespace ftrotter\ZZermelo\Http\Controllers;
+namespace ftrotter\ZZZermelo\Http\Controllers;
 
-use ftrotter\ZZermelo\Http\Requests\ZermeloRequest;
-use ftrotter\ZZermelo\Models\DatabaseCache;
-use ftrotter\ZZermelo\Reports\Tabular\ReportGenerator;
-use ftrotter\ZZermelo\Reports\Tabular\ReportSummaryGenerator;
+use ftrotter\ZZZermelo\Http\Requests\ZZermeloRequest;
+use ftrotter\ZZZermelo\Models\DatabaseCache;
+use ftrotter\ZZZermelo\Reports\Tabular\ReportGenerator;
+use ftrotter\ZZZermelo\Reports\Tabular\ReportSummaryGenerator;
 use DB;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class TabularApiController extends AbstractApiController
 {
-    public function index( ZermeloRequest $request )
+    public function index( ZZermeloRequest $request )
     {
         $report = $request->buildReport();
         $cache = new DatabaseCache( $report, zermelo_cache_db() );
@@ -21,7 +21,7 @@ class TabularApiController extends AbstractApiController
         return $generator->toJson();
     }
 
-    public function summary( ZermeloRequest $request )
+    public function summary( ZZermeloRequest $request )
     {
         $report = $request->buildReport();
         // Wrap the report in cache
@@ -32,11 +32,11 @@ class TabularApiController extends AbstractApiController
 
     /**
      * Generate the download for the targeted report. This relies on the cached version of the ReportJSON
-     * @param ZermeloRequest $request Tabular request for report
+     * @param ZZermeloRequest $request Tabular request for report
      * @return CSV download
      *
      */
-    public function download( ZermeloRequest $request )
+    public function download( ZZermeloRequest $request )
     {
         // Type can be either 'csv' or 'excel' and we default to excel (shouldn't have to)
         $fileType = $request->get('download_file_type', 'excel');

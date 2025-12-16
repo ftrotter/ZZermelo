@@ -1,12 +1,12 @@
-# ZermeloBladeCard
-Blade based bootstrap 4.1+ card based view for Zermelo reporting engine
+# ZZermeloBladeCard
+Blade based bootstrap 4.1+ card based view for ZZermelo reporting engine
 
 How to get started using it
 -------------------------
 
 ### Installation
 
-This package requires the Zermelo package. You will nedd to follow the [zermelo installation instructions](https://github.com/CareSet/Zermelo)
+This package requires the ZZermelo package. You will nedd to follow the [zermelo installation instructions](https://github.com/Care Set/ZZermelo)
 on how to configure your app to use zermelo.
 
 After that is complete, use composer to install, and artisan to configure the Card Report
@@ -34,9 +34,9 @@ There are several functions that appear in a card report that do not appear in o
 * the cardWidth() function sets the default width of every card (which you can control with data by including a card_width in the report. Both of these will support valudes that belong in a "style" parameter of the card div. Like style='width: 200px' or style='width: 80%'. In this case, you would return just '200px' or '80%' in either the cardWidth function or in the card_width data field below.
 
 ### Run an example
-To test if you have installed correctly, see if you have Zermelo Card urls in your route using artisan..
+To test if you have installed correctly, see if you have ZZermelo Card urls in your route using artisan..
 ```
-./artisan route:list | grep ZermeloCard
+./artisan route:list | grep ZZermeloCard
 ```
 
 You should see 3 different routes in the result... if you see nothing.. something has gone wrong...
@@ -55,7 +55,7 @@ Remember that you will need to ensure that your laravel DB user has SELECT acces
 
 Then point your browser to
 
-https://example.com/ZermeloCard/CardTest/
+https://example.com/ZZermeloCard/CardTest/
 
 and you should see the content
 
@@ -98,7 +98,7 @@ FROM zermelo_cards.cards
 
 ```
 
-<img src='/docs/Zermelo_card_layout_visual.2.png' width=400>
+<img src='/docs/ZZermelo_card_layout_visual.2.png' width=400>
 
 
 

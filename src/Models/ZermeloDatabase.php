@@ -10,7 +10,7 @@
  * database exists, getting meta data, etc.
  */
 
-namespace ftrotter\ZZermelo\Models;
+namespace ftrotter\ZZZermelo\Models;
 
 
 use Illuminate\Database\QueryException;
@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class ZermeloDatabase
+class ZZermeloDatabase
 {
     public static function configure( $database )
     {
@@ -60,7 +60,7 @@ class ZermeloDatabase
         try {
             return DB::connection($connectionName);
         } catch(\Exception $e) {
-            $message = $e->getMessage()." You may have a permissions error with your database user. Please Refer to the Zermelo troubleshooting guide <a href='https://github.com/CareSet/Zermelo#troubleshooting'>https://github.com/CareSet/Zermelo#troubleshooting</a>";
+            $message = $e->getMessage()." You may have a permissions error with your database user. Please Refer to the ZZermelo troubleshooting guide <a href='https://github.com/CareSet/ZZermelo#troubleshooting'>https://github.com/CareSet/ZZermelo#troubleshooting</a>";
             throw new \Exception($message, $e->getCode(), $e);
         }
     }

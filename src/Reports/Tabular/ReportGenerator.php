@@ -1,18 +1,18 @@
 <?php
 
-namespace ftrotter\ZZermelo\Reports\Tabular;
+namespace ftrotter\ZZZermelo\Reports\Tabular;
 
-use ftrotter\ZZermelo\Interfaces\CacheInterface;
-use ftrotter\ZZermelo\Interfaces\GeneratorInterface;
-use ftrotter\ZZermelo\Models\AbstractGenerator;
-use ftrotter\ZZermelo\Models\DatabaseCache;
-use ftrotter\ZZermelo\Models\ZermeloDatabase;
-use ftrotter\ZZermelo\Models\ZermeloReport;
-use ftrotter\ZZermelo\Exceptions\InvalidDatabaseTableException;
-use ftrotter\ZZermelo\Exceptions\InvalidHeaderFormatException;
-use ftrotter\ZZermelo\Exceptions\InvalidHeaderTagException;
-use ftrotter\ZZermelo\Exceptions\UnexpectedHeaderException;
-use ftrotter\ZZermelo\Exceptions\UnexpectedMapRowException;
+use ftrotter\ZZZermelo\Interfaces\CacheInterface;
+use ftrotter\ZZZermelo\Interfaces\GeneratorInterface;
+use ftrotter\ZZZermelo\Models\AbstractGenerator;
+use ftrotter\ZZZermelo\Models\DatabaseCache;
+use ftrotter\ZZZermelo\Models\ZZermeloDatabase;
+use ftrotter\ZZZermelo\Models\ZZermeloReport;
+use ftrotter\ZZZermelo\Exceptions\InvalidDatabaseTableException;
+use ftrotter\ZZZermelo\Exceptions\InvalidHeaderFormatException;
+use ftrotter\ZZZermelo\Exceptions\InvalidHeaderTagException;
+use ftrotter\ZZZermelo\Exceptions\UnexpectedHeaderException;
+use ftrotter\ZZZermelo\Exceptions\UnexpectedMapRowException;
 
 class ReportGenerator extends AbstractGenerator implements GeneratorInterface
 {
@@ -75,9 +75,9 @@ class ReportGenerator extends AbstractGenerator implements GeneratorInterface
 			$diff = array_diff($mapped_header,$original_array_key);
 			$diff_text = var_export($diff,true);
 			$original_text = var_export($original_array_key,true);
-            		throw new UnexpectedMapRowException("Zermelo Report Error: There are more values returned in the row than went into MapRow. These field names have been added:  $diff_text, was expecting $original_text");
+            		throw new UnexpectedMapRowException("ZZermelo Report Error: There are more values returned in the row than went into MapRow. These field names have been added:  $diff_text, was expecting $original_text");
 		}else{
-            		throw new UnexpectedMapRowException("Zermelo Report Error: There are fewer values returned in the row than went into MapRow");
+            		throw new UnexpectedMapRowException("ZZermelo Report Error: There are fewer values returned in the row than went into MapRow");
 		}
         }
 
@@ -103,18 +103,18 @@ class ReportGenerator extends AbstractGenerator implements GeneratorInterface
 
         foreach ($header_format as $name => $format) {
             if (!in_array($name, $mapped_header)) {
-                throw new UnexpectedHeaderException("Zermelo Report Error: Column header not found: {$name}");
+                throw new UnexpectedHeaderException("ZZermelo Report Error: Column header not found: {$name}");
             }
 
             if ($format !== null && !in_array($format, $this->cache->getReport()->VALID_COLUMN_FORMAT)) {
-                throw new InvalidHeaderFormatException("Zermelo Report Error: Invalid column header format: {$format}");
+                throw new InvalidHeaderFormatException("ZZermelo Report Error: Invalid column header format: {$format}");
             }
 
         }
 
         foreach ($header_tags as $name => &$tags) {
             if (!in_array($name, $mapped_header)) {
-                throw new UnexpectedHeaderException("Zermelo Report Error: Column header not found: {$name}");
+                throw new UnexpectedHeaderException("ZZermelo Report Error: Column header not found: {$name}");
             }
 
             if ($tags == null) {
@@ -130,7 +130,7 @@ class ReportGenerator extends AbstractGenerator implements GeneratorInterface
 
                 foreach ($tags as $tag) {
                     if (!in_array($tag, $valid_tags)) {
-                        throw new InvalidHeaderTagException("Zermelo Report Error: Invalid tag: {$tag}");
+                        throw new InvalidHeaderTagException("ZZermelo Report Error: Invalid tag: {$tag}");
                     }
                 }
             }
@@ -185,7 +185,7 @@ class ReportGenerator extends AbstractGenerator implements GeneratorInterface
             Check if any column are in the SUGGEST_NO_SUMMARY and add a flag
              */
             foreach ($summary_data as $name => $data) {
-                if (ZermeloDatabase::isColumnInKeyArray($name, $this->cache->getReport()->SUGGEST_NO_SUMMARY)) {
+                if (ZZermeloDatabase::isColumnInKeyArray($name, $this->cache->getReport()->SUGGEST_NO_SUMMARY)) {
                     $summary_data[$name]['NO_SUMMARY'] = true;
                 }
             }
@@ -226,28 +226,28 @@ class ReportGenerator extends AbstractGenerator implements GeneratorInterface
      * DefaultColumnFormat
      * Attempts to return the format of the column based on the column name and the predefine header configuration
      *
-     * @param ZermeloReport $Report
+     * @param ZZermeloReport $Report
      * @param array $format
      * @param array $fields
      * @return array
      */
-    private static function DefaultColumnFormat(ZermeloReport $Report, array $format, array $fields): array
+    private static function DefaultColumnFormat(ZZermeloReport $Report, array $format, array $fields): array
     {
         foreach ($format as $name => $value) {
 
-            if (ZermeloDatabase::isColumnInKeyArray($name, $Report->DETAIL)) {
+            if (ZZermeloDatabase::isColumnInKeyArray($name, $Report->DETAIL)) {
                 $format[$name] = 'DETAIL';
-            } else if (ZermeloDatabase::isColumnInKeyArray($name, $Report->URL) && in_array($fields[$name]["Type"], ["string"])) {
+            } else if (ZZermeloDatabase::isColumnInKeyArray($name, $Report->URL) && in_array($fields[$name]["Type"], ["string"])) {
                 $format[$name] = 'URL';
-            } else if (ZermeloDatabase::isColumnInKeyArray($name, $Report->CURRENCY) /* && in_array($fields[$name]["Type"],["integer","decimal"])*/) {
+            } else if (ZZermeloDatabase::isColumnInKeyArray($name, $Report->CURRENCY) /* && in_array($fields[$name]["Type"],["integer","decimal"])*/) {
                 $format[$name] = 'CURRENCY';
-            } else if (ZermeloDatabase::isColumnInKeyArray($name, $Report->NUMBER) /* && in_array($fields[$name]["Type"],["integer","decimal"])*/) {
+            } else if (ZZermeloDatabase::isColumnInKeyArray($name, $Report->NUMBER) /* && in_array($fields[$name]["Type"],["integer","decimal"])*/) {
                 $format[$name] = 'NUMBER';
-            } else if (ZermeloDatabase::isColumnInKeyArray($name, $Report->DECIMAL) /* && in_array($fields[$name]["Type"],["integer","decimal"])*/) {
+            } else if (ZZermeloDatabase::isColumnInKeyArray($name, $Report->DECIMAL) /* && in_array($fields[$name]["Type"],["integer","decimal"])*/) {
                 $format[$name] = 'DECIMAL';
             } else if (in_array($fields[$name]["Type"], ["date", "time", "datetime"])) {
                 $format[$name] = strtoupper($fields[$name]["Type"]);
-            } else if (ZermeloDatabase::isColumnInKeyArray($name, $Report->PERCENT) /* && in_array($fields[$name]["Type"],["integer","decimal"])*/) {
+            } else if (ZZermeloDatabase::isColumnInKeyArray($name, $Report->PERCENT) /* && in_array($fields[$name]["Type"],["integer","decimal"])*/) {
                 $format[$name] = 'PERCENT';
             }
 
@@ -301,9 +301,9 @@ class ReportGenerator extends AbstractGenerator implements GeneratorInterface
 
     /**
      * ReportModelJson
-     * Return the ZermeloReport as a pagable model
+     * Return the ZZermeloReport as a pagable model
      *
-     * @param ZermeloReport $Report
+     * @param ZZermeloReport $Report
      * @return Collection
      */
     public function toJson()
@@ -340,7 +340,7 @@ class ReportGenerator extends AbstractGenerator implements GeneratorInterface
         $orderBy = $Report->getInput('order') ?? [];
 
         // This is where we want to merge in our "defaults" ??
-        // The defaults are merged into the 'order' input variable in the function ZermeloReport::setDefaultSortOrder()
+        // The defaults are merged into the 'order' input variable in the function ZZermeloReport::setDefaultSortOrder()
         // So we don't need to worry about it here.
         $this->orderBy($orderBy);
 

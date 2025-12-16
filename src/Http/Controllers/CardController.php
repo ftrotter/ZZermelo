@@ -1,11 +1,11 @@
 <?php
 
-namespace ftrotter\ZZermelo\Http\Controllers;
+namespace ftrotter\ZZZermelo\Http\Controllers;
 
-use ftrotter\ZZermelo\Http\Controllers\AbstractWebController;
-use ftrotter\ZZermelo\Http\Requests\CardsReportRequest;
-use ftrotter\ZZermelo\Interfaces\ZermeloReportInterface;
-use ftrotter\ZZermelo\Models\ZermeloReport;
+use ftrotter\ZZZermelo\Http\Controllers\AbstractWebController;
+use ftrotter\ZZZermelo\Http\Requests\CardsReportRequest;
+use ftrotter\ZZZermelo\Interfaces\ZZermeloReportInterface;
+use ftrotter\ZZZermelo\Models\ZZermeloReport;
 
 class CardController extends AbstractWebController
 {
@@ -35,7 +35,7 @@ class CardController extends AbstractWebController
      *
      * Build presenter and push our required varialbes for this web view
      */
-    public function onBeforeShown(ZermeloReportInterface $report)
+    public function onBeforeShown(ZZermeloReportInterface $report)
     {
         $bootstrap_css_location = asset(config('zermelo.BOOTSTRAP_CSS_LOCATION','/css/bootstrap.min.css'));
         $report->pushViewVariable('bootstrap_css_location', $bootstrap_css_location);

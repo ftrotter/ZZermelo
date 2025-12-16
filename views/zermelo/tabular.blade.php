@@ -150,7 +150,7 @@
 
     $(document).ready(function() {
 
-        var zermelo = new Zermelo(
+        var zermelo = new ZZermelo(
             '{{ $report_uri }}', // Pass the required Report Base URI
             '{{ $download_uri }}', // Pass the required Download URI
             {
@@ -417,7 +417,7 @@
                 TODO removing the Fixed-Colum icon for now, which fixes a colum, or columns to the left of the table
                 so the user can scroll off the screen to columns on the right, and keep the left-most columns in view.
                 This mostly works, but there is an issue with column filtering interacting with the fixed-column behavior.
-            	See: https://github.com/CareSet/Zermelo/issues/56
+            	See: https://github.com/Care Set/ZZermelo/issues/56
             	*/
 				/*
                 {
@@ -716,7 +716,7 @@
 				defaultSortOrder.push(orderItem);
 			}
 
-            var defaultPageLength = localStorage.getItem("Zermelo_defaultPageLength");
+            var defaultPageLength = localStorage.getItem("ZZermelo_defaultPageLength");
             if ( defaultPageLength == "undefined" ) {
                 defaultPageLength = '{{ $page_length }}'; // This is a string, but we do parseInt later
             }
@@ -838,7 +838,7 @@
                     // Merge the URI Parameters with the ajax parameters
                     var merge = $.extend({}, passthrough_params, merge_get_params);
 
-                    localStorage.setItem("Zermelo_defaultPageLength",length);
+                    localStorage.setItem("ZZermelo_defaultPageLength",length);
                     $("[name='report_datatable_length']").val(length);
 
                     var merge_clone = $.extend({},merge);

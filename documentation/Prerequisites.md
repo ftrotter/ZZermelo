@@ -1,7 +1,7 @@
-Zermelo Reporting Engine Server Prerequisites
+ZZermelo Reporting Engine Server Prerequisites
 ========
 
-A PHP reporting engine that works especially well with Laravel, built with love at [CareSet Systems](http://careset.com)
+A PHP reporting engine that works especially well with Laravel, built with love at [Care Set Systems](http://careset.com)
 
 ## Complete Prerequisites
 - PHP 7.1.+ installed, 7.2.+ preferred (required for nullable type declarations, and soon encrypted zip files)

@@ -1,13 +1,13 @@
-Zermelo Reporting Engine Controlling Caching
+ZZermelo Reporting Engine Controlling Caching
 ========
 
-A PHP reporting engine that works especially well with Laravel, built with love at [CareSet Systems](http://careset.com)
+A PHP reporting engine that works especially well with Laravel, built with love at [Care Set Systems](http://careset.com)
 
 
 Controlling Caching
 ------------------
 
-Caching is controlled using theses two functions on your subclass of ZermeloReport
+Caching is controlled using theses two functions on your subclass of ZZermeloReport
 ```
     /**
     * If the cache is not enabled, then every time the page is reloaded the entire report is re-processed and put into the cache table

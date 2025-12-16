@@ -10,7 +10,7 @@ class NorthwindCustomerReport extends ParentTabularReport
     */
     public function GetReportName(): string
     {
-	return('Zermelo Demo: NorthWind Customer Report');
+	return('ZZermelo Demo: NorthWind Customer Report');
     }
 
     /*
@@ -45,7 +45,7 @@ On this interface test:</p>
 		//we need to give users a way to get back to the list of all customers...
 		$html = "
 <p>This is a filtered report, showing just one NorthWind Customer</p>
-<a class='btn btn-primary btn-small' href='/Zermelo/NorthwindCustomerReport/' role='button'>Show All Customers</a>
+<a class='btn btn-primary btn-small' href='/ZZermelo/NorthwindCustomerReport/' role='button'>Show All Customers</a>
 <br><br>
 ";
 		return($html);
@@ -127,7 +127,7 @@ WHERE customer.id = '$customer_id'
 		//this logic would ensure that every cell in the TABLE_NAME column, was converted to a link to
 		//a table drilldown report
 		$table_name = $row['TABLE_NAME'];
-		$row[''] = "<a href='/Zermelo/TableDrillDownReport/$table_name/'>$table_name</a>";
+		$row[''] = "<a href='/ZZermelo/TableDrillDownReport/$table_name/'>$table_name</a>";
 
 	*/
 

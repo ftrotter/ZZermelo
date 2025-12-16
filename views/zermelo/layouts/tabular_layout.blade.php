@@ -30,7 +30,7 @@
 <body>
 
 
-@include('Zermelo::tabular')
+@include('ZZermelo::tabular')
 
 </body>
 </html>

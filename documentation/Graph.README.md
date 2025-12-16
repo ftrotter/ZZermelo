@@ -1,17 +1,17 @@
-# ZermeloBladeGraphBlade
-Blade based D3 Graph view for Zermelo reporting engine
+# ZZermeloBladeGraphBlade
+Blade based D3 Graph view for ZZermelo reporting engine
 
 How to get started using it
 -------------------------
 
 ### Installation
-1. On a working Laravel 5.5+ instance with [Zermelo](https://github.com/CareSet/Zermelo) installed, append the following
+1. On a working Laravel 5.5+ instance with [ZZermelo](https://github.com/Care Set/ZZermelo) installed, append the following
 to the "repositories" section of your composer.json file so composer can find the package on Github:
 ```
     , 
     {
         "type": "git",
-        "url": "https://github.com/CareSet/ZermeloBladeGraph.git"
+        "url": "https://github.com/Care Set/ZZermeloBladeGraph.git"
     }
 ```        
 2. Then run this command prompt at your project root, type (this requires installation of ssh keys to access private repo):
@@ -94,11 +94,11 @@ need for graph database for "small network" graph analysis.
 ### To access your web routes (default):
 
 Displays d3 graph view
-``` [base_url]/ZermeloGraph/[ReportClassName]```
+``` [base_url]/ZZermeloGraph/[ReportClassName]```
 
 Example Report d3 graph view
-``` [base_url]/ZermeloGraph/GraphTest```
+``` [base_url]/ZZermeloGraph/GraphTest```
 
 ### NOTES
-This package automatically requires the Zermelo package as a dependency. You will nedd to follow the zermelo
-installation instructions on how to subclass ZermeloReport and configure your app to use zermelo.
+This package automatically requires the ZZermelo package as a dependency. You will nedd to follow the zermelo
+installation instructions on how to subclass ZZermeloReport and configure your app to use zermelo.
