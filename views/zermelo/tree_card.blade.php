@@ -31,8 +31,8 @@
 
 
 
-<script type="text/javascript" src="/vendor/CareSet/core/js/jquery.min.js"></script>
-<script type="text/javascript" src="/vendor/CareSet/core/botstrap/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/vendor/ftrotter/zzermelo/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/vendor/ftrotter/zzermelo/assets/botstrap/bootstrap.bundle.min.js"></script>
 
 <script type="text/javascript">
 

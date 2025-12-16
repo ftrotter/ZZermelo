@@ -137,14 +137,14 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="/vendor/CareSet/zermelo/core/js/jquery.min.js"></script>
-<script type="text/javascript" src="/vendor/CareSet/zermelo/zermelobladetabular/datatables/datatables.js"></script>
-<script type="text/javascript" src="/vendor/CareSet/zermelo/core/bootstrap/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="/vendor/CareSet/zermelo/core/js/moment.min.js"></script>
-<script type="text/javascript" src="/vendor/CareSet/zermelo/core/js/daterangepicker.js"></script>
-<script type="text/javascript" src="/vendor/CareSet/zermelo/core/js/jquery.doubleScroll.js"></script>
-<script type="text/javascript" src="/vendor/CareSet/zermelo/zermelobladetabular/js/jquery.dataTables.yadcf.js"></script>
-<script type="text/javascript" src="/vendor/CareSet/zermelo/core/js/zermelo.js"></script>
+<script type="text/javascript" src="/vendor/ftrotter/zzermelo/core/js/jquery.min.js"></script>
+<script type="text/javascript" src="/vendor/ftrotter/zzermelo/zermelobladetabular/datatables/datatables.js"></script>
+<script type="text/javascript" src="/vendor/ftrotter/zzermelo/core/bootstrap/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/vendor/ftrotter/zzermelo/core/js/moment.min.js"></script>
+<script type="text/javascript" src="/vendor/ftrotter/zzermelo/core/js/daterangepicker.js"></script>
+<script type="text/javascript" src="/vendor/ftrotter/zzermelo/core/js/jquery.doubleScroll.js"></script>
+<script type="text/javascript" src="/vendor/ftrotter/zzermelo/zermelobladetabular/js/jquery.dataTables.yadcf.js"></script>
+<script type="text/javascript" src="/vendor/ftrotter/zzermelo/core/js/zermelo.js"></script>
 
 <script type="text/javascript">
 

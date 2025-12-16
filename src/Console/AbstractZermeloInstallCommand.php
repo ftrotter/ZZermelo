@@ -39,7 +39,7 @@ abstract class AbstractZermeloInstallCommand extends Command
      * Target path of where the asset_path will be placed. When this is called, we
      * wrap in public_path() helper, so we don't need to specify 'public' direcotry
      */
-    protected static $asset_target_path = 'vendor/CareSet/zermelo';
+    protected static $asset_target_path = 'vendor/ftrotter/zzermelo';
 
     /**
      * @var string
