@@ -1,9 +1,9 @@
 <?php
 
-namespace ftrotter\ZZZermelo\Http\Controllers;
+namespace ftrotter\ZZermelo\Http\Controllers;
 
-use ftrotter\ZZZermelo\Http\Controllers\AbstractWebController;
-use ftrotter\ZZZermelo\Interfaces\ZZermeloReportInterface;
+use ftrotter\ZZermelo\Http\Controllers\AbstractWebController;
+use ftrotter\ZZermelo\Interfaces\ZZermeloReportInterface;
 
 class TabularController extends AbstractWebController
 {

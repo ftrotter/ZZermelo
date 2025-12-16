@@ -6,9 +6,9 @@
  * Time: 12:01 PM
  */
 
-namespace ftrotter\ZZZermelo\Models;
+namespace ftrotter\ZZermelo\Models;
 
-use ftrotter\ZZZermelo\Console\AbstractZZermeloInstallCommand;
+use ftrotter\ZZermelo\Console\AbstractZZermeloInstallCommand;
 use Illuminate\Support\ServiceProvider;
 
 abstract class AbstractZZermeloProvider extends ServiceProvider

@@ -5,9 +5,9 @@
  * Date: 1/14/19
  * Time: 9:51 AM
  */
-namespace ftrotter\ZZZermelo\Reports\Tabular;
+namespace ftrotter\ZZermelo\Reports\Tabular;
 
-use ftrotter\ZZZermelo\Models\ZZermeloReport;
+use ftrotter\ZZermelo\Models\ZZermeloReport;
 
 abstract class AbstractTabularReport extends ZZermeloReport
 {

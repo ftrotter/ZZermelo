@@ -1,11 +1,11 @@
 <?php
 
-namespace ftrotter\ZZZermelo\Http\Controllers;
+namespace ftrotter\ZZermelo\Http\Controllers;
 
-use ftrotter\ZZZermelo\Http\Controllers\AbstractWebController;
-use ftrotter\ZZZermelo\Http\Requests\CardsReportRequest;
-use ftrotter\ZZZermelo\Interfaces\ZZermeloReportInterface;
-use ftrotter\ZZZermelo\Models\ZZermeloReport;
+use ftrotter\ZZermelo\Http\Controllers\AbstractWebController;
+use ftrotter\ZZermelo\Http\Requests\CardsReportRequest;
+use ftrotter\ZZermelo\Interfaces\ZZermeloReportInterface;
+use ftrotter\ZZermelo\Models\ZZermeloReport;
 
 class CardController extends AbstractWebController
 {

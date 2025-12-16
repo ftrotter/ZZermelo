@@ -1,6 +1,6 @@
 <?php
 
-namespace ftrotter\ZZZermelo\Http\Requests;
+namespace ftrotter\ZZermelo\Http\Requests;
 
 class SocketWrenchRequest extends ZZermeloRequest
 {

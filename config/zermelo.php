@@ -21,19 +21,19 @@ return [
      * This is the prefix for the tabular API routes for retrieving data formatted
      * For jQuery DataTables
      */
-    'TABULAR_API_PREFIX' => env("TABULAR_API_PREFIX","ZZZermelo"),
+    'TABULAR_API_PREFIX' => env("TABULAR_API_PREFIX","ZZermelo"),
 
     /**
      * This is the prefix for the tabular API routes for retrieving data formatted
      * For jQuery DataTables
      */
-    'TREE_API_PREFIX' => env("TREE_API_PREFIX","ZZZermeloTree"),
+    'TREE_API_PREFIX' => env("TREE_API_PREFIX","ZZermeloTree"),
 
     /**
      * This is the prefix for the tabular API routes for retrieving data formatted
      * For D3 and other graphing toolkits
      */
-    'GRAPH_API_PREFIX'=>env("GRAPH_API_PREFIX","ZZZermeloGraph"),
+    'GRAPH_API_PREFIX'=>env("GRAPH_API_PREFIX","ZZermeloGraph"),
 
     /**
      * Determine if the 'TAGS' will be restricted to the valid TAGS or if they are just suggestions.
@@ -55,11 +55,11 @@ return [
      *
      * The default middleware for this route is the web middleware.
      */
-    'SQL_PRINT_PREFIX' => env("SQL_PREFIX","ZZZermeloSQL"),
+    'SQL_PRINT_PREFIX' => env("SQL_PREFIX","ZZermeloSQL"),
 
     'SQL_PRINT_ENABLED' => env("SQL_PRINTER_ENABLED",false),
 
-    'SQL_PRINT_VIEW_TEMPLATE' => env("SQL_PRINT_VIEW_TEMPLATE","ZZZermelo::layouts.sql_layout"),
+    'SQL_PRINT_VIEW_TEMPLATE' => env("SQL_PRINT_VIEW_TEMPLATE","ZZermelo::layouts.sql_layout"),
 
     'BOOTSTRAP_CSS_LOCATION' => env("BOOTSTRAP_CSS_LOCATION","/vendor/ftrotter/zzermelo/core/bootstrap/bootstrap.min.css"),
 
@@ -77,7 +77,7 @@ return [
      * The template the controller will use to render the report
      * This is used in WebController implementation of ControllerInterface@show method
      */
-    "CARD_VIEW_TEMPLATE"=>env("CARD_VIEW_TEMPLATE","ZZZermelo::layouts.card_layout"),
+    "CARD_VIEW_TEMPLATE"=>env("CARD_VIEW_TEMPLATE","ZZermelo::layouts.card_layout"),
 
     /**
      * Middleware on the card web routes
@@ -88,17 +88,17 @@ return [
      * Path where the Report display.
      * This is used in implementations of ControllerInterface@show method
      * Note: the API routes are auto generated with this same URI path with the api-prefixed to the url
-     * /ZZZermelo/(ReportName) (see config/zermelo.php for api prefix setting)
+     * /ZZermelo/(ReportName) (see config/zermelo.php for api prefix setting)
      */
-    'CARD_URI_PREFIX'=>env("CARD_URI_PREFIX","ZZZermeloCard"),
+    'CARD_URI_PREFIX'=>env("CARD_URI_PREFIX","ZZermeloCard"),
 
     /**
      * Path where the Report display.
      * This is used in implementations of ControllerInterface@show method
      * Note: the API routes are auto generated with this same URI path with the api-prefixed to the url
-     * /ZZZermeloGraph/(ReportName) (see config/zermelo.php for api prefix setting)
+     * /ZZermeloGraph/(ReportName) (see config/zermelo.php for api prefix setting)
      */
-    'GRAPH_URI_PREFIX'=>env("GRAPH_URI_PREFIX","ZZZermeloGraph"),
+    'GRAPH_URI_PREFIX'=>env("GRAPH_URI_PREFIX","ZZermeloGraph"),
 
 
     /**
@@ -110,14 +110,14 @@ return [
      * The template the controller will use to render the report
      * This is used in WebController implementation of ControllerInterface@show method
      */
-    'GRAPH_VIEW_TEMPLATE'=>env("GRAPH_VIEW_TEMPLATE","ZZZermelo::layouts.d3graph_layout"),
+    'GRAPH_VIEW_TEMPLATE'=>env("GRAPH_VIEW_TEMPLATE","ZZermelo::layouts.d3graph_layout"),
 
     /**
      * Path where the Report display.
      * This is used in the route configuration in this module's ServiceProvider
-     * /ZZZermelo/(ReportName)
+     * /ZZermelo/(ReportName)
      */
-    'TABULAR_URI_PREFIX' => env("TABULAR_URI_PREFIX","ZZZermelo"),
+    'TABULAR_URI_PREFIX' => env("TABULAR_URI_PREFIX","ZZermelo"),
 
     /**
      * Middleware on the tabular web routes
@@ -129,13 +129,13 @@ return [
      * The template the controller will use to render the report
      * This is used in WebController implementation of ControllerInterface@show method
      */
-    "TABULAR_VIEW_TEMPLATE"=>env("TABULAR_VIEW_TEMPLATE","ZZZermelo::layouts.tabular_layout"),
+    "TABULAR_VIEW_TEMPLATE"=>env("TABULAR_VIEW_TEMPLATE","ZZermelo::layouts.tabular_layout"),
 
     /**
      * The template the controller will use to render the report
      * This is used in WebController implementation of ControllerInterface@show method
      */
-    "TREECARD_VIEW_TEMPLATE"=>env("VIEW_TEMPLATE","ZZZermelo::layouts.tree_card_layout"),
+    "TREECARD_VIEW_TEMPLATE"=>env("VIEW_TEMPLATE","ZZermelo::layouts.tree_card_layout"),
 
     /**
      * Middleware on the card web routes
@@ -146,9 +146,9 @@ return [
      * Path where the Report display.
      * This is used in implementations of ControllerInterface@show method
      * Note: the API routes are auto generated with this same URI path with the api-prefixed to the url
-     * /ZZZermelo/(ReportName) (see config/zermelo.php for api prefix setting)
+     * /ZZermelo/(ReportName) (see config/zermelo.php for api prefix setting)
      */
-    'TREECARD_URI_PREFIX'=>env("TREECARD_URI_PREFIX","ZZZermeloTreeCard"),
+    'TREECARD_URI_PREFIX'=>env("TREECARD_URI_PREFIX","ZZermeloTreeCard"),
 
     /**
      * Database path where all the cache table will be stored.

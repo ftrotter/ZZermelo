@@ -8,7 +8,7 @@
  * Wrapper for a database connection
  */
 
-namespace ftrotter\ZZZermelo\Models;
+namespace ftrotter\ZZermelo\Models;
 
 
 class ZZermeloDatabaseConnection

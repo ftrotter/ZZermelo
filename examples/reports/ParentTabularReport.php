@@ -7,7 +7,7 @@
 */
 
 namespace App\Reports;
-use ftrotter\ZZZermelo\Reports\Tabular\AbstractTabularReport;
+use ftrotter\ZZermelo\Reports\Tabular\AbstractTabularReport;
 
 class ParentTabularReport extends AbstractTabularReport
 {

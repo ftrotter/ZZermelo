@@ -8,9 +8,9 @@
  * functionality specific to their usage.
  *
  */
-namespace ftrotter\ZZZermelo\Models;
-use ftrotter\ZZZermelo\Interfaces\ZZermeloReportInterface;
-use ftrotter\ZZZermelo\Services\SocketService;
+namespace ftrotter\ZZermelo\Models;
+use ftrotter\ZZermelo\Interfaces\ZZermeloReportInterface;
+use ftrotter\ZZermelo\Services\SocketService;
 use Mockery\Exception;
 use \Request;
 

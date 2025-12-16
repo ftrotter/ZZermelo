@@ -6,7 +6,7 @@
  * Time: 2:26 PM
  */
 
-namespace ftrotter\ZZZermelo\Models;
+namespace ftrotter\ZZermelo\Models;
 
 class ZZermeloMeta extends AbstractZZermeloModel
 {

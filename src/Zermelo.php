@@ -1,8 +1,8 @@
 <?php
 
-namespace ftrotter\ZZZermelo;
+namespace ftrotter\ZZermelo;
 
-use ftrotter\ZZZermelo\Models\ZZermeloReport;
+use ftrotter\ZZermelo\Models\ZZermeloReport;
 use ReflectionClass;
 use Illuminate\Support\Str;
 use Symfony\Component\Finder\Finder;

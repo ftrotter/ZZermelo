@@ -6,11 +6,11 @@
  * Time: 10:35 AM
  */
 
-namespace ftrotter\ZZZermelo\Services;
+namespace ftrotter\ZZermelo\Services;
 
-use ftrotter\ZZZermelo\Models\Socket;
-use ftrotter\ZZZermelo\Models\SocketUser;
-use ftrotter\ZZZermelo\Models\Wrench;
+use ftrotter\ZZermelo\Models\Socket;
+use ftrotter\ZZermelo\Models\SocketUser;
+use ftrotter\ZZermelo\Models\Wrench;
 use Illuminate\Support\Facades\Auth;
 
 class SocketService

@@ -1,18 +1,18 @@
 <?php
 
-namespace ftrotter\ZZZermelo\Reports\Tabular;
+namespace ftrotter\ZZermelo\Reports\Tabular;
 
-use ftrotter\ZZZermelo\Interfaces\CacheInterface;
-use ftrotter\ZZZermelo\Interfaces\GeneratorInterface;
-use ftrotter\ZZZermelo\Models\AbstractGenerator;
-use ftrotter\ZZZermelo\Models\DatabaseCache;
-use ftrotter\ZZZermelo\Models\ZZermeloDatabase;
-use ftrotter\ZZZermelo\Models\ZZermeloReport;
-use ftrotter\ZZZermelo\Exceptions\InvalidDatabaseTableException;
-use ftrotter\ZZZermelo\Exceptions\InvalidHeaderFormatException;
-use ftrotter\ZZZermelo\Exceptions\InvalidHeaderTagException;
-use ftrotter\ZZZermelo\Exceptions\UnexpectedHeaderException;
-use ftrotter\ZZZermelo\Exceptions\UnexpectedMapRowException;
+use ftrotter\ZZermelo\Interfaces\CacheInterface;
+use ftrotter\ZZermelo\Interfaces\GeneratorInterface;
+use ftrotter\ZZermelo\Models\AbstractGenerator;
+use ftrotter\ZZermelo\Models\DatabaseCache;
+use ftrotter\ZZermelo\Models\ZZermeloDatabase;
+use ftrotter\ZZermelo\Models\ZZermeloReport;
+use ftrotter\ZZermelo\Exceptions\InvalidDatabaseTableException;
+use ftrotter\ZZermelo\Exceptions\InvalidHeaderFormatException;
+use ftrotter\ZZermelo\Exceptions\InvalidHeaderTagException;
+use ftrotter\ZZermelo\Exceptions\UnexpectedHeaderException;
+use ftrotter\ZZermelo\Exceptions\UnexpectedMapRowException;
 
 class ReportGenerator extends AbstractGenerator implements GeneratorInterface
 {

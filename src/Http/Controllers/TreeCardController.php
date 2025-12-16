@@ -1,9 +1,9 @@
 <?php
 
-namespace ftrotter\ZZZermelo\Http\Controllers;
+namespace ftrotter\ZZermelo\Http\Controllers;
 
-use ftrotter\ZZZermelo\Http\Requests\CardsReportRequest;
-use ftrotter\ZZZermeloBladeTreeCard\TreeCardPresenter;
+use ftrotter\ZZermelo\Http\Requests\CardsReportRequest;
+use ftrotter\ZZermeloBladeTreeCard\TreeCardPresenter;
 use Illuminate\Support\Facades\Auth;
 
 class TreeCardController

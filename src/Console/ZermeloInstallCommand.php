@@ -1,9 +1,9 @@
 <?php
 
-namespace ftrotter\ZZZermelo\Console;
+namespace ftrotter\ZZermelo\Console;
 
-use ftrotter\ZZZermelo\Models\DatabaseCache;
-use ftrotter\ZZZermelo\Models\ZZermeloDatabase;
+use ftrotter\ZZermelo\Models\DatabaseCache;
+use ftrotter\ZZermelo\Models\ZZermeloDatabase;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
