@@ -115,16 +115,34 @@ FROM $this->cache_db.{$this->cache->getNodeGroupsTable()}
             ];
         }
 
-        //lets sort the nodes
+        // Build the nodes SQL dynamically based on available optional columns
+        // Start with required columns
+        $optional_select_columns = "";
+        
+        // Check which optional columns are available and add them to the SELECT
+        $has_latitude = $this->cache->hasOptionalColumn('latitude');
+        $has_longitude = $this->cache->hasOptionalColumn('longitude');
+        $has_json_url = $this->cache->hasOptionalColumn('json_url');
+        $has_img = $this->cache->hasOptionalColumn('img');
+        
+        if ($has_latitude) {
+            $optional_select_columns .= "\n\tCAST(CONVERT(`node_latitude` USING utf8) AS binary) AS latitude,";
+        }
+        if ($has_longitude) {
+            $optional_select_columns .= "\n\tCAST(CONVERT(`node_longitude` USING utf8) AS binary) AS longitude,";
+        }
+        if ($has_json_url) {
+            $optional_select_columns .= "\n\tCAST(CONVERT(`node_json_url` USING utf8) AS binary) AS json_url,";
+        }
+        if ($has_img) {
+            $optional_select_columns .= "\n\tCAST(CONVERT(node_img USING utf8) AS binary) AS img,";
+        }
+
         $nodes_sql = "
 SELECT 
-	CAST(CONVERT(`node_name` USING utf8) AS binary) AS name,
-	CAST(CONVERT(`node_latitude` USING utf8) AS binary) AS latitude,
-	CAST(CONVERT(`node_json_url` USING utf8) AS binary) AS json_url,
-	CAST(CONVERT(`node_longitude` USING utf8) AS binary) AS longitude,
+	CAST(CONVERT(`node_name` USING utf8) AS binary) AS name,$optional_select_columns
 	CAST(CONVERT(groups.id USING utf8) AS binary) AS `group`,
 	CAST(CONVERT(node_size USING utf8) AS binary) AS size,
-	CAST(CONVERT(node_img USING utf8) AS binary) AS img,
 	CAST(CONVERT(types.id USING utf8) AS binary) AS `type`,
 	CAST(CONVERT(`node_id` USING utf8) AS binary) AS id,
 	0 AS weight_sum,
@@ -139,7 +157,7 @@ LEFT JOIN $this->cache_db.{$this->cache->getNodeTypesTable()} AS types ON
     	nodes.node_type COLLATE utf8mb4_unicode_ci
 ORDER BY nodes.id ASC
 ";
-        //lets load the link_types from the database...
+        //lets load the nodes from the database...
         $nodes = [];
 
 /*
@@ -152,29 +170,38 @@ SQLSTATE[HY000]: General error: 1267 Illegal mix of collations (utf8mb4_general_
 	$nodes_result->setFetchMode(\PDO::FETCH_OBJ);
         foreach ($nodes_result as $this_row) {
 
-            if (is_null($this_row->img)) {
-                $img = false;
-            } else {
-                $img = $this_row->img;
-            }
-
-            //we would this version result in an object instead of an array?? confusing
-//		$nodes[$this_row->my_index] = [
-            $nodes[(int) $this_row->my_index] = [
+            // Build node array with required columns first
+            $node_data = [
                 'name' => $this_row->name,
                 'short_name' => substr($this_row->name, 0, 50),
-                'longitude' => $this_row->longitude,
-                'latitiude' => $this_row->latitude,
-		'json_url' => $this_row->json_url,
                 'group' => (int)$this_row->group,
                 'size' => (int)$this_row->size,
-                'img' => $img,
                 'type' => (int)$this_row->type,
                 'id' => $this_row->id,
                 'weight_sum' => (int)$this_row->weight_sum,
                 'degree' => (int)$this_row->degree,
                 'my_index' => (int)$this_row->my_index,
             ];
+            
+            // Add optional columns only if they are available in the data
+            if ($has_latitude) {
+                $node_data['latitiude'] = $this_row->latitude; // Note: typo preserved for backwards compatibility
+            }
+            if ($has_longitude) {
+                $node_data['longitude'] = $this_row->longitude;
+            }
+            if ($has_json_url) {
+                $node_data['json_url'] = $this_row->json_url;
+            }
+            if ($has_img) {
+                if (is_null($this_row->img)) {
+                    $node_data['img'] = false;
+                } else {
+                    $node_data['img'] = $this_row->img;
+                }
+            }
+
+            $nodes[(int) $this_row->my_index] = $node_data;
         }
 
 	//nodes are built, but we want to make sure that it turns into an array in the json rather than object..

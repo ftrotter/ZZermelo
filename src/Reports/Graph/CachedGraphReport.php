@@ -31,6 +31,17 @@ class CachedGraphReport extends DatabaseCache
     protected $visible_node_types = [];
     protected $visible_link_types = [];
 
+    // Track which optional columns are available in the source data
+    protected $available_optional_columns = [];
+    
+    // Define optional columns - these will only be included if present in source data
+    protected const OPTIONAL_NODE_COLUMNS = [
+        'latitude',
+        'longitude', 
+        'json_url',
+        'img',
+    ];
+
     /**
      * CachedGraphReport constructor.
      *
@@ -61,6 +72,40 @@ class CachedGraphReport extends DatabaseCache
         // Only generate the aux tables (drop and re-create) if dictated by cache rules
         if ($this->getGeneratedThisRequest() === true) {
             $this->createGraphTables();
+        } else {
+            // If using cached data, detect available columns from existing nodes table
+            $this->detectAvailableColumnsFromNodesTable();
+        }
+    }
+
+    /**
+     * Detect available optional columns from an existing nodes cache table.
+     * This is used when the cache is not regenerated this request.
+     */
+    private function detectAvailableColumnsFromNodesTable(): void
+    {
+        $pdo = ZZermeloDatabase::connection($this->getConnectionName())->getPdo();
+        
+        // Get all columns from the existing nodes cache table
+        $columns_sql = "SHOW COLUMNS FROM $this->cache_db.`$this->nodes_table`";
+        
+        try {
+            $result = $pdo->query($columns_sql);
+            $existing_columns = [];
+            foreach ($result as $row) {
+                $existing_columns[] = strtolower($row['Field']);
+            }
+            
+            // Check each optional column
+            foreach (self::OPTIONAL_NODE_COLUMNS as $column_base) {
+                $node_col = "node_$column_base";
+                if (in_array($node_col, $existing_columns)) {
+                    $this->available_optional_columns[] = $column_base;
+                }
+            }
+        } catch (\Exception $e) {
+            // If table doesn't exist or error occurs, leave available_optional_columns empty
+            $this->available_optional_columns = [];
         }
     }
 
@@ -171,6 +216,79 @@ class CachedGraphReport extends DatabaseCache
         return $this->visible_link_types;
     }
 
+    /**
+     * Get the list of available optional columns that were found in the source data.
+     * This is useful for the GraphGenerator to know which columns to include in JSON output.
+     * 
+     * @return array List of optional column base names (e.g., ['latitude', 'longitude', 'img'])
+     */
+    public function getAvailableOptionalColumns(): array
+    {
+        return $this->available_optional_columns;
+    }
+
+    /**
+     * Check if a specific optional column is available in the data.
+     * 
+     * @param string $column_base_name The base name (e.g., 'latitude', 'json_url')
+     * @return bool True if the column is available
+     */
+    public function hasOptionalColumn(string $column_base_name): bool
+    {
+        return in_array($column_base_name, $this->available_optional_columns);
+    }
+
+    /**
+     * Detect which optional columns exist in the source cache table.
+     * Checks for both source_* and target_* prefixed columns.
+     * 
+     * @param \PDO $pdo The PDO connection
+     * @return array List of optional column base names that exist
+     */
+    private function detectAvailableOptionalColumns(\PDO $pdo): array
+    {
+        $available_columns = [];
+        $table_name = $this->getTableName();
+        
+        // Get all columns from the source cache table
+        $columns_sql = "SHOW COLUMNS FROM $this->cache_db.`$table_name`";
+        $result = $pdo->query($columns_sql);
+        $existing_columns = [];
+        foreach ($result as $row) {
+            $existing_columns[] = strtolower($row['Field']);
+        }
+        
+        // Check each optional column - we need BOTH source_ and target_ versions to be present
+        // OR we allow partial presence and use defaults for missing ones
+        foreach (self::OPTIONAL_NODE_COLUMNS as $column_base) {
+            $source_col = "source_$column_base";
+            $target_col = "target_$column_base";
+            
+            // Column is available if either source or target version exists
+            // (we'll use defaults for the missing one)
+            if (in_array($source_col, $existing_columns) || in_array($target_col, $existing_columns)) {
+                $available_columns[] = $column_base;
+            }
+        }
+        
+        return $available_columns;
+    }
+
+    /**
+     * Check if a specific column exists in the source cache table.
+     * 
+     * @param \PDO $pdo The PDO connection
+     * @param string $column_name The full column name to check
+     * @return bool True if column exists
+     */
+    private function columnExists(\PDO $pdo, string $column_name): bool
+    {
+        $table_name = $this->getTableName();
+        $columns_sql = "SHOW COLUMNS FROM $this->cache_db.`$table_name` LIKE '$column_name'";
+        $result = $pdo->query($columns_sql);
+        return $result->rowCount() > 0;
+    }
+
     // Get the node types and link types from user input
     // TODO this is not used in this implementation, needs to be considered
     public function typesLookup()
@@ -232,6 +350,201 @@ class CachedGraphReport extends DatabaseCache
     }
 
     /**
+     * Build the CREATE TABLE SQL for the nodes table based on available optional columns.
+     * 
+     * @return string The CREATE TABLE SQL statement
+     */
+    private function buildNodeTableCreateSql(): string
+    {
+        // Base columns that are always required
+        $create_sql = "
+CREATE TABLE $this->cache_db.$this->nodes_table (
+  `id` int(11) NOT NULL,
+  `node_id` varchar(190) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `node_name` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `node_size` bigint(20) DEFAULT NULL,
+  `node_type` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `node_group` varchar(190) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''";
+        
+        // Add optional columns based on availability
+        if ($this->hasOptionalColumn('latitude')) {
+            $create_sql .= ",\n  `node_latitude` decimal(17,7) NOT NULL DEFAULT 0";
+        }
+        if ($this->hasOptionalColumn('longitude')) {
+            $create_sql .= ",\n  `node_longitude` decimal(17,7) NOT NULL DEFAULT 0";
+        }
+        if ($this->hasOptionalColumn('json_url')) {
+            $create_sql .= ",\n  `node_json_url` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''";
+        }
+        if ($this->hasOptionalColumn('img')) {
+            $create_sql .= ",\n  `node_img` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''";
+        }
+        
+        $create_sql .= "\n) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;";
+        
+        return $create_sql;
+    }
+
+    /**
+     * Build the SELECT part of the source node query with optional columns.
+     * Uses actual column if available, or default value if not.
+     * 
+     * @param \PDO $pdo The PDO connection for column existence checking
+     * @param string $prefix Either 'source' or 'target'
+     * @return array ['select' => string, 'group_by' => string] for use in building the full query
+     */
+    private function buildNodeSelectParts(\PDO $pdo, string $prefix): array
+    {
+        $table_name = $this->getTableName();
+        
+        // Base required columns
+        $select_parts = [
+            "`{$prefix}_id` AS node_id",
+            "`{$prefix}_name` AS node_name",
+            "IF(MAX(`{$prefix}_size`) > 0, MAX(`{$prefix}_size`), 50) AS node_size",
+            "`{$prefix}_type` AS node_type",
+            "`{$prefix}_group` AS node_group",
+        ];
+        
+        $group_by_parts = [
+            "`{$prefix}_id`",
+            "`{$prefix}_name`",
+            "`{$prefix}_type`",
+            "`{$prefix}_group`",
+        ];
+        
+        // Add optional columns - use actual column if exists, default if not
+        if ($this->hasOptionalColumn('latitude')) {
+            $col_name = "{$prefix}_latitude";
+            if ($this->columnExists($pdo, $col_name)) {
+                $select_parts[] = "`$col_name` AS node_latitude";
+                $group_by_parts[] = "`$col_name`";
+            } else {
+                $select_parts[] = "0 AS node_latitude";
+            }
+        }
+        
+        if ($this->hasOptionalColumn('longitude')) {
+            $col_name = "{$prefix}_longitude";
+            if ($this->columnExists($pdo, $col_name)) {
+                $select_parts[] = "`$col_name` AS node_longitude";
+                $group_by_parts[] = "`$col_name`";
+            } else {
+                $select_parts[] = "0 AS node_longitude";
+            }
+        }
+        
+        if ($this->hasOptionalColumn('json_url')) {
+            $col_name = "{$prefix}_json_url";
+            if ($this->columnExists($pdo, $col_name)) {
+                $select_parts[] = "`$col_name` AS node_json_url";
+                $group_by_parts[] = "`$col_name`";
+            } else {
+                $select_parts[] = "'' AS node_json_url";
+            }
+        }
+        
+        if ($this->hasOptionalColumn('img')) {
+            $col_name = "{$prefix}_img";
+            if ($this->columnExists($pdo, $col_name)) {
+                $select_parts[] = "`$col_name` AS node_img";
+                $group_by_parts[] = "`$col_name`";
+            } else {
+                $select_parts[] = "'' AS node_img";
+            }
+        }
+        
+        return [
+            'select' => implode(",\n                    ", $select_parts),
+            'group_by' => implode(", ", $group_by_parts),
+        ];
+    }
+
+    /**
+     * Build the outer SELECT and GROUP BY for the node union query.
+     * 
+     * @return array ['select' => string, 'group_by' => string]
+     */
+    private function buildOuterNodeSelectParts(): array
+    {
+        $select_parts = [
+            "NULL AS id",
+            "node_id",
+            "node_name",
+            "MAX(node_size) AS node_size",
+            "node_type",
+            "node_group",
+        ];
+        
+        $group_by_parts = [
+            "node_id",
+            "node_name",
+            "node_type",
+            "node_group",
+        ];
+        
+        if ($this->hasOptionalColumn('latitude')) {
+            $select_parts[] = "node_latitude";
+            $group_by_parts[] = "node_latitude";
+        }
+        if ($this->hasOptionalColumn('longitude')) {
+            $select_parts[] = "node_longitude";
+            $group_by_parts[] = "node_longitude";
+        }
+        if ($this->hasOptionalColumn('json_url')) {
+            $select_parts[] = "node_json_url";
+            $group_by_parts[] = "node_json_url";
+        }
+        if ($this->hasOptionalColumn('img')) {
+            $select_parts[] = "node_img";
+            $group_by_parts[] = "node_img";
+        }
+        
+        return [
+            'select' => implode(",\n                ", $select_parts),
+            'group_by' => implode(", ", $group_by_parts),
+        ];
+    }
+
+    /**
+     * Build the INSERT INTO nodes table SQL with dynamic optional columns.
+     * 
+     * @param \PDO $pdo The PDO connection
+     * @return string The INSERT SQL statement
+     */
+    private function buildNodeInsertSql(\PDO $pdo): string
+    {
+        $source_parts = $this->buildNodeSelectParts($pdo, 'source');
+        $target_parts = $this->buildNodeSelectParts($pdo, 'target');
+        $outer_parts = $this->buildOuterNodeSelectParts();
+        
+        $sql = "INSERT INTO $this->cache_db.$this->nodes_table 
+            SELECT  
+                {$outer_parts['select']}
+            FROM 
+            (
+                SELECT
+                    {$source_parts['select']}
+                
+                FROM $this->cache_db.`{$this->getTableName()}`
+                GROUP BY {$source_parts['group_by']}
+                
+                UNION 
+                
+                SELECT
+                    {$target_parts['select']}
+                
+                FROM $this->cache_db.`{$this->getTableName()}`
+                GROUP BY {$target_parts['group_by']} 
+            ) 
+            AS node_union
+            GROUP BY {$outer_parts['group_by']}
+";
+        
+        return $sql;
+    }
+
+    /**
      * This is where the graph tables are calculated.
      *
      * groups is the groups is the "group" lookup array,
@@ -244,6 +557,13 @@ class CachedGraphReport extends DatabaseCache
     private function createGraphTables()
     {
         $start_time = microtime(true);
+        
+        // Get PDO connection first so we can detect available columns
+        $pdo = ZZermeloDatabase::connection($this->getConnectionName())->getPdo();
+        
+        // Detect which optional columns are available in the source data
+        $this->available_optional_columns = $this->detectAvailableOptionalColumns($pdo);
+        
         $sql = [];
 
         $sql['delete current node table'] = "DROP TABLE IF EXISTS $this->cache_db.$this->nodes_table;";
@@ -253,82 +573,24 @@ class CachedGraphReport extends DatabaseCache
         // then union them will all of the unique nodes in the two side of the table..
         // then we create a table of nodes that is the unique nodes shared between the two...
 
-	$sql['create the node cache table'] = "
-CREATE TABLE $this->cache_db.$this->nodes_table (
-  `id` int(11) NOT NULL,
-  `node_id` varchar(190) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `node_name` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `node_size` bigint(20) DEFAULT NULL,
-  `node_type` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `node_group` varchar(190) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `node_latitude` decimal(17,7) NOT NULL DEFAULT 0,
-  `node_longitude` decimal(17,7) NOT NULL DEFAULT 0,
-  `node_json_url` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `node_img` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-";
+        // Use dynamic SQL generation based on available optional columns
+        $sql['create the node cache table'] = $this->buildNodeTableCreateSql();
 	
-	//now we make rules to ensure that we have a SQL crash here if the node uniqueness rules are not followed.
+        //now we make rules to ensure that we have a SQL crash here if the node uniqueness rules are not followed.
 
-	$sql['enforce uniqueness on the node_id of the table..'] = "
+        $sql['enforce uniqueness on the node_id of the table..'] = "
 ALTER TABLE $this->cache_db.$this->nodes_table
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `node_id` (`node_id`);
 ";
 
-	$sql['and auto increment the id'] = "
+        $sql['and auto increment the id'] = "
 ALTER TABLE $this->cache_db.$this->nodes_table
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 ";
 
-        $sql['populate node cache table'] =
-            "INSERT INTO $this->cache_db.$this->nodes_table 
-            SELECT  
-		NULL AS id,
-                node_id,
-                node_name,
-                MAX(node_size) AS node_size,
-                node_type,
-                node_group,
-                node_latitude,
-                node_longitude,
-		node_json_url,
-                node_img
-            FROM 
-            (
-                SELECT
-                    `source_id` AS node_id, 
-                    `source_name` AS node_name, 
-                    IF(MAX(`source_size`) > 0, MAX(`source_size`), 50) AS node_size,
-                    `source_type` AS node_type,
-                    `source_group` AS node_group, 
-                    `source_longitude` AS node_longitude, 
-                    `source_latitude` AS node_latitude, 
-		    `source_json_url` AS node_json_url,
-                    `source_img` AS node_img
-                
-                FROM $this->cache_db.`{$this->getTableName()}`
-                GROUP BY `source_id`, `source_name`, `source_type`, `source_group`, `source_longitude`, `source_latitude`, `source_json_url`, `source_img`
-                
-                UNION 
-                
-                SELECT
-                    `target_id` AS node_id,
-                    `target_name` AS node_name,
-                    IF(MAX(`target_size`) > 0, MAX(`target_size`), 50) AS node_size,
-                    `target_type` AS node_type,
-                    `target_group` AS node_group,
-                    `target_longitude` AS node_longitude,
-                    `target_latitude` AS node_latitude,
-		    `target_json_url` AS node_json_url,
-                    `target_img` AS node_img
-                
-                FROM $this->cache_db.`{$this->getTableName()}`
-                GROUP BY `target_id`, `target_name`, `target_type`, `target_group`, `target_longitude`, `target_latitude`, `target_json_url`, `target_img` 
-            ) 
-            AS node_union
-            GROUP BY node_id, node_name, node_type, node_group, node_latitude, node_longitude, node_json_url, node_img
-";
+        // Use dynamic SQL generation for INSERT based on available optional columns
+        $sql['populate node cache table'] = $this->buildNodeInsertSql($pdo);
 
         //we do this because we need to have something that starts from zero for our JSON indexing..
         $sql["array that starts from zero"] =
@@ -498,8 +760,6 @@ CREATE TABLE $this->cache_db.$this->summary_table (
                 'links_count' AS summary_key,
                 COUNT(DISTINCT(CONCAT(source_id,target_id))) AS summary_value
             FROM $this->cache_db.`{$this->getTableName()}`";
-
-	$pdo = ZZermeloDatabase::connection($this->getConnectionName())->getPdo();
 
         //loop all over the sql commands and run each one in order...
         // The connection is a DB Connection to our CACHE DATABASE using the credentials
