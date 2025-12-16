@@ -40,6 +40,7 @@ class CachedGraphReport extends DatabaseCache
         'longitude', 
         'json_url',
         'img',
+        'group_order',
     ];
 
     /**
@@ -287,6 +288,119 @@ class CachedGraphReport extends DatabaseCache
         $columns_sql = "SHOW COLUMNS FROM $this->cache_db.`$table_name` LIKE '$column_name'";
         $result = $pdo->query($columns_sql);
         return $result->rowCount() > 0;
+    }
+
+    /**
+     * Validate group_order data if the column is present.
+     * 
+     * Checks for:
+     * 1. NULL values in group_order columns (not allowed if column exists)
+     * 2. Inconsistent group_order values within the same group (all nodes in a group must have the same group_order)
+     * 
+     * @param \PDO $pdo The PDO connection
+     * @throws \Exception If validation fails with a clear English error message
+     */
+    private function validateGroupOrder(\PDO $pdo): void
+    {
+        if (!$this->hasOptionalColumn('group_order')) {
+            return; // No validation needed if column doesn't exist
+        }
+
+        $table_name = $this->getTableName();
+        $has_source_col = $this->columnExists($pdo, 'source_group_order');
+        $has_target_col = $this->columnExists($pdo, 'target_group_order');
+
+        // Check for NULL values in source_group_order
+        if ($has_source_col) {
+            $null_check_sql = "
+                SELECT COUNT(*) AS null_count 
+                FROM $this->cache_db.`$table_name` 
+                WHERE `source_group_order` IS NULL
+            ";
+            $result = $pdo->query($null_check_sql);
+            $row = $result->fetch(\PDO::FETCH_ASSOC);
+            if ($row['null_count'] > 0) {
+                throw new \Exception(
+                    "Graph Report Error: The 'source_group_order' column contains NULL values. " .
+                    "When using group_order columns to control the left-to-right ordering of groups " .
+                    "in the graph display, all values must be non-NULL integers. " .
+                    "Found {$row['null_count']} row(s) with NULL source_group_order."
+                );
+            }
+        }
+
+        // Check for NULL values in target_group_order
+        if ($has_target_col) {
+            $null_check_sql = "
+                SELECT COUNT(*) AS null_count 
+                FROM $this->cache_db.`$table_name` 
+                WHERE `target_group_order` IS NULL
+            ";
+            $result = $pdo->query($null_check_sql);
+            $row = $result->fetch(\PDO::FETCH_ASSOC);
+            if ($row['null_count'] > 0) {
+                throw new \Exception(
+                    "Graph Report Error: The 'target_group_order' column contains NULL values. " .
+                    "When using group_order columns to control the left-to-right ordering of groups " .
+                    "in the graph display, all values must be non-NULL integers. " .
+                    "Found {$row['null_count']} row(s) with NULL target_group_order."
+                );
+            }
+        }
+
+        // Check for inconsistent group_order values within the same group
+        // Build SQL to check that each group has only ONE distinct group_order value
+        $inconsistency_check_parts = [];
+        
+        if ($has_source_col) {
+            $inconsistency_check_parts[] = "
+                SELECT 
+                    source_group AS group_name,
+                    source_group_order AS group_order
+                FROM $this->cache_db.`$table_name`
+            ";
+        }
+        
+        if ($has_target_col) {
+            $inconsistency_check_parts[] = "
+                SELECT 
+                    target_group AS group_name,
+                    target_group_order AS group_order
+                FROM $this->cache_db.`$table_name`
+            ";
+        }
+
+        if (!empty($inconsistency_check_parts)) {
+            $union_sql = implode(" UNION ALL ", $inconsistency_check_parts);
+            
+            $inconsistency_sql = "
+                SELECT 
+                    group_name,
+                    COUNT(DISTINCT group_order) AS distinct_order_count,
+                    GROUP_CONCAT(DISTINCT group_order ORDER BY group_order) AS order_values
+                FROM ($union_sql) AS combined_groups
+                GROUP BY group_name
+                HAVING COUNT(DISTINCT group_order) > 1
+            ";
+            
+            $result = $pdo->query($inconsistency_sql);
+            $inconsistent_groups = $result->fetchAll(\PDO::FETCH_ASSOC);
+            
+            if (!empty($inconsistent_groups)) {
+                $error_details = [];
+                foreach ($inconsistent_groups as $group) {
+                    $error_details[] = "Group '{$group['group_name']}' has conflicting group_order values: {$group['order_values']}";
+                }
+                
+                throw new \Exception(
+                    "Graph Report Error: Inconsistent group_order values detected. " .
+                    "Every node within the same group must have the same group_order value. " .
+                    "This ensures consistent left-to-right positioning in the 'Group Gravity' display mode.\n\n" .
+                    "Problems found:\n- " . implode("\n- ", $error_details) . "\n\n" .
+                    "Please ensure that all nodes with the same group value also have the same group_order value."
+                );
+            }
+        }
     }
 
     // Get the node types and link types from user input
@@ -545,6 +659,73 @@ CREATE TABLE $this->cache_db.$this->nodes_table (
     }
 
     /**
+     * Build the SQL to create the node_groups table.
+     * If group_order columns are available, includes group_order and sorts by it.
+     * This determines the left-to-right ordering in the "Group Gravity" display mode.
+     * 
+     * @param \PDO $pdo The PDO connection
+     * @return string The CREATE TABLE ... SELECT SQL statement
+     */
+    private function buildNodeGroupsTableSql(\PDO $pdo): string
+    {
+        $table_name = $this->getTableName();
+        $has_group_order = $this->hasOptionalColumn('group_order');
+        $has_source_col = $has_group_order && $this->columnExists($pdo, 'source_group_order');
+        $has_target_col = $has_group_order && $this->columnExists($pdo, 'target_group_order');
+
+        if ($has_group_order && ($has_source_col || $has_target_col)) {
+            // Build SQL with group_order support
+            // We include group_order in the SELECT and ORDER BY it to control left-to-right positioning
+            
+            $source_group_order = $has_source_col ? "source_group_order" : "NULL";
+            $target_group_order = $has_target_col ? "target_group_order" : "NULL";
+            
+            $sql = "
+CREATE TABLE $this->cache_db.{$this->node_groups_table}
+SELECT 	
+    group_name, 
+    group_order,
+    COUNT(DISTINCT(node_id)) AS count_distinct_node
+FROM (
+        SELECT DISTINCT 
+            source_group AS group_name,
+            $source_group_order AS group_order,
+            source_id AS node_id
+        FROM $this->cache_db.`$table_name`
+    UNION 
+        SELECT DISTINCT 
+            target_group AS group_name,
+            $target_group_order AS group_order,
+            target_id AS node_id
+        FROM $this->cache_db.`$table_name`
+    ) AS merged_node_type
+GROUP BY group_name, group_order
+ORDER BY group_order ASC, group_name ASC";
+        } else {
+            // Original SQL without group_order - fallback to default ordering
+            $sql = "
+CREATE TABLE $this->cache_db.{$this->node_groups_table}
+SELECT 	
+    group_name, 
+    COUNT(DISTINCT(node_id)) AS count_distinct_node
+FROM (
+        SELECT DISTINCT 
+            source_group AS group_name,
+            source_id AS node_id
+        FROM $this->cache_db.`$table_name`
+    UNION 
+        SELECT DISTINCT 
+            target_group AS group_name,
+            target_id AS node_id
+        FROM $this->cache_db.`$table_name`
+    ) AS merged_node_type
+GROUP BY group_name";
+        }
+        
+        return $sql;
+    }
+
+    /**
      * This is where the graph tables are calculated.
      *
      * groups is the groups is the "group" lookup array,
@@ -563,6 +744,10 @@ CREATE TABLE $this->cache_db.$this->nodes_table (
         
         // Detect which optional columns are available in the source data
         $this->available_optional_columns = $this->detectAvailableOptionalColumns($pdo);
+        
+        // Validate group_order data if the column is present
+        // This will throw an exception with a clear error message if validation fails
+        $this->validateGroupOrder($pdo);
         
         $sql = [];
 
@@ -697,26 +882,13 @@ ALTER TABLE $this->cache_db.`$this->links_table`
         $sql["the node types table should start from zero"] = "UPDATE $this->cache_db.{$this->node_types_table} SET id = id - 1";
 
         //we use the same "distinct on the results of a union of two distincts" method
-        //that we used to sort the nodes... but this time we get a unique list of node types...
+        //that we used to sort the nodes... but this time we get a unique list of node groups...
+        // If group_order columns are available, the groups will be sorted by group_order
+        // to control left-to-right positioning in "Group Gravity" mode
         $sql["drop node group table"] = "DROP TABLE IF EXISTS $this->cache_db.{$this->node_groups_table}";
 
-        $sql["create node group table"] =
-            "CREATE TABLE $this->cache_db.{$this->node_groups_table}
-            SELECT 	
-                group_name, 
-                COUNT(DISTINCT(node_id)) AS count_distinct_node
-            FROM (
-                    SELECT DISTINCT 
-                        source_group AS group_name,
-                        source_id AS node_id
-                    FROM $this->cache_db.`{$this->getTableName()}`
-                UNION 
-                    SELECT DISTINCT 
-                        target_type AS group_name,
-                        target_id AS node_id
-                    FROM $this->cache_db.`{$this->getTableName()}`
-                ) AS  merged_node_type
-            GROUP BY group_name";
+        // Use the dynamic SQL builder that handles group_order if available
+        $sql["create node group table"] = $this->buildNodeGroupsTableSql($pdo);
 
         $sql["create unique id for node group table"] =
             "ALTER TABLE $this->cache_db.$this->node_groups_table ADD `id` INT(11) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`id`);";
